@@ -1,0 +1,3 @@
+User-agent: *
+
+sitemap: http://www.extremefx.com.ar/sitemap.xml

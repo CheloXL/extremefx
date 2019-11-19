@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Preconditionals and postconditionals checks</title>
+    </head>
+    <body>
+            <a href="/"><h1>Marcelo Volmaro on Programming, User Experience and anything else.</h1> </a>
+        
+                <li><a href="/posts">Archive</a></li>
+                <li><a href="/tags">Tags</a></li>
+                <li><a href="/about">About Me</a></li>
+                <li><a href="/contact">Contact</a></li>
+
+        
+<h2>Preconditionals and postconditionals checks</h2>
+<h3>Published 31/3/2009</h3>
+
+
+        <a href="/tags/Flash,-Code,-Example">Flash, Code, Example</a> 
+
+<a href="/posts">Back To posts</a>
+
+<p>How many times you found yourself writing preconditions before executing some code (like argument validation) and post-conditions (validating some result before returning the value/using on another function)?</p>
+<p>So, for example:</p>
+<pre><code class="language-actionscript">if (arg == null) throw new ArgumentError(&quot;arg can not be null&quot;);
+if (!(arg is IInterface)) throw new ArgumentError(&quot;arg must be of type IInterface&quot;);
+....
+if (ret == null) throw new Error(&quot;Something went wrong!&quot;);
+return ret;
+</code></pre>
+<p>That's good practice, but when you have to validate several conditions the code starts to look messy. For that reason, I created a couple of helper classes that takes cares of the job, providing a nice fluent typing.</p>
+<h2 id="pre-conditional-checking-examples">Pre-conditional checking examples:</h2>
+<pre><code class="language-actionscript">requiresNumber(pIndex, &quot;pIndex&quot;).isLessThan(_size);
+requires(pCollection, &quot;pCollection&quot;).isNotNull();
+requiresString(pKey, &quot;key&quot;).isNotNullOrEmpty();
+requires(pValue, &quot;value&quot;).isNotNull();
+requires(pNode._parent, &quot;node&quot;).isNotSameAs(this, &quot;You cannot attach a node to itself&quot;).isTypeOf(TreeNode);
+</code></pre>
+<h2 id="post-conditional-checking-examples">Post-conditional checking examples:</h2>
+<pre><code class="language-actionscript">ensuresBool(ExternalInterface.available, &quot;ExternalInterface is not available.&quot;).isTrue();
+ensures(_entries[pOldKey]).isNotNull(&quot;Key [&quot;+pOldKey+&quot;] does not exists.&quot;);
+ensuresNumber(days).isLessOrEqualThan(10675199, &quot;Invalid number of days: &quot;+days);
+</code></pre>
+<h3 id="usage">Usage</h3>
+<p>You have 6 specific conditional checks (Array, Boolean, Date, Number, String) and one general. You access the conditionals by using either the requires[Type] functions or ensures[Type] functions.</p>
+<p>The <em>requires</em> functions requires at least one parameter: the value you want to check. You can also pass a second parameter that represents the <em>name</em> of that value (you usually use <em>requires</em> to validate method arguments).</p>
+<p>The conditions may have different number of parameters (depending on what are you checking). The last one is an additional string you may want to attach to the error description.</p>
+<p>The <em>ensures</em> functions are similar to <em>requires</em>. Ensures needs at least one parameter (the value). The second argument is an additional message you may want to attach to the complete validation process, and the third one is the <em>name</em> of the variable you are checking.</p>
+<p>This library is part of my flash framework. You can download it from <a href="http://code.google.com/p/efxflashsource/">Google Code</a>.</p>
+<p><strong>Note:</strong> There is a bug on the FlexSDK4 that does not let me compile the full library as a .swc, nor create the documentation (If you are interested: <a href="http://bugs.adobe.com/jira/browse/SDK-20251">BUG</a>).
+You have to download the library from the SVN repository. I will post a new ZIP file when the bug gets fixed.</p>
+
+
+
+
+    </body>
+</html>
+

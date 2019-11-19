@@ -1,0 +1,951 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+	<channel>
+		<title>Extreme|FX</title>
+		<link>http://extremefx.com.ar/</link>
+		<description>Marcelo Volmaro on Programming, User Experience and anything else.</description>
+		<copyright>2019</copyright>
+		<pubDate>Tue, 19 Nov 2019 18:34:08 GMT</pubDate>
+		<lastBuildDate>Tue, 19 Nov 2019 18:34:08 GMT</lastBuildDate>
+		<item>
+			<title>Downgrading a Nuget package</title>
+			<link>http://extremefx.com.ar/posts/downgrading-a-nuget-package</link>
+			<description>&lt;p&gt;Today I had a problem where I had blindly upgraded EF to version 6 across an entire solution, only to find out that the version was incompatible with the current MySql provider.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/downgrading-a-nuget-package</guid>
+			<pubDate>Thu, 17 Oct 2013 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Today I had a problem where I had blindly upgraded EF to version 6 across an entire solution, only to find out that the version was incompatible with the current MySql provider.&lt;/p&gt;
+&lt;p&gt;Due to time constraints, instead of trying to revert back the changes from the repository/merge with the other work already in progress to fix the problems,
+I decided to roll back EF to the previous version. So, I started to mess out with the nuget package manager console.&lt;/p&gt;
+&lt;p&gt;First I needed to get a list of projects that have a reference to the nuget package:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$projects = Get-Project -All | Select &amp;#64;{ Name=&amp;quot;ProjectName&amp;quot;;Expression={$_.ProjectName}}, &amp;#64;{Name=&amp;quot;Has&amp;quot;;Expression={Get-Package EntityFramework -Project $_.Name}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then, I uninstalled the package:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;projects | select { Uninstall-Package EntityFramework -ProjectName $_.ProjectName -Force }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It's worth noting the use of the &lt;em&gt;Force&lt;/em&gt; switch here. That can be quite dangerous as it can break other packages
+(see &lt;a href="http://docs.nuget.org/docs/reference/package-manager-console-powershell-reference#Uninstall-Package"&gt;NuGet Docs&lt;/a&gt;)&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Finally, installed the new one:&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$projects | select { Install-Package EntityFramework -Version 5.0.0 -ProjectName $_.ProjectName }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;And that's it. That solved my problem and now I can continue working where I left...&lt;/em&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Creating a Culturally Customized Website</title>
+			<link>http://extremefx.com.ar/posts/creating-culturally-customized-website</link>
+			<description>&lt;p&gt;“Human-Computer Interaction (HCI) research shows that successful interaction depends on more than just using the correct language. Interaction is also dependent upon the culturally embedded meaning of objects such as icons, and metaphors such as the desktop, or the shopping cart (Bourges-Waldegg &amp;amp; Scrivener, 1998; French &amp;amp; Smith, 2000)”.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/creating-culturally-customized-website</guid>
+			<pubDate>Thu, 06 Oct 2011 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;“Human-Computer Interaction (HCI) research shows that successful interaction depends on more than just using the correct language. Interaction is also dependent upon the culturally embedded meaning of objects such as icons, and metaphors such as the desktop, or the shopping cart (Bourges-Waldegg &amp;amp; Scrivener, 1998; French &amp;amp; Smith, 2000)”.&lt;/p&gt;
+&lt;p&gt;Cultural customization is a fundamental step for reaching a global audience with your website, and should be completed as part of website translation and website localization. While many website owners treat this step as optional, it should be treated as integral. Website cultural customization can do a lot to validate your presence on the web with your target locale and ensure the effectiveness of your website to locale specific users. Cultural adaption involves perception, symbolism and behavior.&lt;/p&gt;
+&lt;p&gt;Culturally customizing a website may sound like a lot of work, and if you are starting with a standard website that had no preparation, considerable effort may be required. However, if you plan for &lt;strong&gt;cultural customization&lt;/strong&gt; at the time a website is initially designed, your work will be considerably reduced.&lt;/p&gt;
+&lt;p&gt;Let’s begin with a review of the three main types of websites:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Standard websites:&lt;/strong&gt; this type of website has only one language (usually English) and the same content is intended to reach all countries. No effort was made in terms of &lt;strong&gt;website translation&lt;/strong&gt;, website localization or website internationalization.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Localized websites:&lt;/strong&gt; this type of website ranges from websites with some translated landing pages, websites that are fully translated (localized), to websites that not only offer users with translated content, but also with content specific to their country or locale.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Culturally customized websites:&lt;/strong&gt; this type of website not only takes into account the &lt;strong&gt;language&lt;/strong&gt; and &lt;strong&gt;locale&lt;/strong&gt; of the target audience, but also one or more levels of cultural adaptation: perception, symbolism and behavior.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After website translation and website localization, if you are going to do cultural customization for your website, you and your translation services agency should take the following issues into consideration:&lt;/p&gt;
+&lt;h3 id="using-unicode"&gt;Using Unicode&lt;/h3&gt;
+&lt;p&gt;The very first step in cultural customization is to make sure that a website will be able to display any language. The &lt;a href="http://unicode.org/standard/standard.html"&gt;Unicode Standard&lt;/a&gt; is the universal &lt;a href="http://en.wikipedia.org/wiki/Character_encoding"&gt;character encoding&lt;/a&gt; standard for written characters and text. It defines a consistent way of encoding multilingual text. Unicode characters are represented in one of three encoding forms: a 32-bit form (UTF-32), a 16-bit form (UTF-16), and an 8-bit form (&lt;a href="http://en.wikipedia.org/wiki/UTF-8"&gt;UTF-8&lt;/a&gt;). UTF-8 has been designed for ease of use with existing ASCII-based systems and it is usually the default encoding that you should be using on any webpage. Setting up the right encoding will ensure that your website’s contents will be correctly displayed. Most Content Management Systems (CMS) already handle all content as UTF-8 encoded text.&lt;/p&gt;
+&lt;h3 id="flexible-design"&gt;Flexible Design&lt;/h3&gt;
+&lt;p&gt;If possible, use a highly flexible or “fluid” design that allows pages to scale based on what content is in them. If we take an English word as a base, the same word in Russian could be up to 60% longer, while in many Asian languages it could be less than a half the width. Based on the complexity of Asian languages, you may need to scale fonts by about a 120% so they are legible. So, as a rule of thumb, you should avoid using fixed sized structures with text in it – space should be allowed to expand or contract in accordance with the size of the text.&lt;/p&gt;
+&lt;h3 id="adding-culture-to-the-mix"&gt;Adding “Culture” to the mix&lt;/h3&gt;
+&lt;p&gt;Our culture affects the way we see the physical world and the meanings we attribute to objects in our environment. As noted before, culture is shaped by our &lt;em&gt;perception&lt;/em&gt; of the word (how we select, filter, organize and interpret information), &lt;em&gt;symbolism&lt;/em&gt; (a person’s capacity to respond to or use a system of significant symbols used to understand their environment and create a social reality)
+and &lt;em&gt;behavior&lt;/em&gt; (what forces us to behave and react the way we do). If you’re designing a website for a culturally diverse audience, you should carefully consider what visual representations you use on your website, as their meanings can vary considerably from culture to culture.&lt;/p&gt;
+&lt;p&gt;A complete discussion of this topic would constitute a complete book, I have noted an excellent one below from Nitish Singh entitled “&lt;a href="http://www.theculturallycustomizedwebsite.com/"&gt;The Culturally Customized Web Site: Customizing Websites for the Global Marketplace&lt;/a&gt;”. Let me provide you with some examples so you can have a grasp of the basic concepts:&lt;/p&gt;
+&lt;h4 id="perception"&gt;Perception&lt;/h4&gt;
+&lt;p&gt;There are many factors that affect perception. One of the most important and easiest factors to adjust after website localization is color. People from different cultures do not perceive colors in the same way. The following chart gives some examples of color and their meaning in different cultures.&lt;/p&gt;
+&lt;div class="culture-colors"&gt;
+| Color  | USA                               | China                       | India                      | Egypt                | Japan               |
+| -------| ----------------------------------| ----------------------------| ---------------------------| ---------------------| --------------------|
+| Red    | Danger/Love/Stop                  | Good fortune/Luck/Joy       | Luck/Fury/Masculine        | Death                | Anger/Danger        |
+| Orange | Confident/Dependable/Corporate    | Fortune/Luck/Joy            | Sacred (the Color Saffron) | Virtue/Faith/Truth   | Future/Youth/Energy |
+| Yellow | Coward/Joy/Hope                   | Wealth/Earth/Royal          | Celebration                | Mourning             | Grace/Nobility      |
+| Green  | Spring/Money/New                  | Health/Prosperity/Harmony   | Romance/New/Harvest        | Happiness/Prosperity | Eternal life        |
+| Blue   | Confident/Dependability/Corporate | Heavenly/Clouds             | Mourning/Disgust/Chilling  | Virtue/Faith/Truth   | Villainy            |
+| Purple | Royalty/Imagination               | Royalty                     | Unhappiness                | Virtue               | Wealth              |
+| Black  | Funeral/Death/Evil                | Heaven/Neutral/High Quality | Evil                       | Death                | Evil                |
+| White  | Purity/Peace/Holy                 | Mourning                    | Fun/Serenity/Harmony       | Joy                  | Purity/Holiness     |
+&lt;/div&gt;
+&lt;p&gt;Naturally you can’t accommodate every single culture with your design. But if your website is correctly structured and you have your content separated from your design (as you should), adjusting the main “theme” of a website is as easy as dropping a couple of selectors on the main CSS with a &lt;code&gt;lang=xx-YY&lt;/code&gt; attribute selector.&lt;/p&gt;
+&lt;h4 id="symbolism"&gt;Symbolism&lt;/h4&gt;
+&lt;p&gt;We all use symbols, almost unconsciously, on a daily basis. We don’t even have to think about them as we take their meaning for granted. But there are times when the same symbol could mean two completely different things from one culture to another. One of the common examples is the &lt;a href="http://history1900s.about.com/cs/swastika/a/swastikahistory.htm"&gt;Swastika&lt;/a&gt;: most of us will associate it with the Nazi movement. But for Hindus, it is the symbol of good luck and well-being. The swastika is used in all Hindu &lt;a href="http://en.wikipedia.org/wiki/Yantra"&gt;yantras&lt;/a&gt; and religious designs.&lt;/p&gt;
+&lt;p&gt;Another seemingly harmless example is the “thumbs-up” gesture. Many countries recognize this as a sign of approval or confirmation, and a graphic designer looking for a graphical way to let users know that they have successfully completed an action might be tempted to base an icon on this image. However, in modern day Afghanistan, Iraq and parts of Greece, Italy and France this simple gesture can be considered to be very impolite. In fact it is often regarded as the equivalent of the “middle finger salute” used in the UK and USA.&lt;/p&gt;
+&lt;h4 id="behavior"&gt;Behavior&lt;/h4&gt;
+&lt;p&gt;Behavior is defined by the following cultural values: Collectivism, Power Distance, Uncertainty Avoidance, Masculinity-Femininity and High-Low Context. Behavior is what it “drives” us to do something and it is an entire topic by itself. Basic behavior is influenced by the tone of the writing in content, images, layout, etc. It has a big influence on any “Call-to-Action”, as they are tightly connected.&lt;/p&gt;
+&lt;p&gt;This concept is the hardest point to implement, as it may involve significant design changes, modification to the tone of the writing (so, you will not be simply translating content into another language, but copywriting it), and swapping images. For instance, a woman in a scanty swimsuit draped over a red sports car would be inappropriate for many global target markets.&lt;/p&gt;
+&lt;h3 id="putting-the-world-into-web"&gt;Putting the World into Web&lt;/h3&gt;
+&lt;p&gt;As you can see, creating a culturally correct website could be as huge task if you want to do it “by the book.” But most of these tasks can be accomplished by doing moderate research on target locales, coding the website following the recommended standards, and adjusting the localized website content to avoid insulting the target, global audience.&lt;/p&gt;
+&lt;p&gt;The first items (using Unicode and flexible design) should not have a big impact on the website localization budget. If the design process took colors and symbols into consideration, probably only minor adjustments would be required, based on the locale, with minimal cost.&lt;/p&gt;
+&lt;p&gt;Behavior is the hardest point to achieve, not only because of the technical issues (you may need to have different templates for different regions) but also because maintenance costs can sometimes be very high.&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Website Internationalization and Accessibility</title>
+			<link>http://extremefx.com.ar/posts/website-internationalization-accessibility</link>
+			<description>&lt;p&gt;The World Wide Web is capable of living up to its name: by being accessible to everyone in the world. This is more or less true, as there are still many web users whose needs aren’t adequately met. The Word Wide Web Consortium (&lt;a href="http://www.w3.org/"&gt;W3C&lt;/a&gt;) has several recommendations on how to make a webpage accessible by users, not only with disabilities, but also by users that do not speak English.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/website-internationalization-accessibility</guid>
+			<pubDate>Thu, 21 Jul 2011 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;The World Wide Web is capable of living up to its name: by being accessible to everyone in the world. This is more or less true, as there are still many web users whose needs aren’t adequately met. The Word Wide Web Consortium (&lt;a href="http://www.w3.org/"&gt;W3C&lt;/a&gt;) has several recommendations on how to make a webpage accessible by users, not only with disabilities, but also by users that do not speak English.&lt;/p&gt;
+&lt;h3 id="what-is-accessibility"&gt;What is Accessibility?&lt;/h3&gt;
+&lt;p&gt;Here is a definition from the Web Accessibility Initiative &lt;a href="https://www.w3.org/WAI/fundamentals/accessibility-intro/"&gt;WAI&lt;/a&gt;: “… Web accessibility means that people with disabilities can perceive, understand, navigate, and interact with the Web, and that they can contribute to the Web. Web accessibility also benefits others, including older people with changing abilities due to aging.”&lt;/p&gt;
+&lt;h3 id="web-internationalization"&gt;Web Internationalization&lt;/h3&gt;
+&lt;p&gt;Web Internationalization is the practice of making content available in a variety of languages, not simply one. On the web, languages determine the direction of the text, the fonts used, or even the dictionary for pronunciation used by a screen reader.&lt;/p&gt;
+&lt;p&gt;Basically, a website is composed of three layers: Content, Presentation and Behavior.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;strong&gt;content layer&lt;/strong&gt; is what your readers are coming to get when they come to your Web page. Content can consist of text or images and includes the pointers that your readers need to navigate around your website. In web development, &lt;strong&gt;HTML&lt;/strong&gt; makes up the content layer and it also structures the web document.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;presentation layer&lt;/strong&gt; is how the document will look to your readers. This layer is defined by the &lt;strong&gt;CSS&lt;/strong&gt; or styles that indicate how your document should be displayed and on what media types.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;behavior layer&lt;/strong&gt; is the layer of a webpage that performs a function. If you use Ajax or DHTML, it is the JavaScript that makes the page do something. If you have a PHP/.Net or any other kind of back-end, it is that back-end that produces results when your reader clicks something on the webpage. For most web pages, the first level of behavior is the JavaScript interactions on the page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;One of the principles of web accessibility is that these three types of information should be separated from one other. Blind users will certainly not be able to “see” anything on screen, so another way to “present” the information to that user needs to be created. Arabic online users would have an unpleasant experience trying to read left-aligned Arabic content and Chinese users would have a hard times trying to read 11px Chinese text. As you can see, accessibility it is not only for blind people.&lt;/p&gt;
+&lt;h3 id="accessibility-standards"&gt;Accessibility Standards&lt;/h3&gt;
+&lt;p&gt;You would have to spend a small fortune doing  website testing to assure proper presentation on all possible devices. You already know how hard it can be to fully test a design on mainstream browsers, if you have to accommodate really old browsers that do not follow the standards, like IE6. Adding assistive technology software and hardware to the mix makes the task nearly impossible.&lt;/p&gt;
+&lt;p&gt;So, how do web developers deal with these issues? Subject matter experts on accessibility around the world compiled their knowledge and created a set of recommendations for web developers to follow. By learning these standards, a web developer won’t have to spend time researching every possible access method. By following these standards, he can be reasonably sure that a compliant webpage will be accessible to a broad audience.&lt;/p&gt;
+&lt;h3 id="cascading-style-sheets"&gt;Cascading Style Sheets&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://www.w3.org/Style/CSS/learning"&gt;Cascading Style Sheets (CSS)&lt;/a&gt; is a simple way to add style (fonts, colors, layout, etc.) to web pages. CSS were designed primarily to enable the separation of document content from document presentation.&lt;/p&gt;
+&lt;p&gt;If we broaden our understanding of “presentation” to mean something more like “representation,” thereby obviating even an implied visual form, it becomes possible to customize CSS for a range of output media. It also becomes possible to write separate style sheets for media, whose modes of presentation vary enormously, from Braille to printers to computer screens.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.w3.org/TR/CSS21/"&gt;CSS Level 2&lt;/a&gt; media types were defined in 1998. Their details (as excerpted from the W3C document focusing on accessibility-specific media) are as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Aural&lt;/strong&gt;: Intended for speech synthesizers.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Braille&lt;/strong&gt;: Intended for Braille tactile feedback devices.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embossed&lt;/strong&gt;: Intended for paged Braille printers.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Print&lt;/strong&gt;: Intended for paged, opaque material and for documents viewed on screen in print preview mode.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Screen&lt;/strong&gt;: Intended primarily for color computer screens.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TTY&lt;/strong&gt;: Intended for media using a fixed-pitch character grid, such as teletypes, terminals, or portable devices with limited display capabilities.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The preferred method of styling a document involves external style sheets – separately-maintained documents that can be included by reference in an unlimited number of HTML files and updated in one single operation. Style sheets are then linked to a document as follow: &lt;code&gt;&amp;lt;link rel=&amp;amp;#8221;stylesheet&amp;amp;#8221; href=&amp;amp;#8221;stylesheet.css&amp;amp;#8221; type=&amp;amp;#8221;text/css&amp;amp;#8221; /&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To use media style sheets, simply add one more attribute to the link attribute &lt;em&gt;media&lt;/em&gt;. Some possible examples:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;link rel=&amp;amp;#8221;stylesheet&amp;amp;#8221; href=&amp;amp;#8221;tty.css&amp;amp;#8221; type=&amp;amp;#8221;text/css&amp;amp;#8221; media=&amp;amp;#8221;tty&amp;amp;#8221; /&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;link rel=&amp;amp;#8221;stylesheet&amp;amp;#8221; href=&amp;amp;#8221;aural.css&amp;amp;#8221; type=&amp;amp;#8221;text/css&amp;amp;#8221; media=&amp;amp;#8221;aural&amp;amp;#8221; /&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;link rel=&amp;amp;#8221;stylesheet&amp;amp;#8221; href=&amp;amp;#8221;braille.css&amp;amp;#8221; type=&amp;amp;#8221;text/css&amp;amp;#8221; media=&amp;amp;#8221;braille&amp;amp;#8221; /&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you do not specify a medium for a style sheet, graphical Web browsers default to an interpretation of &lt;code&gt;media=&amp;amp;#8221;all&amp;amp;#8221;&lt;/code&gt;. In CSS Level 2, you do not have to use separate style sheets for different media; you can use the &lt;code&gt;&amp;#64;media&lt;/code&gt; rule to specify the media.&lt;/p&gt;
+&lt;p&gt;You can also pair media queries with pseudo-classes, most notability the &lt;em&gt;lang&lt;/em&gt; pseudo-class. The CSS Level 2 specification defines a special pseudo class, &lt;code&gt;:lang()&lt;/code&gt;, for indicating rules that should be applied only to elements that match a certain language. Such a rule is written as follows: &lt;code&gt;:lang(zh-CN) { font-size: 120%; }&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This would display anything written in &lt;em&gt;Simplified Chinese language&lt;/em&gt; with a font size 1.2 times larger than the base size specified for the whole document.&lt;/p&gt;
+&lt;p&gt;Under the &lt;a href="http://www.w3.org/TR/WCAG20/"&gt;Web Content Accessibility Guidelines&lt;/a&gt;, you are required to specify changes in the language used in documents. You do this by adding the &lt;code&gt;lang=&amp;amp;#8221;languagecode&amp;amp;#8221;&lt;/code&gt; attribute to virtually any tag (like &lt;code&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;span&amp;gt;&amp;lt;/span&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;cite&amp;gt;&amp;lt;/cite&amp;gt;&lt;/code&gt;, or &lt;code&gt;&amp;lt;hx&amp;gt;&amp;lt;/hx&amp;gt;&lt;/code&gt;. Also, in order to specify a change in language, you must already have declared the default, base, or original language, which you do by adding &lt;code&gt;lang=&amp;amp;#8221;languagecode&amp;amp;#8221;&lt;/code&gt; to the &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; or (preferably) &lt;code&gt;&amp;lt;html&amp;gt;&lt;/code&gt; tags.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;p lang=&amp;amp;#8221;zh-CN&amp;amp;#8221;&amp;gt;关于我们&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;By itself, &lt;code&gt;:lang()&lt;/code&gt; is not particularly useful, but when combined with other CSS rules and properties, it can be quite powerful.&lt;/p&gt;
+&lt;h4 id="list-markers"&gt;List Markers&lt;/h4&gt;
+&lt;p&gt;One way in which &lt;code&gt;:lang()&lt;/code&gt; rules can be used is to set an appropriate marker for ordered lists. For example: &lt;code&gt;ol li:lang(hy-AM) { list-style-type: armenian; }&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;That will set the list style to traditional uppercase Armenian numbering for Armenian text. There are specific values for Armenian, Georgian, Roman and Greek numbers/letters. You can find a complete list at &lt;a href="https://www.w3.org/TR/CSS21/generate.html#list-style"&gt;W3C&lt;/a&gt; Generated content, automatic numbering, and lists.&lt;/p&gt;
+&lt;h4 id="bidirectional-text"&gt;Bidirectional Text&lt;/h4&gt;
+&lt;p&gt;Two CSS properties, direction and unicode-bidi, are used to affect the calculation of the correct direction. In most cases, you won’t need to use these properties if you set the correct language on the document/text run, but you may occasionally need to change text direction. You should first use the unicode-bidi property to create an additional level of embedding or to set up an override. Then the value of direction can be set to either ltr (left-to-right) or rtl (right-to-left).&lt;/p&gt;
+&lt;h3 id="summary"&gt;Summary&lt;/h3&gt;
+&lt;p&gt;Users with disabilities are as entitled to use the Web as anyone else, but often they are unable to access websites due to careless web design. Using Cascading Style Sheets is an excellent first step toward developing a website that can be used by everyone, as style sheets separate presentation from content. &lt;a href="https://www.microsoft.com/en-us/accessibility/"&gt;Assistive technology devices&lt;/a&gt; and software can often enable access by disabled users, but only if sites are designed in accordance with Web accessibility standards. The W3C has produced Web Content Accessibility Guidelines that are an invaluable resource for Web developers.&lt;/p&gt;
+&lt;p&gt;In addition to users with disabilities, users in non-English-speaking countries also use the Web. CSS is designed with internationalization in mind; for example, rules can be made for specific languages with the &lt;code&gt;:lang()&lt;/code&gt; pseudo-element, and the list-style-type property can produce a number of non-English number markers.&lt;/p&gt;
+&lt;h4 id="keeping-the-goal-of-website-globalization-in-mind"&gt;Keeping the goal of website globalization in mind&lt;/h4&gt;
+&lt;p&gt;Whether you are trying to release a multilingual product in order to increase your global market share and ROI or you are trying to increase your company’s global operational efficiencies by developing multilingual websites, website globalization is a requirement to make either a reality. Each client’s needs are somewhat unique and there are a variety of factors that can influence resources and costs involved in a complex software globalization project.&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Website Localization with Ektron – Part 3</title>
+			<link>http://extremefx.com.ar/posts/website-localization-with-ektron-3</link>
+			<description>&lt;p&gt;Setting up correct Locales, adding Lang attributes and localizing hard-coded images are among the technical steps detailed in this final blog in our 3-part series on &lt;em&gt;Website Localization with Ektron CMS&lt;/em&gt;. We covered an overview of CMS strategy issues in part 1, and gave more technical detail and steps in Part 2. In this final blog of the series we will show you how to solve some of the issues touched on in Part 2.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/website-localization-with-ektron-3</guid>
+			<pubDate>Sun, 12 Sep 2010 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Setting up correct Locales, adding Lang attributes and localizing hard-coded images are among the technical steps detailed in this final blog in our 3-part series on &lt;em&gt;Website Localization with Ektron CMS&lt;/em&gt;. We covered an overview of CMS strategy issues in part 1, and gave more technical detail and steps in Part 2. In this final blog of the series we will show you how to solve some of the issues touched on in Part 2.&lt;/p&gt;
+&lt;h3 id="setting-up-the-correct-locale"&gt;Setting up the correct Locale&lt;/h3&gt;
+&lt;p&gt;The first thing we should do is to make sure that the system responds to the user in the correct (user selected) locale. To do this, we should not only rely on the content returned by Ektron (that will be in the correct locale) but also we should tell the system to use that same locale to present any information requested outside Ektron in the same locale.&lt;/p&gt;
+&lt;p&gt;Since we are dealing with a website, and based on &lt;a href="http://www.microsoft.com/"&gt;Microsoft&lt;/a&gt; best practices, the locale initialization must be done with the &lt;a href="https://docs.microsoft.com/en-us/previous-versions/bz9tc508(v=vs.140)"&gt;InitializeCulture&lt;/a&gt; method, by overriding it and setting the &lt;code&gt;CurrentCulture&lt;/code&gt; and &lt;code&gt;CurrentUICulture&lt;/code&gt; for the current thread. The Culture value determines the results of culture-dependent functions, such as the date, number, and currency formatting, and so on. The UICulture value determines which resources are loaded for the web page.&lt;/p&gt;
+&lt;p&gt;Since we would have to use the above on every template on our website and that’s not only too time consuming, but also error prone (if you add a new web page and forget to add the code, some items on that web page may not work as expected), I usually create a LocalizablePage class that inherits from the &lt;code&gt;System.Web.UI.Page&lt;/code&gt; and I override the &lt;code&gt;InitializeCulture&lt;/code&gt; method with the initialization code. Then the only thing that I have to remember is to change the inheritance of every template from &lt;code&gt;System.Web.UI.Page&lt;/code&gt; to &lt;code&gt;LocalizablePage&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;namespace EktronLibrary {
+	using System.Globalization;
+	using System.Web.UI;
+
+	public class LocalizablePage : Page {
+		protected override void InitializeCulture() {
+			//this is here just to make sure the culture is correctly initialized
+			CultureInfo c = Utilities.CurrentCulture;
+			base.InitializeCulture();
+		}
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you can see on the code above, I did not directly place all the initialization code on the &lt;code&gt;LocalizablePage&lt;/code&gt; class, but I created a helper class that does all this for me. Also that class returns what is the actual user-selected locale and what’s the default locale selected in Ektron CMS. These two values will come in handy for some of the next tasks.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;namespace EktronLibrary {
+	using System.Globalization;
+	using System.Threading;
+	using System.Web;
+	using Ektron.Cms.Controls;
+
+	public static class Utilities {
+		private static int _lastCulture;
+		private static CultureInfo _lastCultureInfo;
+		private static readonly object _cultureLock = new object();
+
+		static Utilities() {
+			using (LanguageAPI languageApi = new LanguageAPI()) {
+				DefaultCulture = new CultureInfo(languageApi.DefaultLanguageID);
+			}
+		}
+
+		public static CultureInfo DefaultCulture {
+			get;
+			private set;
+		}
+
+		public static CultureInfo CurrentCulture {
+			get {
+				using(LanguageAPI languageApi = new LanguageAPI()) {
+					if (_lastCulture != languageApi.CurrentLanguageID) {
+						HttpContext.Current.Application.Lock();
+						lock (_cultureLock) {
+							_lastCulture = languageApi.CurrentLanguageID;
+							_lastCultureInfo = new CultureInfo(_lastCulture);
+							Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = _lastCultureInfo;
+						}
+						HttpContext.Current.Application.UnLock();
+					}
+				}
+				return _lastCultureInfo;
+			}
+		}
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="adding-lang-attribute-to-the-html-tag"&gt;Adding &lt;code&gt;LANG&lt;/code&gt; attribute to the html tag&lt;/h3&gt;
+&lt;p&gt;Now that we have our system and code properly set, we need to tell the browser/spiders in which language we are serving the page. For this you can:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add a Literal control inside the html tag and from the code behind, write the appropriate code for the literal to display the current locale, or&lt;/li&gt;
+&lt;li&gt;Use the code below to simply replace the html tag by a .net control that will render the html tag and also take care of setting the correct attribute. As you can see, this piece of code uses the CurrentCulture property of our helper class to ensure that we always use the correct user selected locale.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;using System.Web.UI;
+
+[assembly: TagPrefix(&amp;#64;&amp;quot;EktronLibrary.Controls&amp;quot;, &amp;#64;&amp;quot;Ekt&amp;quot;)]
+namespace EktronLibrary.Controls {
+	using System.Text;
+	using System.Web.UI;
+
+	[ToolboxData(&amp;#64;&amp;quot;&amp;lt;{0}:EktronHtmlTag runat=server /&amp;gt;&amp;quot;)]
+	public class EktronHtmlTag : Control {
+		protected override void Render(HtmlTextWriter pOutput) {
+			StringBuilder strb = new StringBuilder(&amp;#64;&amp;quot;&amp;quot;, Utilities.CurrentCulture.Name);
+			pOutput.Write(strb.ToString());
+			RenderChildren(pOutput);
+			pOutput.Write(&amp;quot;&amp;quot;);
+		}
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="taking-care-of-content-directionality"&gt;Taking care of content directionality&lt;/h3&gt;
+&lt;p&gt;Again, we created another control that you can simply drop in your templates (inside the body tag); making sure it wraps all the content of your website. This control will render a &lt;code&gt;DIV&lt;/code&gt; tag with the &lt;code&gt;DIR&lt;/code&gt; attribute correctly set (rtl for Right-to-Left or ltr for Left-to-Right) based on the page target language. The &lt;code&gt;DIR&lt;/code&gt; attribute is being applied to a &lt;code&gt;DIV&lt;/code&gt; and not to the &lt;code&gt;BODY&lt;/code&gt; tag because some speakers of languages that use right-to-left scripts prefer the directionality of the user interface to be associated with the desktop environment and not with the content of a particular document.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;using System.Web.UI;
+
+[assembly: TagPrefix(&amp;#64;&amp;quot;EktronLibrary.Controls&amp;quot;, &amp;#64;&amp;quot;Ekt&amp;quot;)]
+namespace EktronLibrary.Controls {
+	using System;
+	using System.ComponentModel;
+	using System.Text;
+	using System.Web.UI;
+
+	[ToolboxData(&amp;#64;&amp;quot;&amp;lt;{0}:EktronContentDirectionality runat=server /&amp;gt;&amp;quot;)]
+	public class EktronContentDirectionality : Control {
+
+		[Category(&amp;quot;Ektron Component&amp;quot;)]
+		public string ClassName { get; set; }
+
+		protected override void Render(HtmlTextWriter pOutput) {
+			StringBuilder strb = new StringBuilder(&amp;quot;&amp;lt;div &amp;quot;);
+			string langName = Utilities.CurrentCulture.TwoLetterISOLanguageName;
+			string dir = (langName.Equals(&amp;#64;&amp;quot;ar&amp;quot;, StringComparison.OrdinalIgnoreCase) ||
+			langName.Equals(&amp;#64;&amp;quot;ur&amp;quot;, StringComparison.OrdinalIgnoreCase) ||
+			langName.Equals(&amp;#64;&amp;quot;fa&amp;quot;, StringComparison.OrdinalIgnoreCase) ||
+			langName.Equals(&amp;#64;&amp;quot;he&amp;quot;, StringComparison.OrdinalIgnoreCase)) ? &amp;#64;&amp;quot;rtl&amp;quot; : &amp;#64;&amp;quot;ltr&amp;quot;;
+
+			if (!string.IsNullOrEmpty(ClassName)) {
+				strb.AppendFormat(&amp;quot;class=&amp;quot;{0}&amp;quot; &amp;quot;, ClassName);
+			}
+
+			strb.AppendFormat(&amp;#64;&amp;quot;dir=&amp;quot;&amp;quot;{0}&amp;quot;&amp;quot;&amp;gt;&amp;quot;, dir);
+			pOutput.Write(strb.ToString());
+			RenderChildren(pOutput);
+			pOutput.Write(&amp;quot;&amp;quot;);
+		}
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="localizing-hard-coded-images"&gt;Localizing hard-coded images&lt;/h3&gt;
+&lt;p&gt;If an image is linked on a page from the content in Ektron, it is easy to go to that page, edit the localized version and replace the image. But when dealing with images hard-coded into the templates (Logos, graphics with overprinted text, etc.) you cannot resort to the features Ektron provides. In these cases, you have to pick the correct image for the user selected locale.&lt;/p&gt;
+&lt;p&gt;The code below shows you an example of a user-control that takes care of everything for you. The control has the same set of attributes as the &lt;code&gt;IMG&lt;/code&gt; tag. The only difference is on how the control renders the &lt;code&gt;IMG&lt;/code&gt; tag. If the website is being displayed in the Ektron CMS default language (set on the web.config), the control will look for the image on the path/filename combination you specified on the &lt;code&gt;Source&lt;/code&gt; attribute. But when the user changes the language of the site, the control will try to load the image from the same path as the original version, but the control will append to the name an underscore (_) and then the full name for the selected locale (&lt;em&gt;es-ES&lt;/em&gt; for Spanish/Spain, &lt;em&gt;ja-JA&lt;/em&gt; for Japanese/Japan, &lt;em&gt;zh-CN&lt;/em&gt; for Simplified Chinese/China, etc). So, for example, if the original image is located under this path “/images/subfolder/header.jpg”, the Spanish version will be located/named as “/images/subfolder/header_es-ES.jpg” and the Japanese version will be “/images/subfolder/header_ja-JP.jpg”&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;using System.Web.UI;
+
+[assembly: TagPrefix(&amp;#64;&amp;quot;EktronLibrary.Controls&amp;quot;, &amp;#64;&amp;quot;Ekt&amp;quot;)]
+namespace EktronLibrary.Controls {
+	using System.Drawing.Design;
+	using System.Web.UI;
+	using System.ComponentModel;
+	using System.Text;
+	using System.Web;
+	using System.Web.UI.Design;
+
+	[ToolboxData(&amp;#64;&amp;quot;&amp;lt;{0}:EktronLocalizableImage runat=server /&amp;gt;&amp;quot;)]
+	public class EktronLocalizableImage : Control {
+
+		[Category(&amp;quot;Ektron Component&amp;quot;), DefaultValue(&amp;quot;&amp;quot;), Localizable(true)]
+		public string Alt { get; set; }
+
+		[Category(&amp;quot;Ektron Component&amp;quot;), DefaultValue(&amp;quot;&amp;quot;), Localizable(true)]
+		public string Title { get; set; }
+
+		[Category(&amp;quot;Ektron Component&amp;quot;), DefaultValue(&amp;quot;&amp;quot;)]
+		public string UseMap { get; set; }
+
+		[Category(&amp;quot;EktronComponent&amp;quot;), DefaultValue(&amp;quot;&amp;quot;)]
+		public string ClassName { get; set; }
+
+		[Category(&amp;quot;EktronComponent&amp;quot;), DefaultValue(&amp;quot;&amp;quot;)]
+		public string Style { get; set; }
+
+		[Category(&amp;quot;EktronComponent&amp;quot;), Editor(typeof (UrlEditor), typeof (UITypeEditor))]
+		public string Source { get; set; }
+
+		[Category(&amp;quot;EktronComponent&amp;quot;)]
+		public int Width { get; set; }
+
+		[Category(&amp;quot;EktronComponent&amp;quot;)]
+		public int Height { get; set; }
+
+		protected override void Render(HtmlTextWriter pOutput) {
+			StringBuilder strb = new StringBuilder(&amp;#64;&amp;quot;&amp;lt;img&amp;quot;);
+			if (Utilities.CurrentCulture.LCID == Utilities.DefaultCulture.LCID) {
+				strb.AppendFormat(&amp;#64;&amp;quot; src=&amp;quot;&amp;quot;{0}&amp;quot;&amp;quot;&amp;quot;, Source);
+			}
+			else {
+				int dot = Source.LastIndexOf('.');
+				strb.AppendFormat(&amp;#64;&amp;quot; src=&amp;quot;&amp;quot;{0}_{2}.{1}&amp;quot;&amp;quot;&amp;quot;, Source.Substring(0, dot), Source.Substring(dot + 1), Utilities.CurrentCulture.Name);
+			}
+
+			if (!string.IsNullOrEmpty(Alt)) {
+				strb.AppendFormat(&amp;quot; alt=&amp;quot;{0}&amp;quot;&amp;quot;, HttpUtility.HtmlAttributeEncode(Alt));
+			}
+
+			if (!string.IsNullOrEmpty(Title)) {
+				strb.AppendFormat(&amp;quot; title=&amp;quot;{0}&amp;quot;&amp;quot;, HttpUtility.HtmlAttributeEncode(Title));
+			}
+
+			if (!string.IsNullOrEmpty(UseMap)) {
+				strb.AppendFormat(&amp;#64;&amp;quot; usemap=&amp;quot;&amp;quot;{0}&amp;quot;&amp;quot;&amp;quot;, HttpUtility.HtmlAttributeEncode(UseMap));
+			}
+
+			if (!string.IsNullOrEmpty(ClassName)) {
+				strb.AppendFormat(&amp;quot; class=&amp;quot;{0}&amp;quot;&amp;quot;, HttpUtility.HtmlAttributeEncode(ClassName));
+			}
+
+			if (!string.IsNullOrEmpty(Style)) {
+				strb.AppendFormat(&amp;quot; style=&amp;quot;{0}&amp;quot;&amp;quot;, HttpUtility.HtmlAttributeEncode(Style));
+			}
+
+			if (Width &amp;gt; 0) {
+				strb.AppendFormat(&amp;quot; width=&amp;quot;{0}&amp;quot;&amp;quot;, Width);
+			}
+
+			if (Height &amp;gt; 0) {
+				strb.AppendFormat(&amp;quot; height=&amp;quot;{0}&amp;quot;&amp;quot;, Height);
+			}
+
+			strb.Append(&amp;quot;/&amp;gt;&amp;quot;);
+			pOutput.Write(strb.ToString());
+		}
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="localizing-hard-coded-text"&gt;Localizing hard-coded text&lt;/h3&gt;
+&lt;p&gt;&lt;img src="/assets/images/EktronSmartForm.png" class="img-fluid" alt="Ektron Setup" /&gt;&lt;/p&gt;
+&lt;p&gt;You have two options here:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Remove all the hard-coded text from the templates, placing them in resource files (.resx) and then use the Literal asp.net control to place it back on the templates. The resource file will have to be sent to the translation company as part of the localization process, along with the content exported from Ektron. If you are using the LocalizablePage class as the base class for all your templates, the system will automatically pick-up the correct resource file once the translated resources are back in place.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Remove all the hard-coded text from the templates, placing them in smart-forms within Ektron, and then use the standard ContentBlock control from Ektron to place the text back into the templates. You will have to also provide the control with an XSLT file that the control will use to render the content, and the content ID for the text you want to display. This method has the advantages of letting the Website administrator edit/import/export the text from within Ektron’s Workarea.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;&amp;lt;xsl:stylesheet version=&amp;quot;1.0&amp;quot; xmlns:xsl=&amp;quot;http://www.w3.org/1999/XSL/Transform&amp;quot;&amp;gt;
+	&amp;lt;xsl:output omit-xml-declaration=&amp;quot;yes&amp;quot; /&amp;gt;
+	&amp;lt;xsl:template match=&amp;quot;/root&amp;quot;&amp;gt;
+		&amp;lt;xsl:value-of select=&amp;quot;DictionaryEntry&amp;quot;/&amp;gt;
+	&amp;lt;/xsl:template&amp;gt;
+&amp;lt;/xsl:stylesheet&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And there you have it… If you correctly implement the techniques mentioned above, you will have a “bullet-proof” base of templates that will be localization-friendly and that may require minimal adjustments to be done over the QA phase.&lt;/p&gt;
+&lt;p&gt;I hope the “Website Localization with Ektron CMS” 3-part series of articles has provided you with useful information on how to correctly author multilingual websites under the Ektron CMS.&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Website Localization with Ektron – Part 2</title>
+			<link>http://extremefx.com.ar/posts/website-localization-with-ektron-2</link>
+			<description>&lt;p&gt;This is the Part 2 on &lt;em&gt;Website Localization using Ektron Web CMS&lt;/em&gt;. In this part I will discuss how to correctly setup a multilingual website within Ektron and also provide some additional information about website localization in general.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/website-localization-with-ektron-2</guid>
+			<pubDate>Fri, 27 Aug 2010 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;This is the Part 2 on &lt;em&gt;Website Localization using Ektron Web CMS&lt;/em&gt;. In this part I will discuss how to correctly setup a multilingual website within Ektron and also provide some additional information about website localization in general.&lt;/p&gt;
+&lt;h3 id="setting-up-ektron"&gt;Setting up Ektron&lt;/h3&gt;
+&lt;p&gt;When setting up a multilingual website in &lt;a href="http://www.ektron.com/"&gt;Ektron&lt;/a&gt;, there are several factors that fall outside the translation-only process that is built into the web system. Let’s first set-up Ektron through the WorkArea.&lt;/p&gt;
+&lt;img src="http://www.globalizationpartners.com/wp-content/uploads/2018/07/Ektron-Setup.png" alt="Ektron Setup" class="liquid"&gt;
+&lt;p&gt;You should first go to the configuration screen, and under &lt;em&gt;“Language Settings”&lt;/em&gt; you should enable the languages you want your website to be translated into. You enable a language by checking the boxes that are under the green check mark icon.&lt;/p&gt;
+&lt;p&gt;It is worth noting that while I’m using the word “language”, what we are really selecting is a &lt;a href="http://en.wikipedia.org/wiki/Locale"&gt;locale&lt;/a&gt;. A locale is the association of a language and a country. Locale settings are important due to, for example, the “English” language using different words that represent the same meaning in the US and in UK. The same applies to currency, measurements (&lt;a href="http://en.wikipedia.org/wiki/Metric_system"&gt;metric system&lt;/a&gt;/imperial units/customary units/etc.).&lt;/p&gt;
+&lt;h3 id="preparing-the-templates-for-your-multilingual-website"&gt;Preparing the templates for your multilingual website&lt;/h3&gt;
+&lt;p&gt;While most of the translation workflow process will be handled by Ektron, the templates you have created (&lt;a href="http://en.wikipedia.org/wiki/Aspx"&gt;aspx&lt;/a&gt; pages) to display the content on your website will also require preparation to support multilingual content.&lt;/p&gt;
+&lt;h4 id="important-tips-about-creating-ektron-templates-for-website-localization"&gt;Important tips about creating Ektron templates for website localization&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Content translation expansion:&lt;/strong&gt; Make sure there is enough room for the text to accommodate possible expansion once translated (usually text length could expand up to a 25% of the original), or that the web template was coded in a way that expands or shrinks based on the displayed content.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hard-coded text:&lt;/strong&gt; text that it is hardcoded into the web template will not be exported for translation. Having different web templates per language sometimes is not possible. This means that every time you have to make one change to the template you need to apply the same change over and over again for each language. To solve this issue, I would recommend:
+&lt;ul&gt;
+&lt;li&gt;Have all hard-coded text extracted into a resource file (that needs to be sent for translation also), or&lt;/li&gt;
+&lt;li&gt;Create a “Dictionary” folder within the CMS, setup a simple &lt;strong&gt;SmartForm/XSLT&lt;/strong&gt; that will hold/display the text and then replace all the hardcoded text on the web templates with Content controls that will have their IDs pointing to each entry on the Dictionary.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="/assets/images/Ektron-Dictionary.png" class="img-fluid" alt="Ektron Dictionary" /&gt;&lt;/p&gt;
+&lt;p&gt;The second option has the advantage of letting the Website administrator edit the website text, and also, since the text now is part of the CMS content, it can be exported/imported back by the Website admin.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Localization and images/PDFs/documents&lt;/strong&gt;: These items are not exported for translation. If the images you used on the website do not have any text, this is not a problem. But &lt;a href="http://en.wikipedia.org/wiki/Pdf"&gt;PDFs&lt;/a&gt; or other documents need to be sent separately to the translation company if you need them translated.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Text direction:&lt;/strong&gt; Ektron handles Left-to-Right (LTR) and Right-to-Left (RTL) text without problems. But you have to tell the browser how you want it to display the text on screen. If you are not translating your website into Arabic/Hebrew/Persian/etc., this is not an issue. But if you are localizing your website into RTL direction for languages like Arabic, using Ektron, you will have to employ some code on the backend that detects the language direction and writes the appropriate “dir” attribute on the html page (dir=”rtl”). Also, you may want to add this attribute to a container inside the html page and not to the page per-se. In some browsers, applying a right-to-left direction in the html or body tag will affect the user interface too. If the page has a scroll bar, it will appear on the left side of the window. JavaScript alert boxes may also be mirror imaged. Some speakers of languages that use right-to-left scripts prefer the directionality of the user interface to be associated with the desktop environment, not with the content of a particular document. Because of this, it may be preferable to not declare the document directionality on the html or body tag.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Localization and character encoding:&lt;/strong&gt; If a browser is unable to detect the character encoding used in a Web document, the user may be presented with unreadable text. Declaring the character encoding of the web template is important for anyone producing multilingual websites. A Unicode encoding can support many languages and can accommodate pages and forms in any mixture of those languages. Its use also eliminates the need for server-side logic to individually determine the character encoding for each page served or each incoming form submission. This significantly reduces the complexity of dealing with a multilingual site or application. A Unicode encoding also allows many more languages to be mixed on a single page than almost any other choice. Authors are encouraged to use &lt;a href="http://www.utf8.com/"&gt;UTF-8&lt;/a&gt; as the default character encoding when creating templates and use the appropriate meta-tag on each template (&lt;code&gt;&amp;lt;meta http-equiv=&amp;amp;#8221;Content-Type&amp;amp;#8221; content=&amp;amp;#8221;text/html; charset=utf-8&amp;amp;#8243;/&amp;gt;&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Page language:&lt;/strong&gt; Declaring the default language is already important for web applications such as &lt;a href="http://www.w3.org/TR/WCAG10/#gl-abbreviated-and-foreign"&gt;accessibility&lt;/a&gt; and search engine optimization (SEO), but many &lt;a href="http://www.w3.org/International/questions/qa-lang-why"&gt;other possible applications&lt;/a&gt; for this information may emerge over time. It is usually very easy to do when creating the content, but more difficult to retrofit later in order to take advantage of language-related features. The easiest way is to declare the language on the HTML tag of your web template (&lt;code&gt;&amp;lt;html lang=&amp;amp;#8221;en&amp;amp;#8221; xml:lang=&amp;amp;#8221;en&amp;amp;#8221;&amp;gt;&lt;/code&gt;). It can be overridden for portions of the document as required.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="exporting-and-translating-content-in-ektron"&gt;Exporting and translating content in Ektron&lt;/h3&gt;
+&lt;p&gt;&lt;img src="/assets/images/Ektron-Export.png" class="img-fluid" alt="Ektron Export" /&gt;&lt;/p&gt;
+&lt;p&gt;Once you have your website ready for translation, you can export the content of the website with a click of your mouse. You select the root folder and from the &lt;strong&gt;“Action”&lt;/strong&gt; menu, select &lt;strong&gt;“Export for translation”&lt;/strong&gt;. Ektron will go through each page on your website, create an XLIFF file ready for translation and compress it with all the other pages in one single ZIP file (per language) that you can download and send for translation.&lt;/p&gt;
+&lt;p&gt;Each ZIP file will have a complete copy of your website ready for translation. One feature Ektron has is that you don’t need to track which pages you modified/added into the website after the content was translated. Ektron will do that for you and the next time you export the content, only the new pages/changed content will be exported, saving you time and money.&lt;/p&gt;
+&lt;p&gt;The content is then translated by a localization services agency and sent back to you, again, as ZIP files.&lt;/p&gt;
+&lt;h3 id="importing-the-translated-content-back-into-the-ektron-cms"&gt;Importing the translated content back into the Ektron CMS&lt;/h3&gt;
+&lt;p&gt;&lt;img src="/assets/images/Ektron-Import.png" class="img-fluid" alt="Ektron Import" /&gt;&lt;/p&gt;
+&lt;p&gt;Once the content has been translated, you need to import back the translated content into the Ektron CMS. As with exporting, this operation is as easy as going to the settings and selecting the &lt;strong&gt;“Import XLIFF Files”&lt;/strong&gt; option. After you browsed your machine for the zipped XLIFF files and clicked on the upload button, Ektron will insert back each translated contents under the page/language they belong.&lt;/p&gt;
+&lt;p&gt;If you have setup a content approval chain, the newly imported content will be placed as “Checked In” for your web reviewers and/or QA testers to review and approve.&lt;/p&gt;
+&lt;p&gt;At this point, your multilingual website is ready. I would always highly recommend running a standard website Quality Assurance process of the site in case any issues surface (i.e., some text may need some adjustments, still having hard-coded text on the templates, etc).&lt;/p&gt;
+&lt;p&gt;I hope this article was useful and serves as a starting point to prepare an Ektron based website to support multiple-languages. In my next article I will show you how to create a series of simple controls that you can drop in your templates in order to take care of some common issues with localization.&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Website Localization with Ektron – Part 1</title>
+			<link>http://extremefx.com.ar/posts/website-localization-with-ektron-1</link>
+			<description>&lt;p&gt;Today many websites are powered by Web content management systems (CMS) and many enterprises author, store, and publish web content from a central CMS. We have found that &lt;a href="http://www.ektron.com/"&gt;Ektron CMS 400.net &lt;/a&gt; is a good choice for companies that plan on launching multilingual websites.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/website-localization-with-ektron-1</guid>
+			<pubDate>Fri, 06 Aug 2010 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Today many websites are powered by Web content management systems (CMS) and many enterprises author, store, and publish web content from a central CMS. We have found that &lt;a href="http://www.ektron.com/"&gt;Ektron CMS 400.net &lt;/a&gt; is a good choice for companies that plan on launching multilingual websites.&lt;/p&gt;
+&lt;p&gt;Website localization services can be provided under a multitude of client-driven workflows, from directly interacting with and inputting translations into your CMS to receiving content that has been exported to XML or other formats for a company to localize and return. Optimum website localization workflows are CMS-dependent and Ektron’s Content Management System (CMS) has moved beyond mere content management to providing a full web content localization solution. The latest updates to Ektron’s products include powerful tools and support for web content management, localization/translation management, and the workflow to tie these processes together.&lt;/p&gt;
+&lt;h3 id="get-the-basics-right-for-your-multilingual-cms"&gt;Get the basics right for your Multilingual CMS.&lt;/h3&gt;
+&lt;p&gt;Web content management software systems developed to support multilingual websites have emerged as a must solution for managing sites destined for different languages. A global Web content management system is the “engine” behind a successful site, enabling authoring, organization, publishing, and versioning of Web content – all in multiple languages. Indeed, such systems have emerged as sources for all the features and tools that websites require today to deliver a truly interactive online experience for website visitors and customers worldwide.&lt;/p&gt;
+&lt;h3 id="why-do-so-many-global-companies-fail-to-consider-a-multilingual-website"&gt;Why do so many global companies fail to consider a multilingual website?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Many website owners fail to fully recognize the opportunity to use the Web as a multilingual platform to expand their reach into global markets.&lt;/li&gt;
+&lt;li&gt;Others see the opportunity but are limited by conventional thinking, assuming that running multilingual websites is beyond their reach.&lt;/li&gt;
+&lt;li&gt;Unnecessary fears of project cost, complexity, or both, keeps some users from moving into vital global markets via a multilingual website.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="a-multilingual-web-development-strategy-with-a-cms-designed-to-support-localization"&gt;A multilingual web development strategy with a CMS designed to support localization.&lt;/h3&gt;
+&lt;p&gt;If your source-language website is well designed and is operating efficiently, it is much easier to transform it into a multilingual website. Start with a clear set of goals:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Identify your global business goals.&lt;/li&gt;
+&lt;li&gt;Identify the languages you want to support.&lt;/li&gt;
+&lt;li&gt;Identify the market or region you want to support.&lt;/li&gt;
+&lt;li&gt;Identify the technology to manage your website.&lt;/li&gt;
+&lt;li&gt;Identify the localization and web development service provider who can provide the localization or globalization services for your global website.&lt;/li&gt;
+&lt;li&gt;Ensure that the software solution supports the XLIFF standard to facilitate content exchange between different localization service providers.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="going-beyond-just-website-content"&gt;Going beyond “just website content”&lt;/h3&gt;
+&lt;p&gt;Ektron’s CMS solution goes far beyond just managing website content: it provides tools to manage all elements of a multilingual website presence and also ensures a great customer experience. This includes calendars, &lt;a href="http://en.wikipedia.org/wiki/Metadata#Metadata_on_the_Internet"&gt;metadata&lt;/a&gt;, menus and forms, as well as “traditional” content, such as product information data, marketing messages, brand information and news. You can produce far more efficient and effective results for your multilingual website experience by adopting a Web content management system designed to be a single point of control with complete integration, one interface and a logical approach to versioning and publishing multilingual sites.&lt;/p&gt;
+&lt;h4 id="ektron-cms-facilitates-content-localization-in-several-ways"&gt;Ektron CMS facilitates content localization in several ways:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;The ability to create and manage additional aspects of a multilingual Web site, including language-specific metadata, content collections, search functionality, list summaries, navigation elements and multilingual forms, which are unique for every language presented on a website.&lt;/li&gt;
+&lt;li&gt;Built-in support of XLIFF, an XML-based standard for content localization. Content experts can create web content, transform it into an XLIFF file, send it out for translation, and receive a translated file that can be uploaded, managed and published using Ektron’s CMS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="how-xliff-improves-workflow-within-website-cms"&gt;How XLIFF improves workflow within website CMS.&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=xliff"&gt;XLIFF&lt;/a&gt; (XML Localization Interchange File Format) is a format used to exchange localization data between participants in a translation project. This standards-based format (specified by &lt;a href="https://www.oasis-open.org/"&gt;OASIS&lt;/a&gt;) enables translators to concentrate on the text to be translated, without worrying about text layout. The XLIFF standard is supported by a large group of localization service providers and localization tools providers.&lt;/p&gt;
+&lt;p&gt;XLIFF also enables automation at the end of the file exchange cycle: localized files can be automatically uploaded back into the website via the CMS, routed through language-specific approval chains, and published.&lt;/p&gt;
+&lt;h3 id="how-the-cms-acts-as-a-gateway-for-language-service-providers-lsps"&gt;How the CMS acts as a gateway for Language Service Providers (LSPs).&lt;/h3&gt;
+&lt;p&gt;An Ektron website content management system designed to support multilingual websites is a bridge which allows services to flow between customers who own a website and the service providers who deliver localization and globalization services. Ektron’s CMS eliminates barriers to the work getting done, helps website owners expose more of their content to translation and localization work and helps service providers conduct Web-based work more quickly than before.&lt;/p&gt;
+&lt;h3 id="take-away-thought"&gt;Take-away thought&lt;/h3&gt;
+&lt;p&gt;In short, in today’s global economy, you need a CMS that manages more than standard source language content. You need a CMS that also manages critical elements for translation and is tightly integrated into the entire localization process. Look for our next blog on Ektron and Website Localization detailing workflows and multilingual site management.&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Website Translation, Website Localization and Website Internationalization</title>
+			<link>http://extremefx.com.ar/posts/website-translation-localization-internationalization</link>
+			<description>&lt;p&gt;Many people new to translation are confused by the terms &lt;em&gt;website translation&lt;/em&gt;, &lt;em&gt;website internationalization&lt;/em&gt; and &lt;em&gt;website localization&lt;/em&gt;. Although each term describes a distinct process for multilingual website projects, &lt;em&gt;translation&lt;/em&gt; and &lt;em&gt;localization&lt;/em&gt; are often used almost interchangeably. This blog clears up the mystery around these basic concepts.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/website-translation-localization-internationalization</guid>
+			<pubDate>Tue, 22 Jun 2010 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Many people new to translation are confused by the terms &lt;em&gt;website translation&lt;/em&gt;, &lt;em&gt;website internationalization&lt;/em&gt; and &lt;em&gt;website localization&lt;/em&gt;. Although each term describes a distinct process for multilingual website projects, &lt;em&gt;translation&lt;/em&gt; and &lt;em&gt;localization&lt;/em&gt; are often used almost interchangeably. This blog clears up the mystery around these basic concepts.&lt;/p&gt;
+&lt;h3 id="what-is-website-translation"&gt;What is Website Translation?&lt;/h3&gt;
+&lt;p&gt;Website translation, the process of converting text from a source language into a target language, is also known as &lt;em&gt;website globalization.&lt;/em&gt; In order to translate a website into other languages, you may need both website internationalization (I18N) and website localization (L10N). Most translation companies use the term &lt;em&gt;globalization&lt;/em&gt; for the combination of internationalization and localization.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/assets/images/website-globalization.png" class="img-fluid" alt="web globalization terms" /&gt;&lt;/p&gt;
+&lt;p&gt;The terms internationalization, localization and globalization are frequently abbreviated to numerous. I18n means there are 18 letters between the first &lt;em&gt;i&lt;/em&gt; and the last &lt;em&gt;n&lt;/em&gt; in internationalization. The capital &lt;em&gt;L&lt;/em&gt; in L10n helps to distinguish it from the &lt;em&gt;I&lt;/em&gt; in I18n.&lt;/p&gt;
+&lt;h3 id="what-is-website-internationalization"&gt;What is Website Internationalization?&lt;/h3&gt;
+&lt;p&gt;Website internationalization (I18N) involves enabling the back-end of a website to handle different languages, character sets, currencies, submit form data, site search capabilities, etc. It involves understanding what database and content management system (CMS) you are using to author, store and publish your website’s content. Many recent versions of databases and CMSs already support website internationalization or are enabled for other languages.&lt;/p&gt;
+&lt;h3 id="what-is-website-localization"&gt;What is Website Localization?&lt;/h3&gt;
+&lt;p&gt;Localization (L10N) is defined as the process of adapting a website for a specific international market, which includes translating the content, resizing dialog boxes, customizing features and testing results to ensure that the website works in the target language. Localization also involves the process of adapting an internationalized website for a specific language or region by adding locale-specific components. As an example, localization for Brazilian Portuguese as a target language would be different than for European Portuguese.&lt;/p&gt;
+&lt;h3 id="requirements-to-start-a-website-localization-project"&gt;Requirements to Start a Website Localization Project&lt;/h3&gt;
+&lt;p&gt;To get started with a website localization project, provide your translation company with a complete set of sources files, also known as a localization kit, which should consist of all of the resources used to develop, build and run your website, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Your website(s) URL.&lt;/li&gt;
+&lt;li&gt;Any passwords or login instructions.&lt;/li&gt;
+&lt;li&gt;Summary of website architecture.&lt;/li&gt;
+&lt;li&gt;Summary of any technologies and/or development tools used to develop your website.&lt;/li&gt;
+&lt;li&gt;Contact information for your development team who will participate in the globalization process.&lt;/li&gt;
+&lt;li&gt;Contact information for your marketing team who will participate in the globalization process.&lt;/li&gt;
+&lt;li&gt;Any source code for your website or web-driven application.&lt;/li&gt;
+&lt;li&gt;Information regarding the CMS used to author, store and publish content.&lt;/li&gt;
+&lt;li&gt;All files that make up your website in their original folder/file structure.&lt;/li&gt;
+&lt;li&gt;All original graphics used in your website (e.g., artwork, background, navigation buttons).&lt;/li&gt;
+&lt;li&gt;All application source files (e.g., Word, FrameMaker, Quark, etc.) for any documentation available via your website.&lt;/li&gt;
+&lt;li&gt;All application source files (e.g., Flash, etc.) for any multimedia available via your website.&lt;/li&gt;
+&lt;li&gt;A list (if available) of all files that need to be translated.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="file-analysis-for-website-localization"&gt;File Analysis for Website Localization.&lt;/h3&gt;
+&lt;p&gt;The source files in your website localization kit will be analyzed for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Number of words.&lt;/li&gt;
+&lt;li&gt;Source and target languages.&lt;/li&gt;
+&lt;li&gt;Subject matter.&lt;/li&gt;
+&lt;li&gt;Graphic localization requirements.&lt;/li&gt;
+&lt;li&gt;Desktop publishing (DTP) requirements.&lt;/li&gt;
+&lt;li&gt;Website development platform and process.&lt;/li&gt;
+&lt;li&gt;Internationalization requirements.&lt;/li&gt;
+&lt;li&gt;Client review and approval requirements.&lt;/li&gt;
+&lt;li&gt;Client workflow requirements.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="website-localization-methodology"&gt;Website Localization Methodology&lt;/h3&gt;
+&lt;p&gt;Each translation agency or translation company may have a variation of the methodology outlined below:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Review, analysis and preparation of client’s source files.&lt;/li&gt;
+&lt;li&gt;Project kick-off confirming scope, schedule and teams.&lt;/li&gt;
+&lt;li&gt;Web authoring and publishing workflow review.&lt;/li&gt;
+&lt;li&gt;Subject matter training and research.&lt;/li&gt;
+&lt;li&gt;Glossary and style guide development.&lt;/li&gt;
+&lt;li&gt;Cultural correctness assessment.&lt;/li&gt;
+&lt;li&gt;Global search engine optimization (SEO).&lt;/li&gt;
+&lt;li&gt;Translation, editing and proofreading of all content.&lt;/li&gt;
+&lt;li&gt;Localization of all graphics.&lt;/li&gt;
+&lt;li&gt;Multilingual desktop publishing (DTP) for webpages.&lt;/li&gt;
+&lt;li&gt;Localization of any multimedia.&lt;/li&gt;
+&lt;li&gt;Draft delivery to client.&lt;/li&gt;
+&lt;li&gt;Basic online QA and testing.&lt;/li&gt;
+&lt;li&gt;Final edits, translation memory updates and archiving of files.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="keeping-the-goal-of-website-globalization-in-mind"&gt;Keeping the Goal of Website Globalization in Mind.&lt;/h3&gt;
+&lt;p&gt;Whether you are trying to launch a multilingual website to expand the markets for your products and services, or you are trying to increase your company’s global operational efficiencies by developing multilingual extranets and intranets, website globalization is a requirement to make either a reality. Each clients’ needs are somewhat unique and there are a variety of factors that can influence resources and costs involved in a complex website globalization project.&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>12 Steps to Website Globalization</title>
+			<link>http://extremefx.com.ar/posts/12-steps-to-website-globalization</link>
+			<description>&lt;p&gt;Whether you are trying to launch a multilingual website to expand your products and services into new global markets or increase your company's global operational efficiencies by developing multilingual extranets and intranets, website globalization is a requirement to make either a reality. You must translate (globalize) your website to empower your web presence to effectively communicate, conduct and complete international ecommerce.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/12-steps-to-website-globalization</guid>
+			<pubDate>Fri, 30 Apr 2010 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Whether you are trying to launch a multilingual website to expand your products and services into new global markets or increase your company's global operational efficiencies by developing multilingual extranets and intranets, website globalization is a requirement to make either a reality. You must translate (globalize) your website to empower your web presence to effectively communicate, conduct and complete international ecommerce.&lt;/p&gt;
+&lt;p&gt;In order to truly translate a website into other languages, you may need both internationalization (I18N) and localization (L10N) services.&lt;/p&gt;
+&lt;h4 id="internationalization-i18n"&gt;Internationalization (I18N)&lt;/h4&gt;
+&lt;p&gt;Internationalization involves enabling the backend of a website to handle different languages, character encoding, currencies, form data submission, site search capabilities, etc. Internationalization requires understanding which database and content management system (CMS) you are using to author, store and publish your website's content. Many recent versions of databases and CMSs are already internationalized or enabled for other languages. For instance, such systems should be double-byte enabled to handle Asian languages and script-based languages.&lt;/p&gt;
+&lt;h4 id="localization-l10n"&gt;Localization (L10N)&lt;/h4&gt;
+&lt;p&gt;Localization is defined as the process of adapting a website for a specific international market, which includes translating the content, resizing dialog boxes, customizing features and testing results to ensure that the website works in the target language. Localization also involves the process of adapting an internationalized website for a specific language or region by adding locale-specific components.&lt;/p&gt;
+&lt;h4 id="website-localization-kit"&gt;Website Localization Kit&lt;/h4&gt;
+&lt;p&gt;Project analysis and estimating cannot begin until the customer assembles and submits a complete set of website source files, also knows as a &lt;em&gt;localization kit&lt;/em&gt;. This kit should include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Your website(s) URL.&lt;/li&gt;
+&lt;li&gt;Any passwords or login instructions.&lt;/li&gt;
+&lt;li&gt;Summary of website architecture.&lt;/li&gt;
+&lt;li&gt;Summary of any technologies and/or web development toolsets used to develop your website.&lt;/li&gt;
+&lt;li&gt;Contact information for your development team who will participate in the globalization process.&lt;/li&gt;
+&lt;li&gt;Contact information for your marketing team who will participate in the globalization process.&lt;/li&gt;
+&lt;li&gt;Any source code for your website or web-driven application.&lt;/li&gt;
+&lt;li&gt;All files that make up your website in their original folder/file structure.&lt;/li&gt;
+&lt;li&gt;Information regarding the CMS used to author, store and publish content.&lt;/li&gt;
+&lt;li&gt;All original graphics used in your website (artwork, backgrounds, navigation buttons, etc.).&lt;/li&gt;
+&lt;li&gt;All application source files (Word, FrameMaker, Quark, etc.) for any documentation available via your website.&lt;/li&gt;
+&lt;li&gt;All application source files (Flash, etc.) for any multimedia available via your website.&lt;/li&gt;
+&lt;li&gt;A list (if available) of all files that need to be translated.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="file-analysis-for-website-localization"&gt;File Analysis for Website Localization&lt;/h4&gt;
+&lt;p&gt;The source files in your website localization kit will be analyzed by your translation partner for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Number of words&lt;/li&gt;
+&lt;li&gt;Source and target languages&lt;/li&gt;
+&lt;li&gt;Subject matter&lt;/li&gt;
+&lt;li&gt;Graphic localization requirements&lt;/li&gt;
+&lt;li&gt;Desktop publishing (DTP) requirements&lt;/li&gt;
+&lt;li&gt;Website development platform and process&lt;/li&gt;
+&lt;li&gt;Internationalization requirements&lt;/li&gt;
+&lt;li&gt;Client review and approval requirements&lt;/li&gt;
+&lt;li&gt;Client workflow requirements&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="steps-to-website-globalization"&gt;12 Steps to Website Globalization&lt;/h4&gt;
+&lt;p&gt;The following is an overview of the steps for website globalization.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Pre-Translation Source File Review&lt;/strong&gt;: Source files are assembled in the website localization kit described above. Files are prepared in order to utilize a translation memory (TM) workflow and also to preserve any mark-up or formatting codes in online documents for download in order to save time and costs with DTP for the target languages. A proposal is generated based on project factors including word counts, localizable graphics, target languages and any CMSs and workflows required.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Project Kick-Off&lt;/strong&gt;: The kick-off includes and confirms the following: the project team, project schedules, project specifications, workflow requirements, communication channels, review and approval milestones, current web authoring and publishing workflows.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Subject Matter Training and Research&lt;/strong&gt;: A Globalization Services Team (GST) will review and study reference materials provided, including source files, demos and general client information. Additional client-specific training for translation teams related to the website subject matter may be required.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Glossary Development&lt;/strong&gt;: Translation teams develop and maintain client specific glossaries that leverage any existing client glossaries and the latest industry-specific dictionaries.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cultural Correctness Assessment&lt;/strong&gt;: Before the actual translation begins, the source web content and overall website design and feature set are reviewed for basic cultural correctness and customizations that may be required. An array of issues are reviewed, ranging from the need to culturally customize graphics and adding local phone numbers to comprehensive customization of website features based on locale-specific cultural values.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Translation-Editing-Proofreading (TEP)&lt;/strong&gt;: Translation is performed by a primary translation/copy writing team and editing/proofreading is done by a secondary linguistic team. All translations are completed by human translators, utilizing translation memory technologies that ensure an efficient and consistent translation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Website Graphic and UI Localization&lt;/strong&gt;: All embedded, translatable text found in navigation buttons, web art and other web graphics are extracted and translated, using the standard translation workflow. The translated text is then incorporated back into the original graphics, adjusting for text expansion as required, to create a language-specific, or localized, version of the graphic.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Document Formatting and DTP&lt;/strong&gt;: Many websites have an array of linked documents which may require localization. Formatting (DTP) of these documents includes formatting the target language documentation to match the original source documents in terms of layout, fonts, graphics and overall design. Adobe PDF files can be created and optimized for screen or print and linked to the globalized websites.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multimedia Localization&lt;/strong&gt;: Many websites incorporate various multimedia components that require localization. Multimedia must be analyzed individually for numerous factors, which range from determining word counts in screen text, audio scripts and video to the analysis of the types of assets and how they were digitized and included in your multimedia. All multimedia can be localized and must be tested to properly present audio and video in all target languages.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Website Quality Assurance (QA) and Testing&lt;/strong&gt;: Best practices include basic online website localization quality assurance (QA) as a standard line item for all website projects. This QA checks the language versions of your site under selected browser/OS combinations for any cosmetic or linguistic issues, and helps identity basic functionality issues as well. Typically all testing is client-driven and the Globalization Services Team will work side-by-side with your expert users to perform I18N, L10N and/or functionality testing, onsite or offsite.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Client Delivery&lt;/strong&gt;: After the website and all components have been localized, final draft sets of the source files in all target language versions are provided to the client. Client may review and approve all web content for both translation accuracy and design correctness. Another round of QA is performed once language versions of a website are in their final hosting environment.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Final Edits and File Archiving&lt;/strong&gt;: The client provides any final comments for the translation and formatting. Comments are incorporated and final websites and documents are produced. Client's TMs and glossaries are updated with any final linguistic changes. The final project folder, including all source files, is securely stored for future revisions, if required.&lt;/li&gt;
+&lt;/ol&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Preconditionals and postconditionals checks</title>
+			<link>http://extremefx.com.ar/posts/preconditionals-postconditionals-checks</link>
+			<description>&lt;p&gt;How many times you found yourself writing preconditions before executing some code (like argument validation) and post-conditions (validating some result before returning the value/using on another function)?&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/preconditionals-postconditionals-checks</guid>
+			<pubDate>Tue, 31 Mar 2009 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;How many times you found yourself writing preconditions before executing some code (like argument validation) and post-conditions (validating some result before returning the value/using on another function)?&lt;/p&gt;
+&lt;p&gt;So, for example:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-actionscript"&gt;if (arg == null) throw new ArgumentError(&amp;quot;arg can not be null&amp;quot;);
+if (!(arg is IInterface)) throw new ArgumentError(&amp;quot;arg must be of type IInterface&amp;quot;);
+....
+if (ret == null) throw new Error(&amp;quot;Something went wrong!&amp;quot;);
+return ret;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That's good practice, but when you have to validate several conditions the code starts to look messy. For that reason, I created a couple of helper classes that takes cares of the job, providing a nice fluent typing.&lt;/p&gt;
+&lt;h2 id="pre-conditional-checking-examples"&gt;Pre-conditional checking examples:&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-actionscript"&gt;requiresNumber(pIndex, &amp;quot;pIndex&amp;quot;).isLessThan(_size);
+requires(pCollection, &amp;quot;pCollection&amp;quot;).isNotNull();
+requiresString(pKey, &amp;quot;key&amp;quot;).isNotNullOrEmpty();
+requires(pValue, &amp;quot;value&amp;quot;).isNotNull();
+requires(pNode._parent, &amp;quot;node&amp;quot;).isNotSameAs(this, &amp;quot;You cannot attach a node to itself&amp;quot;).isTypeOf(TreeNode);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="post-conditional-checking-examples"&gt;Post-conditional checking examples:&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-actionscript"&gt;ensuresBool(ExternalInterface.available, &amp;quot;ExternalInterface is not available.&amp;quot;).isTrue();
+ensures(_entries[pOldKey]).isNotNull(&amp;quot;Key [&amp;quot;+pOldKey+&amp;quot;] does not exists.&amp;quot;);
+ensuresNumber(days).isLessOrEqualThan(10675199, &amp;quot;Invalid number of days: &amp;quot;+days);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="usage"&gt;Usage&lt;/h3&gt;
+&lt;p&gt;You have 6 specific conditional checks (Array, Boolean, Date, Number, String) and one general. You access the conditionals by using either the requires[Type] functions or ensures[Type] functions.&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;requires&lt;/em&gt; functions requires at least one parameter: the value you want to check. You can also pass a second parameter that represents the &lt;em&gt;name&lt;/em&gt; of that value (you usually use &lt;em&gt;requires&lt;/em&gt; to validate method arguments).&lt;/p&gt;
+&lt;p&gt;The conditions may have different number of parameters (depending on what are you checking). The last one is an additional string you may want to attach to the error description.&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;ensures&lt;/em&gt; functions are similar to &lt;em&gt;requires&lt;/em&gt;. Ensures needs at least one parameter (the value). The second argument is an additional message you may want to attach to the complete validation process, and the third one is the &lt;em&gt;name&lt;/em&gt; of the variable you are checking.&lt;/p&gt;
+&lt;p&gt;This library is part of my flash framework. You can download it from &lt;a href="http://code.google.com/p/efxflashsource/"&gt;Google Code&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; There is a bug on the FlexSDK4 that does not let me compile the full library as a .swc, nor create the documentation (If you are interested: &lt;a href="http://bugs.adobe.com/jira/browse/SDK-20251"&gt;BUG&lt;/a&gt;).
+You have to download the library from the SVN repository. I will post a new ZIP file when the bug gets fixed.&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Method overloading in flash</title>
+			<link>http://extremefx.com.ar/posts/method-overloading-in-flash</link>
+			<description>&lt;p&gt;As you may already know, it is not possible to have the same method with different signatures in flash (also known as method overloading).&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/method-overloading-in-flash</guid>
+			<pubDate>Fri, 27 Mar 2009 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;As you may already know, it is not possible to have the same method with different signatures in flash (also known as method overloading).&lt;/p&gt;
+&lt;p&gt;For example, on c# you may have the same function that does different things depending on the argument count/arguments types. The only limitation is that you can not have a method with the same signature (and different return type, for example).&lt;/p&gt;
+&lt;p&gt;So, these are perfectly valid method declarations:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;class Datetools {
+	public function minus (date:Date):Timespan { ... }
+	public function minus (span:Timespan):Date { ... }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And the compiler then chooses the right one based on usage.&lt;/p&gt;
+&lt;p&gt;Now, how to do this in actionscript? The most used method is to add a switch/if statement inside the function and try to match the parameters. It is not only cumbersome but also hard to maintain.&lt;/p&gt;
+&lt;p&gt;So, using a little of black magic here and there, I present here my method overloader class.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-actionscript"&gt;package extremefx.tools {
+	/**
+	 * &amp;#64;author Marcelo Volmaro
+	 */
+	 public final class Overloader {
+	 	private var _methods:Object;
+
+	 	public function Overloader(pTarget:Object, pFnc:String) {
+	 		_methods = {};
+	 		pTarget[pFnc] = _exec;
+	 	}
+
+	 	public function overload(pFunction:Function, ...args):void {
+	 		_methods[args.join(&amp;quot;)] = new Fnc(pFunction, args);
+		}
+
+		public function unoverload(...args):Boolean {
+			return delete _methods[args.join(&amp;quot;)];
+		}
+
+		private function _exec(...args):* {
+			var l:int = args.length, h:String = &amp;quot;, theF:Fnc;
+
+			for(var i:int = 0; i &amp;lt; l;i++){
+				if (args[i] == null) continue;
+				h += args[i].constructor;
+			}
+
+			//an exact match was found, use this.
+			if ((theF = _methods[h])) return theF.f.apply(null, args);
+
+			var bestMatch:int = -1,
+			fnc:Function = null;
+
+			for each(theF in _methods){
+				if (theF.l != l) continue;//match number of arguments
+				var m:int = 0;
+				for (var j:uint = 0; j &amp;lt; l; j++){
+					if (args[j] is theF.a[j]) m++;//find out which method has the best match
+				}
+
+				if (m &amp;gt; bestMatch){
+					bestMatch = m;
+					fnc = theF.f;
+				}
+			}
+
+			return (fnc == null) ? null : fnc.apply(null, args);
+		}
+	}
+}
+
+final class Fnc {
+	public var f:Function;
+	public var a:Array;
+	public var l:uint;
+	public function Fnc(pF:Function, args:Array){
+		f = pF;
+		a = args;
+		l = args.length;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="how-to-use"&gt;How to use?&lt;/h2&gt;
+&lt;p&gt;Simple. You need to instantiate a new Overloader class, passing as arguments the target object and the name of the function you want to overload. The overloaded function must be defined as a variable of type &lt;em&gt;Function&lt;/em&gt;. The Overloader class will assign then the method that will check for arguments and calls the appropiate function.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-actionscript"&gt;public function main():void {
+	var o:Overloader = new Overloader(this, &amp;quot;testFnc&amp;quot;);
+	o.overload(_testO1, String);
+	o.overload(_testO2, String, Boolean);
+	o.overload(_testO3, Number);
+	o.overload(_testO4, Function, Number);
+	o.overload(_testO5, DummyTest, Number);
+
+	trace(testFnc(&amp;quot;A String&amp;quot;));//A String
+	trace(testFnc(&amp;quot;A String&amp;quot;, true));//A String:true
+	trace(testFnc(&amp;quot;A String&amp;quot;, false));//A String:false
+	trace(testFnc(123.456));//123.456
+	trace(testFnc(_testO1, 123.456));//Function plus:123.456
+	trace(testFnc(this, 123.456));//Class [object DummyTest] plus:123.456
+}
+
+private function _testO1(pString:String):String {
+	return pString;
+}
+
+private function _testO2(pString:String, pBool:Boolean):String {
+	return pString + &amp;quot;:&amp;quot;+ pBool;
+}
+
+private function _testO3(pNumber:Number):Number {
+	return pNumber;
+}
+
+private function _testO4(pFunction:Function, pNumber:Number):String {
+	return &amp;quot;Function plus:&amp;quot;+pNumber;
+}
+
+private function _testO5(pClass:DummyTest, pNumber:Number):String {
+	return &amp;quot;Class &amp;quot;+pClass+&amp;quot; plus:&amp;quot;+pNumber;
+}
+
+public var testFnc:Function;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I'd tried to make it bulletproof. If the specified parameter combination does not exist on the registered function list, the overloader will try to find out the best match from all the available functions, or at least one of the available functions. Please note that since flash player does runtime checking on the argument types, an exception may be thrown if the player can not do
+a type convert on the arguments (int, uint and numbers are convertibles, for example).&lt;/p&gt;
+&lt;p&gt;Hope you like it and as always, comments are welcomed!.&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Flash internationalization library</title>
+			<link>http://extremefx.com.ar/posts/flash-internationalization-library</link>
+			<description>&lt;p&gt;This library will help you to internationalize your flash application. It supports localization of numbers, date/time, percentages and strings. It can also parse back numbers and date/time formats on a specific locale into flash internal formats.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/flash-internationalization-library</guid>
+			<pubDate>Mon, 21 Apr 2008 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;This library will help you to internationalize your flash application. It supports localization of numbers, date/time, percentages and strings. It can also parse back numbers and date/time formats on a specific locale into flash internal formats.&lt;/p&gt;
+&lt;h2 id="details"&gt;Details&lt;/h2&gt;
+&lt;p&gt;Most of the code is well documented. I choose to follow the .net c# conventions for formatting as is the one I use the most.&lt;/p&gt;
+&lt;p&gt;There is also a resource management class that will let you manage language-specific resources, like strings and bitmaps. The resource manager uses the standard XLIFF format and it supports trans-unit nodes as well as bin-unit nodes.&lt;/p&gt;
+&lt;p&gt;Bin-unit nodes can have external or internal content. External content can be anything that flash supports natively like text files, xml, sound, video and images. External content will be loaded at runtime after the XLIFF file is parsed.&lt;/p&gt;
+&lt;p&gt;Internal content can only be images.&lt;/p&gt;
+&lt;p&gt;The library also supports text pluralization. For the library to know a string is a pluralized string, the string “[I18N]” must precede the list of pluralization's.&lt;/p&gt;
+&lt;p&gt;ex: [I18N]|{0} file deleted.|{0} files deleted.&lt;/p&gt;
+&lt;p&gt;The number of plurals will depend on the language. Most languages uses two forms, singular used for one only, but other languages have more that one plural form (and others, like some of the Asian family, have no distinction between the singular and plural form).&lt;/p&gt;
+&lt;p&gt;For example, Polish uses e.g. plik (file) this way:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;0 plików&lt;/li&gt;
+&lt;li&gt;1 plik&lt;/li&gt;
+&lt;li&gt;2-4 pliki&lt;/li&gt;
+&lt;li&gt;5-21 plików&lt;/li&gt;
+&lt;li&gt;22-24 pliki&lt;/li&gt;
+&lt;li&gt;25-31 plików&lt;/li&gt;
+&lt;li&gt;etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And so on. Plural forms must be sorted like in real life. So, the singular first (if exists) and then the plurals.&lt;/p&gt;
+&lt;p&gt;The source code has a demo application that uses all the features the framework has. Please check that demo and the documentation for more information.&lt;/p&gt;
+&lt;h3 id="todo-missing"&gt;TODO / Missing&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Calendars:&lt;/em&gt; Gregorian calendar and all its derivated works (Japanese, Julian, Korean, Taiwan, ThaiBuddhist). All the Lunar Calendars are not implemented. Also, the UmAlQuraCalendar it's not implemented at all.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;HijriCalendar:&lt;/em&gt; Again, I implemented the algorithm, but I'm not sure if it works correctly. Need to check how the addHijriDate parameter works, if this parameter is the same as hijriAdjustment in .net, and if the calendar works at all.&lt;/li&gt;
+&lt;li&gt;Native digits on the NumberFormatInfo is implemented but currently the system does not replace digits on the output string. Need to check with someone that knows Arabic on how this works.&lt;/li&gt;
+&lt;li&gt;Collation tables (tables used for correct string sorting based on the language sorting rules) are not implemented. Not sure if I will be able to implement this feature, as they are pretty big. The collation table for the Japanese language only is a 9mb binary file.&lt;/li&gt;
+&lt;li&gt;Bi-Di algorithm (have a rought version working, need to test against all the test cases).&lt;/li&gt;
+&lt;li&gt;Inline node parsing on XLIFF files (to correctly handle inline tags, like bold, italic, links, etc).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Source code and downloads at: &lt;a href="http://code.google.com/p/efxflashsource"&gt;GoogleCode&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Flashxed</title>
+			<link>http://extremefx.com.ar/posts/flashxed</link>
+			<description>&lt;p&gt;Flashxed is a puzzle game in which your goal is to move similar blocks together, which causes them to disappear. Once all the blocks are gone, you've solved the level and you're presented with a new level to solve. You move blocks by pressing the mouse on them and dragging to either the right or left. If an empty space is encountered, &lt;em&gt;gravity&lt;/em&gt; takes over and the blocks fall towards the bottom.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/flashxed</guid>
+			<pubDate>Mon, 10 Sep 2007 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h2 id="how-to-play"&gt;How to play:&lt;/h2&gt;
+&lt;p&gt;Flashxed is a puzzle game in which your goal is to move similar blocks together, which causes them to disappear. Once all the blocks are gone, you've solved the level and you're presented with a new level to solve. You move blocks by pressing the mouse on them and dragging to either the right or left. If an empty space is encountered, &lt;em&gt;gravity&lt;/em&gt; takes over and the blocks fall towards the bottom.&lt;/p&gt;
+&lt;object type="application/x-shockwave-flash" data="/assets/flash/flashxed.swf" width="320" height="320" class="block-center"&gt;
+	&lt;param name="movie" value="/assets/flash/flashxed.swf" /&gt;
+	&lt;param name="quality" value="high" /&gt;
+	&lt;param name="bgcolor" value="#000000" /&gt;
+	&lt;param name="menu" value="false" /&gt;
+&lt;/object&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Pazzo Francesco</title>
+			<link>http://extremefx.com.ar/posts/pazzo-francesco</link>
+			<description>&lt;p&gt;You have to exit from every room by hiding all the platforms. Only when you have hidden all the platforms you can advance to the next level. To make things more difficult, you must complete a level before a timer ends.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/pazzo-francesco</guid>
+			<pubDate>Tue, 03 Jul 2007 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h2 id="how-to-play"&gt;How to play:&lt;/h2&gt;
+&lt;p&gt;You have to exit from every room by hiding all the platforms. Only when you have hidden all the platforms you can advance to the next level. To make things more difficult, you must complete a level before a timer ends.&lt;/p&gt;
+&lt;p&gt;Pazzo can jump in eight directions (up, down, left, right and up-left, up-right, down-left &amp;amp; down-right) and his jump can be short or long. Use them wisely to advance from level to level.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Cursor keys:&lt;/strong&gt; standard jump.
+&lt;strong&gt;Shift+cursor:&lt;/strong&gt; long jump.&lt;/p&gt;
+&lt;object type="application/x-shockwave-flash" data="/assets/flash/pf_efrd.swf" width="640" height="448" class="block-center"&gt;
+	&lt;param name="movie" value="/assets/flash/pf_efrd.swf" /&gt;
+	&lt;param name="quality" value="high" /&gt;
+	&lt;param name="bgcolor" value="#000000" /&gt;
+	&lt;param name="menu" value="false" /&gt;
+&lt;/object&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Blocks</title>
+			<link>http://extremefx.com.ar/posts/blocks</link>
+			<description>&lt;p&gt;Clear the screen by clicking two or more adjacent blocks of the same color.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/blocks</guid>
+			<pubDate>Mon, 02 Jul 2007 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h2 id="how-to-play"&gt;How to play:&lt;/h2&gt;
+&lt;p&gt;Clear the screen by clicking two or more adjacent blocks of the same color.&lt;/p&gt;
+&lt;div class="videoWrapper" style="padding-bottom: 73.94%;"&gt;&lt;object type="application/x-shockwave-flash" data="/images.axd?src=blocks.swf"&gt;
+	&lt;param name="movie" value="/images.axd?src=blocks.swf" /&gt;
+	&lt;param name="quality" value="high" /&gt;
+	&lt;param name="bgcolor" value="#000000" /&gt;
+	&lt;param name="menu" value="false" /&gt;
+&lt;/object&gt;&lt;/div&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Fixing Flash External Interface inside Forms on Internet Explorer</title>
+			<link>http://extremefx.com.ar/posts/fixing-flash-external-interface-internet-explorer</link>
+			<description>&lt;p&gt;As you all may know (or may not), if you want to use External Interface on a flash object that lives inside an "HTML" form, it will not work.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/fixing-flash-external-interface-internet-explorer</guid>
+			<pubDate>Fri, 23 Feb 2007 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;As you all may know (or may not), if you want to use External Interface on a flash object that lives inside an &amp;quot;HTML&amp;quot; form, it will not work.&lt;/p&gt;
+&lt;p&gt;I will show you a simple test:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;form&amp;gt;
+	&amp;lt;object id=&amp;quot;flashElement1&amp;quot; width=&amp;quot;256&amp;quot; height=&amp;quot;64&amp;quot; data=&amp;quot;files/bug4.swf&amp;quot; type=&amp;quot;application/x-shockwave-flash&amp;quot;&amp;gt;
+		&amp;lt;param name=&amp;quot;movie&amp;quot; value=&amp;quot;files/bug4.swf&amp;quot; /&amp;gt;
+		&amp;lt;param name=&amp;quot;allowScriptAccess&amp;quot; value=&amp;quot;always&amp;quot; /&amp;gt;
+	&amp;lt;/object&amp;gt;
+	&amp;lt;p&amp;gt;&amp;lt;a onclick=&amp;quot;document.getElementById('flashElement1').testFunction(); return false;&amp;quot; href=&amp;quot;#&amp;quot;&amp;gt;Click to test&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+&amp;lt;/form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;First of all, you will get a javascript error saying that the element “flashElement1” is undefined. And while in the flash window you will see the “CallBack added Ok”, if you click on the “Click to test” link you will get another error saying that the Object doesn't support that property or method.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why?:&lt;/strong&gt; Easy. The way the javascript bridge with flash was coded is really awful. In IE, every time you add an “ID” attribute to an &amp;quot;HTML&amp;quot; element, that element is added to the “window”
+element so you can access it directly using window.elementID... but if you place the element inside an &amp;quot;HTML&amp;quot; form, the element is added to the form element (document.forms[0].elementID if you have only one form) and not window element. I suppose the person who did the bridge knowns nothing about this... I will not get into the details here, but you can believe me: The bridge it's screaming for a rewriting.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;How?:&lt;/strong&gt; Well, this will depend on how are you embedding the object on the &amp;quot;HTML&amp;quot; page. If you use &lt;a href="http://blog.deconcept.com/swfobject/"&gt;SwfObject&lt;/a&gt; you should add the following line after the
+line 105 (the line that reads &lt;code&gt;n.innerHTML = this.getSWFHTML();&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-javascript"&gt;if(!(navigator.plugins &amp;amp;amp;&amp;amp;amp; navigator.mimeTypes.length))
+    window[this.getAttribute('id')] = document.getElementById(this.getAttribute('id'));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That applies to the current version of SwfObject (1.4.4).&lt;/p&gt;
+&lt;p&gt;If you use &lt;a href="http://www.bobbyvandersluis.com/ufo/"&gt;UFO&lt;/a&gt; you should add the following line after the line 230 (the line that reads &lt;code&gt;_e.innerHTML = '&amp;lt;object classid=&amp;quot;...&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-javascript"&gt;if (_fo[&amp;quot;id&amp;quot;]) window[_fo[&amp;quot;id&amp;quot;]] = document.getElementById(_fo[&amp;quot;id&amp;quot;]);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That applies to &amp;quot;UFO&amp;quot; 3.20.&lt;/p&gt;
+&lt;p&gt;And if you use &lt;a href="http://www.adobe.com/devnet/activecontent/articles/devletter.html"&gt;Adobe's Active Content&lt;/a&gt; you should add the following line after the line 24 (the line that reads &lt;code&gt;document.write(str);&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-javascript"&gt;if (objAttrs[&amp;quot;id&amp;quot;]) window[objAttrs[&amp;quot;id&amp;quot;]] = document.getElementById(objAttrs[&amp;quot;id&amp;quot;]);
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Flash TextArea - Update 3</title>
+			<link>http://extremefx.com.ar/posts/flash-text-area-update-3</link>
+			<description>&lt;p&gt;This version should be considered &lt;strong&gt;BETA&lt;/strong&gt;. It is stable enough for me, but it will surely break existing applications that depends on it.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/flash-text-area-update-3</guid>
+			<pubDate>Thu, 22 Feb 2007 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h2 id="warning"&gt;WARNING&lt;/h2&gt;
+&lt;p&gt;This version should be considered &lt;strong&gt;BETA&lt;/strong&gt;. It is stable enough for me, but it will surely break existing applications that depends on it.&lt;/p&gt;
+&lt;p&gt;Don't install this version on a production server and read the documentation!. I warned you...&lt;/p&gt;&lt;/p&gt;
+&lt;h3 id="changes"&gt;Changes:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Completely rewritten the javascript interface. The way the editor is placed was changed from the custom attribute to a class name.&lt;/li&gt;
+&lt;li&gt;The editor is now localizable.&lt;/li&gt;
+&lt;li&gt;Added Redo / Undo.&lt;/li&gt;
+&lt;li&gt;Added Copy as HTML. (Right click over the text - may not work on some browsers).&lt;/li&gt;
+&lt;li&gt;Added a function to determine which textareas were changed.&lt;/li&gt;
+&lt;li&gt;Added the ability to create/delete folders in the file browser.&lt;/li&gt;
+&lt;li&gt;Added a lot of information in the file browser.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Download the latest version &lt;a href="/assets/files/FlashTA.zip"&gt;FlashTA.zip&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Flash TextArea - Update 2</title>
+			<link>http://extremefx.com.ar/posts/flash-text-area-update-2</link>
+			<description>&lt;p&gt;I updated FlashTA, fixing some nasty bugs regarding image duplication (note to Adobe: please, please FIX the flash html area once and for all!).&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/flash-text-area-update-2</guid>
+			<pubDate>Mon, 27 Nov 2006 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;I updated FlashTA, fixing some nasty bugs regarding image duplication (note to Adobe: please, please FIX the flash html area once and for all!).&lt;/p&gt;
+&lt;p&gt;Also, i added the ability to delete a file. To delete a file, you must first select it, and then click on the &amp;quot;delete&amp;quot; icon at the left. A confirmation dialog will popup and if you click on Ok, the file will be deleted on the server.&lt;/p&gt;
+&lt;p&gt;Download the latest version &lt;a href="/assets/files/FlashTA.zip"&gt;FlashTA.zip&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Black Jack</title>
+			<link>http://extremefx.com.ar/posts/black-jack</link>
+			<description>&lt;p&gt;The objective is to get as close to 21 as possible without going over. The dealer has to take a card if he has 17 or more.&lt;/p&gt;</description>
+			<guid>http://extremefx.com.ar/posts/black-jack</guid>
+			<pubDate>Thu, 26 Oct 2006 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h2 id="how-to-play"&gt;How to play:&lt;/h2&gt;
+&lt;p&gt;The objective is to get as close to 21 as possible without going over. The dealer has to take a card if he has 17 or more.&lt;/p&gt;
+&lt;p&gt;An ace counts as 1 or 11. face cards are worth 10. You can double down on your hand if you have the cash.&lt;/p&gt;
+&lt;p&gt;You will be dealt one card and if you win you will double your payout… of course your bet is doubled too.&lt;/p&gt;
+&lt;p&gt;You can take insurance if the dealer is showing an ace and you have enought cash. the insurance bet is 1/2 your original bet.&lt;/p&gt;
+&lt;div class="videoWrapper" style="padding-bottom: 74.34%;"&gt;&lt;object type="application/x-shockwave-flash" data="/assets/flash/blackjack.swf"&gt;
+	&lt;param name="movie" value="/assets/flash/blackjack.swf" /&gt;
+	&lt;param name="quality" value="high" /&gt;
+	&lt;param name="bgcolor" value="#000000" /&gt;
+	&lt;param name="menu" value="false" /&gt;
+&lt;/object&gt;&lt;/div&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>NN-X- Skin</title>
+			<link>http://extremefx.com.ar/posts/nn-x-skin</link>
+			<description>&lt;p&gt;After my first skin and decided to make some more &lt;em&gt;original&lt;/em&gt;, I made this skin.&lt;/p&gt;</description>
+			<enclosure url="http://extremefx.com.ar/assets/images/nnx_skin.png" length="0" type="image" />
+			<guid>http://extremefx.com.ar/posts/nn-x-skin</guid>
+			<pubDate>Wed, 25 Oct 2006 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;After my first skin and decided to make some more &lt;em&gt;original&lt;/em&gt;, I made this skin.&lt;/p&gt;
+&lt;p&gt;It has some elements from the first skin, but the overall look'n'feel is completely new.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/assets/files/nn-X-.wba"&gt;Download (45.83 kb)&lt;/a&gt;.&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Extreme|FX Skin</title>
+			<link>http://extremefx.com.ar/posts/extreme-fx-skin</link>
+			<description>&lt;p&gt;My first skin, based on screenshots of the Amiga QNX OS and various changes and adjust by me. Not sure if still works (for WB ver 2.x).&lt;/p&gt;</description>
+			<enclosure url="http://extremefx.com.ar/assets/images/efx_skin.png" length="0" type="image" />
+			<guid>http://extremefx.com.ar/posts/extreme-fx-skin</guid>
+			<pubDate>Tue, 24 Oct 2006 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;My first skin, based on screenshots of the Amiga QNX OS and various changes and adjust by me. Not sure if still works (for WB ver 2.x).&lt;/p&gt;
+&lt;p&gt;&lt;a href="/assets/files/CheloSkin.wba"&gt;Download (36.97 kb)&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
+	</channel>
+</rss>
