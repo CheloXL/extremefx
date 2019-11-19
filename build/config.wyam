@@ -1,0 +1,17 @@
+#recipe Blog
+
+// Customize your settings and add new ones here
+Settings[Keys.CleanOutputPath] = true;
+Settings[Keys.LinksUseHttps] = true;
+Settings[Keys.UseCache] = true;
+Settings[Keys.Host] = "extremefx.com.ar";
+
+Settings[BlogKeys.Title] = "Extreme|FX";
+Settings[BlogKeys.Description] = "Marcelo Volmaro on Programming, User Experience and anything else.";
+Settings[BlogKeys.ArchivePageSize] = 20;
+Settings[BlogKeys.IgnoreFolders] = "theme";
+
+// Add any pipeline customizations here
+#r blog
+#t BlogTemplate
+#o ../public/
