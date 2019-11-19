@@ -14,4 +14,4 @@ Settings[BlogKeys.IgnoreFolders] = "theme";
 // Add any pipeline customizations here
 #r blog
 #t BlogTemplate
-#o ../public/
+

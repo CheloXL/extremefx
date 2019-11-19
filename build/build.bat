@@ -1,1 +1,1 @@
-@dotnet wyam
+@dotnet wyam -o ../public/
