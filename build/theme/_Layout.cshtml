@@ -6,10 +6,10 @@
     <body>
         @if(Context.String(BlogKeys.Description) != null)
         {
-            <a href="@Context.GetLink("/")"><h1>@Context.String(BlogKeys.Description)</h1> </a>
+            <h1><a href="@Context.GetLink("/")">@Context.String(BlogKeys.Description)</a></h1>
         }
         @if(Context.String(BlogKeys.Intro) != null)
-        {            
+        {
             @if(Context.String(BlogKeys.Description) != null)
             {
                 <hr>
@@ -26,22 +26,28 @@
                 .Where(x => !string.IsNullOrEmpty(x.Item1))
                 .OrderBy(x => x.Item1)
                 .ToList();
+
             if(Documents[Blog.Tags].Any())
             {
                 pages.Insert(0, Tuple.Create("Tags", Context.GetLink("tags/index.html")));
             }
+
             if(Documents[Blog.BlogPosts].Any() && Context.Bool(BlogKeys.GenerateArchive))
             {
                 pages.Insert(0, Tuple.Create("Archive", Context.GetLink(Context.String(BlogKeys.PostsPath) + "/index.html")));
             }
-            foreach(Tuple<string, string> page in pages)
-            {
-                <li><a href="@(page.Item2)">@(page.Item1)</a></li>
-            }
+
+			if (pages.Any()){
+				<ul>
+				@foreach(Tuple<string, string> page in pages)
+				{
+					<li><a href="@(page.Item2)">@(page.Item1)</a></li>
+				}
+				</ul>
+			}
         }
 
         @RenderBody()
-
     </body>
 </html>
 

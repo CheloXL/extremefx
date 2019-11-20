@@ -6,5 +6,5 @@ Title: All Tags
 {
     string tag = tagDocument.String(BlogKeys.Tag);
     string postCount = tagDocument.String(Keys.TotalItems);
-    <a role="button" href="@Context.GetLink(tagDocument)" > @tag (@postCount)</a>
+    <a role="button" href="@Context.GetLink(tagDocument)">@tag (@postCount)</a>
 }
