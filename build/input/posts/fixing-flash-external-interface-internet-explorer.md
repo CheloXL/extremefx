@@ -17,16 +17,14 @@ I will show you a simple test:
 </form>
 ```
 
-First of all, you will get a javascript error saying that the element “flashElement1” is undefined. And while in the flash window you will see the “CallBack added Ok”, if you click on the “Click to test” link you will get another error saying that the Object doesn't support that property or method.
+First of all, you will get a javascript error saying that the element `flashElement1` is undefined. And while in the flash window you will see the *CallBack added Ok*, if you click on the *Click to test* link you will get another error saying that the `Object doesn't support that property or method`.
 
-**Why?:** Easy. The way the javascript bridge with flash was coded is really awful. In IE, every time you add an “ID” attribute to an "HTML" element, that element is added to the “window”
-element so you can access it directly using window.elementID... but if you place the element inside an "HTML" form, the element is added to the form element (document.forms[0].elementID if you have only one form) and not window element. I suppose the person who did the bridge knowns nothing about this... I will not get into the details here, but you can believe me: The bridge it's screaming for a rewriting.
+**Why?:** Easy. The way the javascript bridge with flash was coded is really awful. In IE, every time you add an `ID` attribute to an `HTML` element, that element is added to the `window` element so you can access it directly using `window.elementID...` but if you place the element inside an `HTML` form, the element is added to the form element (`document.forms[0].elementID` if you have only one form) and not window element. I suppose the person who did the bridge knowns nothing about this... I will not get into the details here, but you can believe me: The bridge it's screaming for a rewriting.
 
-**How?:** Well, this will depend on how are you embedding the object on the "HTML" page. If you use [SwfObject](http://blog.deconcept.com/swfobject/) you should add the following line after the
-line 105 (the line that reads `n.innerHTML = this.getSWFHTML();`):
+**How?:** Well, this will depend on how are you embedding the object on the `HTML` page. If you use [SwfObject](http://blog.deconcept.com/swfobject/) you should add the following line after the line 105 (the line that reads `n.innerHTML = this.getSWFHTML();`):
 
 ```javascript
-if(!(navigator.plugins &amp;&amp; navigator.mimeTypes.length))
+if(!(navigator.plugins && navigator.mimeTypes.length))
     window[this.getAttribute('id')] = document.getElementById(this.getAttribute('id'));
 ```
 
@@ -38,7 +36,7 @@ If you use [UFO](http://www.bobbyvandersluis.com/ufo/) you should add the follow
 if (_fo["id"]) window[_fo["id"]] = document.getElementById(_fo["id"]);
 ```
 
-That applies to "UFO" 3.20.
+That applies to UFO 3.20.
 
 And if you use [Adobe's Active Content](http://www.adobe.com/devnet/activecontent/articles/devletter.html) you should add the following line after the line 24 (the line that reads `document.write(str);`):
 

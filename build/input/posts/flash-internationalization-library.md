@@ -17,7 +17,7 @@ Internal content can only be images.
 
 The library also supports text pluralization. For the library to know a string is a pluralized string, the string “[I18N]” must precede the list of pluralization's.
 
-ex: [I18N]|{0} file deleted.|{0} files deleted.
+ex: `[I18N]|{0} file deleted.|{0} files deleted.`
 
 The number of plurals will depend on the language. Most languages uses two forms, singular used for one only, but other languages have more that one plural form (and others, like some of the Asian family, have no distinction between the singular and plural form).
 

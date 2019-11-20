@@ -12,7 +12,7 @@ Pazzo can jump in eight directions (up, down, left, right and up-left, up-right,
 **Cursor keys:** standard jump.
 **Shift+cursor:** long jump.
 
-<object type="application/x-shockwave-flash" data="/assets/flash/pf_efrd.swf" width="640" height="448" class="block-center">
+<object type="application/x-shockwave-flash" data="/assets/flash/pf_efrd.swf" width="640" height="448">
 	<param name="movie" value="/assets/flash/pf_efrd.swf" />
 	<param name="quality" value="high" />
 	<param name="bgcolor" value="#000000" />

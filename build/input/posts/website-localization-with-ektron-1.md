@@ -5,11 +5,11 @@ Lead: This is the Part 1 (of 2) on “Website Localization with Ektron Web CMS�
 ---
 Today many websites are powered by Web content management systems (CMS) and many enterprises author, store, and publish web content from a central CMS. We have found that [Ektron CMS 400.net ](http://www.ektron.com/) is a good choice for companies that plan on launching multilingual websites.
 
-Website localization services can be provided under a multitude of client-driven workflows, from directly interacting with and inputting translations into your CMS to receiving content that has been exported to XML or other formats for a company to localize and return. Optimum website localization workflows are CMS-dependent and Ektron&#8217;s Content Management System (CMS) has moved beyond mere content management to providing a full web content localization solution. The latest updates to Ektron&#8217;s products include powerful tools and support for web content management, localization/translation management, and the workflow to tie these processes together.
+Website localization services can be provided under a multitude of client-driven workflows, from directly interacting with and inputting translations into your CMS to receiving content that has been exported to XML or other formats for a company to localize and return. Optimum website localization workflows are CMS-dependent and Ektron’s Content Management System (CMS) has moved beyond mere content management to providing a full web content localization solution. The latest updates to Ektron’s products include powerful tools and support for web content management, localization/translation management, and the workflow to tie these processes together.
 
 ### Get the basics right for your Multilingual CMS.
 
-Web content management software systems developed to support multilingual websites have emerged as a must solution for managing sites destined for different languages. A global Web content management system is the &#8220;engine&#8221; behind a successful site, enabling authoring, organization, publishing, and versioning of Web content &#8211; all in multiple languages. Indeed, such systems have emerged as sources for all the features and tools that websites require today to deliver a truly interactive online experience for website visitors and customers worldwide.
+Web content management software systems developed to support multilingual websites have emerged as a must solution for managing sites destined for different languages. A global Web content management system is the *engine* behind a successful site, enabling authoring, organization, publishing, and versioning of Web content &#8211; all in multiple languages. Indeed, such systems have emerged as sources for all the features and tools that websites require today to deliver a truly interactive online experience for website visitors and customers worldwide.
 
 ### Why do so many global companies fail to consider a multilingual website?
 
@@ -28,14 +28,14 @@ If your source-language website is well designed and is operating efficiently, i
 * Identify the localization and web development service provider who can provide the localization or globalization services for your global website.
 * Ensure that the software solution supports the XLIFF standard to facilitate content exchange between different localization service providers.
 
-### Going beyond &#8220;just website content&#8221;
+### Going beyond *just website content*
 
-Ektron&#8217;s CMS solution goes far beyond just managing website content: it provides tools to manage all elements of a multilingual website presence and also ensures a great customer experience. This includes calendars, [metadata](http://en.wikipedia.org/wiki/Metadata#Metadata_on_the_Internet), menus and forms, as well as &#8220;traditional&#8221; content, such as product information data, marketing messages, brand information and news. You can produce far more efficient and effective results for your multilingual website experience by adopting a Web content management system designed to be a single point of control with complete integration, one interface and a logical approach to versioning and publishing multilingual sites.
+Ektron’s CMS solution goes far beyond just managing website content: it provides tools to manage all elements of a multilingual website presence and also ensures a great customer experience. This includes calendars, [metadata](http://en.wikipedia.org/wiki/Metadata#Metadata_on_the_Internet), menus and forms, as well as &#8220;traditional&#8221; content, such as product information data, marketing messages, brand information and news. You can produce far more efficient and effective results for your multilingual website experience by adopting a Web content management system designed to be a single point of control with complete integration, one interface and a logical approach to versioning and publishing multilingual sites.
 
 #### Ektron CMS facilitates content localization in several ways:
 
 * The ability to create and manage additional aspects of a multilingual Web site, including language-specific metadata, content collections, search functionality, list summaries, navigation elements and multilingual forms, which are unique for every language presented on a website.
-* Built-in support of XLIFF, an XML-based standard for content localization. Content experts can create web content, transform it into an XLIFF file, send it out for translation, and receive a translated file that can be uploaded, managed and published using Ektron&#8217;s CMS.
+* Built-in support of XLIFF, an XML-based standard for content localization. Content experts can create web content, transform it into an XLIFF file, send it out for translation, and receive a translated file that can be uploaded, managed and published using Ektron’s CMS.
 
 #### How XLIFF improves workflow within website CMS.
 
@@ -45,9 +45,9 @@ XLIFF also enables automation at the end of the file exchange cycle: localized f
 
 ### How the CMS acts as a gateway for Language Service Providers (LSPs).
 
-An Ektron website content management system designed to support multilingual websites is a bridge which allows services to flow between customers who own a website and the service providers who deliver localization and globalization services. Ektron&#8217;s CMS eliminates barriers to the work getting done, helps website owners expose more of their content to translation and localization work and helps service providers conduct Web-based work more quickly than before.
+An Ektron website content management system designed to support multilingual websites is a bridge which allows services to flow between customers who own a website and the service providers who deliver localization and globalization services. Ektron’s CMS eliminates barriers to the work getting done, helps website owners expose more of their content to translation and localization work and helps service providers conduct Web-based work more quickly than before.
 
 ### Take-away thought
 
-In short, in today&#8217;s global economy, you need a CMS that manages more than standard source language content. You need a CMS that also manages critical elements for translation and is tightly integrated into the entire localization process. Look for our next blog on Ektron and Website Localization detailing workflows and multilingual site management.
+In short, in today’s global economy, you need a CMS that manages more than standard source language content. You need a CMS that also manages critical elements for translation and is tightly integrated into the entire localization process. Look for our next blog on Ektron and Website Localization detailing workflows and multilingual site management.
 

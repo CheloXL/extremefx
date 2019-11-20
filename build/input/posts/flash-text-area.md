@@ -53,20 +53,20 @@ fTAR.FlashTextArea.setup('FlashTA.swf', 'FlashFB.swf');
 
 **fTAR.setup(editor, filebrowser);**
 
-* **editor:** path/name of the editor flash file. If you stored the editor on a folder called “flashEditor”, and the page that will use it is on the same level as the folder, the first parameter should be changed like: “flashEditor/FlashTA.swf”
-* **filebrowser:** path/name of the filebrowser flash file. If you stored the browser on a folder called “flashEditor”, and the page that will use it is on the same level as the folder, the first parameter should be changed like: “flashEditor/FlashFB.swf”.
+* **editor:** path/name of the editor flash file. If you stored the editor on a folder called `flashEditor`, and the page that will use it is on the same level as the folder, the first parameter should be changed like: `flashEditor/FlashTA.swf`.
+* **filebrowser:** path/name of the filebrowser flash file. If you stored the browser on a folder called `flashEditor`, and the page that will use it is on the same level as the folder, the first parameter should be changed like: `flashEditor/FlashFB.swf`.
 
 It lets you configure an input field to browse the server for a file. It's like the normal browse button, but for server side files.
 
-You should add the class “efx_browser” to the input field to enable it to browse all files, or with the class “efx_browser_images” to enable the field to browse for images only. Of course, for this you need a working fileManager.php already configured.
+You should add the class `efx_browser` to the input field to enable it to browse all files, or with the class `efx_browser_images` to enable the field to browse for images only. Of course, for this you need a working `fileManager.php` already configured.
 
-**fTAR.FlashTextArea.setFilemanager(path to the fileManager.php file);**<br />This file is used by the file browser and the image browser. Please note that this file is used for file browsing and file uploading.
+**fTAR.FlashTextArea.setFilemanager(path to the fileManager.php file);**: This file is used by the file browser and the image browser. Please note that this file is used for file browsing and file uploading.
 
-**fTAR.FlashTextArea.setServerURL(serverURL);**<br />Url of the server used to retrieve the images. Directories are allowed here.
+**fTAR.FlashTextArea.setServerURL(serverURL);**: Url of the server used to retrieve the images. Directories are allowed here.
 
-**fTAR.FlashTextArea.setBasePath(relativePath);**<br />Used to prefix links & images. The final URL of an image/link will be “relativePath/User selected Path/User selected file”.
+**fTAR.FlashTextArea.setBasePath(relativePath);**: Used to prefix links & images. The final URL of an image/link will be “relativePath/User selected Path/User selected file”.
 
-“serverURL/relativePath/imagename” should point to a valid image. The editor will use that information to retrieve the image from the server.
+*serverURL/relativePath/imagename* should point to a valid image. The editor will use that information to retrieve the image from the server.
 
 You will also need to setup the fileManager.php script as following:
 
@@ -78,7 +78,7 @@ You will also need to setup the fileManager.php script as following:
 If you don't want the filebrowser to be accesible from withing the editor, simply pass false to this function.
 
 **fTAR.FlashTextArea.setLngFile(path to language file);**
-Both the fileBrowser and the editor are localizables through an XML file. If you want to use the editor/browser in your language, take a look at the files in the “lang” folder.
+Both the fileBrowser and the editor are localizables through an XML file. If you want to use the editor/browser in your language, take a look at the files in the `lang` folder.
 
 The buttons in the editor can be configured as following:
 
@@ -105,15 +105,15 @@ The buttons in the editor can be configured as following:
 Also, there are some methods that can be usefull:
 
 **fTAR.FlashTextArea.updateContent();**
-Forces an update of all text areas. Usually, the content of the “browser” textareas is not updated until the user press the submit button.
+Forces an update of all text areas. Usually, the content of the *browser* textareas is not updated until the user press the submit button.
 
 If you placed the FlashTextArea inside a tabbed UI, you must call this method prior to change the text area visibility. Browsers remove the flash object from the DOM when changing visibility and you will lost all the changes made.
 
 **fTAR.FlashTextArea.getChangedAreas();**
-Returns “false” if no textareas were changed, or an array of the changed textareas.
+Returns `false` if no textareas were changed, or an array of the changed textareas.
 
 **fTAR.FlashTextArea.hasChanged(areaName);**
-Returns true if the area named “areaName” was changed, false if not.
+Returns `true` if the area named *areaName* was changed, `false` if not.
 
 There are also a bunch of CSS styles that you can play with. Take a look at the source code.
 
@@ -123,36 +123,35 @@ There are also a bunch of CSS styles that you can play with. Take a look at the 
 
 ### History (* fixed/changed, + added, &ndash; removed)
 
-* + The editor is now localizable.
-* + Redo / Undo.
-* + Copy as HTML. (Right click over the text).
-* + Added a way to determine what textareas were changed.
-* - Flash automatic update if flash version < 8.
-* * Finally!, discovered a way to fix Flash's ExternalInterface on IE under forms. This simplified a lot the code.
+* \+ The editor is now localizable.
+* \+ Redo / Undo.
+* \+ Copy as HTML. (Right click over the text).
+* \+ Added a way to determine what textareas were changed.
+* \- Flash automatic update if flash version < 8.
+* \* Finally!, discovered a way to fix Flash's ExternalInterface on IE under forms. This simplified a lot the code.
 
 ---
 
-* *  Changed how the editor gets the text. Now it can be placed on “tabs” systems without loosing the content. You need to call fTAR.FlashTextArea.updateContent() before doing anything with the editor visibility.
-* *  Fixed a lot of image duplication bugs caused by the Flash Player.
-* + Added the ability to delete files on the file browser.
+* \*  Changed how the editor gets the text. Now it can be placed on “tabs” systems without loosing the content. You need to call fTAR.FlashTextArea.updateContent() before doing anything with the editor visibility.
+* \*  Fixed a lot of image duplication bugs caused by the Flash Player.
+* \+ Added the ability to delete files on the file browser.
 
 ---
 
-* *  Ported to use Macromedia Components
-* + Added backgroundColor
-* *  Fixed image dissapearing bug.
-* + Re-added the scrollbar.
-* *  A lot of bugfixes that i don't remember now.
+* \*  Ported to use Macromedia Components
+* \+ Added backgroundColor
+* \*  Fixed image dissapearing bug.
+* \+ Re-added the scrollbar.
+* \*  A lot of bugfixes that i don't remember now.
+---
+
+* \+ Added a “delete” button in the insert image window.
+* \* Buttons config now works as expected.
+* \*  Fixed some problems with unicode chars under Opera 8.5+
+* \- Removed the scrollbar &ndash; Now the editor resizes itself as needed.
 
 ---
 
-* + Added a “delete” button in the insert image window.
-* * Buttons config now works as expected.
-* *  Fixed some problems with unicode chars under Opera 8.5+
-* - Removed the scrollbar &ndash; Now the editor resizes itself as needed.
-
----
-
-* + First launch
+* \+ First launch
 
 See the complete project at [OSFlash/FlashTextArea](http://osflash.org/flashtextarea).

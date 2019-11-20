@@ -7,7 +7,7 @@ The World Wide Web is capable of living up to its name: by being accessible to e
 
 ### What is Accessibility?
 
-Here is a definition from the Web Accessibility Initiative [WAI](https://www.w3.org/WAI/fundamentals/accessibility-intro/): &#8220;… Web accessibility means that people with disabilities can perceive, understand, navigate, and interact with the Web, and that they can contribute to the Web. Web accessibility also benefits others, including older people with changing abilities due to aging.&#8221;
+Here is a definition from the Web Accessibility Initiative [WAI](https://www.w3.org/WAI/fundamentals/accessibility-intro/): &#8220;… Web accessibility means that people with disabilities can perceive, understand, navigate, and interact with the Web, and that they can contribute to the Web. Web accessibility also benefits others, including older people with changing abilities due to aging."
 
 ### Web Internationalization
 
@@ -19,7 +19,7 @@ Basically, a website is composed of three layers: Content, Presentation and Beha
 * The **presentation layer** is how the document will look to your readers. This layer is defined by the **CSS** or styles that indicate how your document should be displayed and on what media types.
 * The **behavior layer** is the layer of a webpage that performs a function. If you use Ajax or DHTML, it is the JavaScript that makes the page do something. If you have a PHP/.Net or any other kind of back-end, it is that back-end that produces results when your reader clicks something on the webpage. For most web pages, the first level of behavior is the JavaScript interactions on the page.
 
-One of the principles of web accessibility is that these three types of information should be separated from one other. Blind users will certainly not be able to &#8220;see&#8221; anything on screen, so another way to &#8220;present&#8221; the information to that user needs to be created. Arabic online users would have an unpleasant experience trying to read left-aligned Arabic content and Chinese users would have a hard times trying to read 11px Chinese text. As you can see, accessibility it is not only for blind people.
+One of the principles of web accessibility is that these three types of information should be separated from one other. Blind users will certainly not be able to *see* anything on screen, so another way to *present* the information to that user needs to be created. Arabic online users would have an unpleasant experience trying to read left-aligned Arabic content and Chinese users would have a hard times trying to read 11px Chinese text. As you can see, accessibility it is not only for blind people.
 
 ### Accessibility Standards
 
@@ -31,7 +31,7 @@ So, how do web developers deal with these issues? Subject matter experts on acce
 
 [Cascading Style Sheets (CSS)](https://www.w3.org/Style/CSS/learning) is a simple way to add style (fonts, colors, layout, etc.) to web pages. CSS were designed primarily to enable the separation of document content from document presentation.
 
-If we broaden our understanding of &#8220;presentation&#8221; to mean something more like &#8220;representation,&#8221; thereby obviating even an implied visual form, it becomes possible to customize CSS for a range of output media. It also becomes possible to write separate style sheets for media, whose modes of presentation vary enormously, from Braille to printers to computer screens.
+If we broaden our understanding of *presentation* to mean something more like *representation*, thereby obviating even an implied visual form, it becomes possible to customize CSS for a range of output media. It also becomes possible to write separate style sheets for media, whose modes of presentation vary enormously, from Braille to printers to computer screens.
 
 [CSS Level 2](http://www.w3.org/TR/CSS21/) media types were defined in 1998. Their details (as excerpted from the W3C document focusing on accessibility-specific media) are as follows:
 
@@ -42,24 +42,24 @@ If we broaden our understanding of &#8220;presentation&#8221; to mean something 
 * **Screen**: Intended primarily for color computer screens.
 * **TTY**: Intended for media using a fixed-pitch character grid, such as teletypes, terminals, or portable devices with limited display capabilities.
 
-The preferred method of styling a document involves external style sheets &#8211; separately-maintained documents that can be included by reference in an unlimited number of HTML files and updated in one single operation. Style sheets are then linked to a document as follow: `<link rel=&#8221;stylesheet&#8221; href=&#8221;stylesheet.css&#8221; type=&#8221;text/css&#8221; />`.
+The preferred method of styling a document involves external style sheets &#8211; separately-maintained documents that can be included by reference in an unlimited number of HTML files and updated in one single operation. Style sheets are then linked to a document as follow: `<link rel="stylesheet" href="stylesheet.css" type="text/css" />`.
 
 To use media style sheets, simply add one more attribute to the link attribute *media*. Some possible examples:
 
-* `<link rel=&#8221;stylesheet&#8221; href=&#8221;tty.css&#8221; type=&#8221;text/css&#8221; media=&#8221;tty&#8221; />`
-* `<link rel=&#8221;stylesheet&#8221; href=&#8221;aural.css&#8221; type=&#8221;text/css&#8221; media=&#8221;aural&#8221; />`
-* `<link rel=&#8221;stylesheet&#8221; href=&#8221;braille.css&#8221; type=&#8221;text/css&#8221; media=&#8221;braille&#8221; />`
+* `<link rel="stylesheet" href="tty.css" type="text/css" media="tty" />`
+* `<link rel="stylesheet" href="aural.css" type="text/css" media="aural" />`
+* `<link rel="stylesheet" href="braille.css" type="text/css" media="braille" />`
 
-If you do not specify a medium for a style sheet, graphical Web browsers default to an interpretation of `media=&#8221;all&#8221;`. In CSS Level 2, you do not have to use separate style sheets for different media; you can use the `@media` rule to specify the media.
+If you do not specify a medium for a style sheet, graphical Web browsers default to an interpretation of `media="all"`. In CSS Level 2, you do not have to use separate style sheets for different media; you can use the `@media` rule to specify the media.
 
 You can also pair media queries with pseudo-classes, most notability the *lang* pseudo-class. The CSS Level 2 specification defines a special pseudo class, `:lang()`, for indicating rules that should be applied only to elements that match a certain language. Such a rule is written as follows: `:lang(zh-CN) { font-size: 120%; }`.
 
 This would display anything written in *Simplified Chinese language* with a font size 1.2 times larger than the base size specified for the whole document.
 
-Under the [Web Content Accessibility Guidelines](http://www.w3.org/TR/WCAG20/), you are required to specify changes in the language used in documents. You do this by adding the `lang=&#8221;languagecode&#8221;` attribute to virtually any tag (like `<p></p>`, `<span></span>`, `<cite></cite>`, or `<hx></hx>`. Also, in order to specify a change in language, you must already have declared the default, base, or original language, which you do by adding `lang=&#8221;languagecode&#8221;` to the `<body>` or (preferably) `<html>` tags.
+Under the [Web Content Accessibility Guidelines](http://www.w3.org/TR/WCAG20/), you are required to specify changes in the language used in documents. You do this by adding the `lang="languagecode"` attribute to virtually any tag (like `<p></p>`, `<span></span>`, `<cite></cite>`, or `<hx></hx>`. Also, in order to specify a change in language, you must already have declared the default, base, or original language, which you do by adding `lang="languagecode"` to the `<body>` or (preferably) `<html>` tags.
 
 ```html
-<p lang=&#8221;zh-CN&#8221;>关于我们</p>
+<p lang="zh-CN">关于我们</p>
 ```
 
 By itself, `:lang()` is not particularly useful, but when combined with other CSS rules and properties, it can be quite powerful.
