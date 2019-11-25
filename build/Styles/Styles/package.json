@@ -1,0 +1,28 @@
+{
+  "name": "extremefx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CheloXL/extremefx.git "
+  },
+  "author": "Marcelo Volmaro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CheloXL/extremefx/issues"
+  },
+  "homepage": "https://github.com/CheloXL/extremefx#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-exec": "^3.0.2",
+    "gulp-less": "^4.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-replace": "^1.0.0"
+  }
+}

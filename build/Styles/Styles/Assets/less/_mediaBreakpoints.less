@@ -1,0 +1,60 @@
+﻿//cualquier cosa con una pantalla menor a 640px es un mobile
+//cualquier cosa entre 640 y 1279 es una tableta.
+//cualquier cosa con 1280 o mas es desktop
+
+@media-breakpoint-small: 640px;
+@media-breakpoint-large: 1280px;
+
+.for-portrait(@rules) {
+	@media screen and (orientation:portrait) {
+		@rules();
+	}
+}
+
+.for-landscape(@rules) {
+	@media screen and (orientation:landscape) {
+		@rules();
+	}
+}
+
+//todo lo que sea <= 640 es mobile
+.for-mobile-only(@rules) {
+	@media (max-width: (@media-breakpoint-small)) {
+		@rules();
+	}
+}
+
+//641 >= todo lo que esté entre <= 1280 (ambos incluídos) (sólo tabletas)
+.for-tablet-only(@rules) {
+	@media (min-width: (@media-breakpoint-small+1)) and (max-width: (@media-breakpoint-large)) {
+		@rules();
+	}
+}
+
+//todo lo que sea >= 641px (tabletas o desktop);
+.for-tablet-above(@rules) {
+	@media (min-width: (@media-breakpoint-small+1)) {
+		@rules();
+	}
+}
+
+//todo lo que sea <= 1280 (tabletas o mobiles)
+.for-tablet-below(@rules) {
+	@media (max-width: (@media-breakpoint-large)) {
+		@rules();
+	}
+}
+
+//todo lo que sea >= 1281;
+.for-desktop-only(@rules) {
+	@media (min-width: (@media-breakpoint-large+1)) {
+		@rules();
+	}
+}
+
+//todo lo que sea <= 1280
+.for-desktop-below(@rules) {
+	@media (max-width: (@media-breakpoint-large)) {
+		@rules();
+	}
+}
