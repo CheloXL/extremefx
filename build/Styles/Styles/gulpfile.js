@@ -2,7 +2,8 @@ const gulp = require("gulp");
 const gulpCleanCss = require("gulp-clean-css");
 const gulpLess = require("gulp-less");
 
-const assetsRoot = "../../input/assets/styles/";
+//const assetsRoot = "../../input/assets/styles/";
+const assetsRoot = "wwwroot/assets/styles/";
 
 const siteCss = [
 	"assets/site.less"

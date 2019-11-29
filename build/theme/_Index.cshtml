@@ -1,24 +1,34 @@
-<ul>
-    @foreach(IDocument post in Model.DocumentList(Keys.PageDocuments))
-    {
-        <li>
-            <a href="@Context.GetLink(post)">
-                <h2>@post.WithoutSettings.String(BlogKeys.Title)</h2>
-            </a>
-            @Html.Raw(post.String(BlogKeys.Excerpt))
-        </li>
-    }
-</ul>
+<main>
+	@foreach (IDocument post in Model.DocumentList(Keys.PageDocuments))
+	{
+		<article>
+			<h2>@post.WithoutSettings.String(BlogKeys.Title)</h2>
+			@Html.Raw(post.String(BlogKeys.Excerpt))
+			<a href="@Context.GetLink(post)">read more…</a>
+		</article>
+	}
 
-@if(Model.Bool(Keys.HasPreviousPage)) {
-    <a href="@(Context.GetLink(Model.Document(Keys.PreviousPage)))"><span aria-hidden="true">&larr;</span> Newer</a>
-}
+	@if (Model.Bool(Keys.HasPreviousPage) || Model.Bool(Keys.HasNextPage))
+	{
+		<nav>
+			@if (Model.Bool(Keys.HasPreviousPage))
+			{
+				<a href="@(Context.GetLink(Model.Document(Keys.PreviousPage)))"><span aria-hidden="true">«</span> Newer</a>
+			}
 
-@if(Model.Bool(Keys.HasNextPage)) {
-    <a href="@(Context.GetLink(Model.Document(Keys.NextPage)))">Older <span aria-hidden="true">&rarr;</span></a>
-}
+			@if (Model.Bool(Keys.HasNextPage))
+			{
+				<a href="@(Context.GetLink(Model.Document(Keys.NextPage)))">Older <span aria-hidden="true">»</span></a>
+			}
+		</nav>
+	}
+</main>
 
-@if(Context.Bool(BlogKeys.GenerateArchive))
-{
-    <a href="@Context.GetLink(Context.String(BlogKeys.PostsPath))">Archive &rarr;</a>
-}
+<footer>
+	<p>
+		@if (Context.Bool(BlogKeys.GenerateArchive))
+		{
+			<a href="@Context.GetLink(Context.String(BlogKeys.PostsPath))">Archive <span aria-hidden="true">»</span></a>
+		}
+	</p>
+</footer>
