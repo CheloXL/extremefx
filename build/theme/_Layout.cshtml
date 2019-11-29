@@ -3,23 +3,17 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
+	<meta http-equiv="imagetoolbar" content="no">
+
 	<title>@Model.WithoutSettings.String(BlogKeys.Title)</title>
+
+	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300|Roboto+Condensed:300" rel="stylesheet" type="text/css">
 	<link href="/assets/styles/site.css" rel="stylesheet" />
 </head>
 <body>
 	<header>
-		@if (Context.String(BlogKeys.Description) != null)
-		{
-			<h1><a href="@Context.GetLink("/")">@Context.String(BlogKeys.Description)</a></h1>
-		}
-		@if (Context.String(BlogKeys.Intro) != null)
-		{
-			@if (Context.String(BlogKeys.Description) != null)
-			{
-				<hr />
-			}
-			<p>@Context.String(BlogKeys.Intro)</p>
-		}
+		<hr />
+		<p><strong><a href="@Context.GetLink("/")">@Context.String(BlogKeys.Description)</a></strong> <span>@Context.String(BlogKeys.Intro)</span></p>
 
 		@{
 			List<Tuple<string, string>> pages = Context

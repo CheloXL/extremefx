@@ -1,1 +1,95 @@
-﻿
+﻿*:link, *:visited, *:hover, *:active, *:focus {
+	transition: color .15s linear;
+}
+
+body {
+	background: #ececec url("/assets/styles/background.png") repeat-x;
+	line-height: 1.5;
+}
+
+body, textarea, table, td {
+	font-family: "Segoe UI", "Segoe WP", "Helvetica Neue", Candara, sans-serif;
+	font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Roboto', "Segoe UI", "Segoe WP", sans-serif;
+	font-weight: 100;
+	margin: 0;
+	line-height: 1.2;
+}
+
+h1+p, h2+p, h3+p, h1+ul, h2+ul, h3+ul {
+	margin-top: 0.25rem;
+}
+
+h2 {
+	font-size: 200%;
+	color: #656565;
+}
+
+h3 {
+	font-size: 150%;
+}
+
+h4, h5, h6 {
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+h4 {
+	color: #ce00a0;
+	font-size: 120%;
+}
+
+a {
+	text-decoration: none;
+	color: #005a98;
+
+	&:hover {
+		color: #ff9500;
+	}
+}
+
+hr {
+	height: 1px;
+	background: #4daf7c;
+}
+
+
+main {
+	background: #fff;
+	padding: 0 2rem 1rem;
+	clear: both;
+}
+
+article {
+
+	.read_more {
+		color: #656565;
+	}
+}
+
+footer {
+	clear: both;
+	padding: 0 0 3rem 0;
+	background: #fff;
+
+	p {
+		text-align: center;
+		margin-top: 0.5rem;
+	}
+}
+
+[data-icon]:before {
+	border-radius: 50%;
+	border: 2px solid;
+	content: attr(data-icon);
+	font-family: 'iconFont';
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: inherit;
+	-webkit-font-smoothing: subpixel-antialiased;
+	overflow: hidden;
+	text-align: center;
+}

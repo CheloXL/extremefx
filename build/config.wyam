@@ -6,8 +6,9 @@ Settings[Keys.LinksUseHttps] = true;
 Settings[Keys.UseCache] = true;
 Settings[Keys.Host] = "extremefx.com.ar";
 
-Settings[BlogKeys.Title] = "Extreme|FX";
-Settings[BlogKeys.Description] = "Marcelo Volmaro on Programming, User Experience and anything else.";
+Settings[BlogKeys.Title] = "Extreme|FX - Marcelo Volmaro's blog";
+Settings[BlogKeys.Description] = "Extreme|FX";
+Settings[BlogKeys.Intro] = "Marcelo Volmaro on Programming, User Experience and anything else.";
 Settings[BlogKeys.ArchivePageSize] = 20;
 Settings[BlogKeys.IgnoreFolders] = "theme";
 

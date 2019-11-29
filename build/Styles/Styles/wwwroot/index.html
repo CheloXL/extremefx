@@ -1,44 +1,55 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-	<link href="/assets/styles/site.css" rel="stylesheet" />
-</head>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
+		<meta http-equiv="imagetoolbar" content="no">
+
+		<title></title>
+
+		<link href="/assets/styles/site.css" rel="stylesheet"/>
+		<link href="http://fonts.googleapis.com/css?family=Roboto:400,300|Roboto+Condensed:300" rel="stylesheet" type="text/css">
+	</head>
 <body>
-	<header>
-		<h1><a href="/">Marcelo Volmaro on Programming, User Experience and anything else.</a></h1>
-		<nav>
-			<a href="/posts">Archive</a>
-			<a href="/tags">Tags</a>
-			<a href="/about">About Me</a>
-			<a href="/contact">Contact</a>
-		</nav>
-	</header>
+	<div class="wrapper">
+		<header>
+			<hr />
+			<div>
+				<p><strong><a href="/">Extreme|FX</a></strong> <span>Marcelo Volmaro on Programming, User Experience and anything else.</span></p>
+				<nav>
+					<a href="/posts">Archive</a>
+					<a href="/tags">Tags</a>
+					<a href="/about">About Me</a>
+					<a href="/contact">Contact</a>
+				</nav>
+			</div>
+		</header>
 
-	<main>
-		<article>
-			<h2>Downgrading a Nuget package</h2>
-			<p>Today I had a problem where I had blindly upgraded EF to version 6 across an entire solution, only to find out that the version was incompatible with the current MySql provider.</p>
-			<a href="/posts/downgrading-a-nuget-package">read more...</a>
-		</article>
-		
-		<!--<aside><h2>Related</h2></aside>-->
+		<main>
+			<article>
+				<h2>Downgrading a Nuget package</h2>
+				<p>Today I had a problem where I had blindly upgraded EF to version 6 across an entire solution, only to find out that the version was incompatible with the current MySql provider.</p>
+				<div class="read_more"><a href="/posts/downgrading-a-nuget-package">read more...</a></div>
+			</article>
 
-		<article>
-			<h2>Creating a Culturally Customized Website</h2>
-			<p>“Human-Computer Interaction (HCI) research shows that successful interaction depends on more than just using the correct language. Interaction is also dependent upon the culturally embedded meaning of objects such as icons, and metaphors such as the desktop, or the shopping cart (Bourges-Waldegg &amp; Scrivener, 1998; French &amp; Smith, 2000)”.</p>
-			<a href="/posts/creating-culturally-customized-website">read more..</a>
-		</article>
+			<!--<aside><h2>Related</h2></aside>-->
 
-		<article>
-			<h2>Website Internationalization and Accessibility</h2>
-			<p>The World Wide Web is capable of living up to its name: by being accessible to everyone in the world. This is more or less true, as there are still many web users whose needs aren’t adequately met. The Word Wide Web Consortium (<a href="http://www.w3.org/">W3C</a>) has several recommendations on how to make a webpage accessible by users, not only with disabilities, but also by users that do not speak English.</p>
-			<a href="/posts/website-internationalization-accessibility">read more...</a>
-		</article>
-	</main>
+			<article>
+				<h2>Creating a Culturally Customized Website</h2>
+				<p>“Human-Computer Interaction (HCI) research shows that successful interaction depends on more than just using the correct language. Interaction is also dependent upon the culturally embedded meaning of objects such as icons, and metaphors such as the desktop, or the shopping cart (Bourges-Waldegg &amp; Scrivener, 1998; French &amp; Smith, 2000)”.</p>
+				<div class="read_more"><a href="/posts/downgrading-a-nuget-package">read more...</a></div>
+			</article>
 
-	<footer>
-		<a href="/posts">Archive <span aria-hidden="true">»</span></a>
-	</footer>
+			<article>
+				<h2>Website Internationalization and Accessibility</h2>
+				<p>The World Wide Web is capable of living up to its name: by being accessible to everyone in the world. This is more or less true, as there are still many web users whose needs aren’t adequately met. The Word Wide Web Consortium (<a href="http://www.w3.org/">W3C</a>) has several recommendations on how to make a webpage accessible by users, not only with disabilities, but also by users that do not speak English.</p>
+				<div class="read_more"><a href="/posts/downgrading-a-nuget-package">read more...</a></div>
+			</article>
+		</main>
+
+		<footer>
+			<a href="/posts">Archive <span aria-hidden="true">»</span></a>
+		</footer>
+	</div>
 </body>
 </html>
