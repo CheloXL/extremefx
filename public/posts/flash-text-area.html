@@ -1,26 +1,39 @@
 ﻿<!DOCTYPE html>
-<html>
-    <head>
-        <title>Flash TextArea - Standards compliant XHTML flash editor</title>
-    </head>
-    <body>
-            <a href="/"><h1>Marcelo Volmaro on Programming, User Experience and anything else.</h1> </a>
-        
-                <li><a href="/posts">Archive</a></li>
-                <li><a href="/tags">Tags</a></li>
-                <li><a href="/about">About Me</a></li>
-                <li><a href="/contact">Contact</a></li>
+<html dir="ltr" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
+	<meta http-equiv="imagetoolbar" content="no">
 
-        
-<h2>Flash TextArea - Standards compliant XHTML flash editor</h2>
-<h3>Published 4/2/2006</h3>
+	<title>Flash TextArea - Standards compliant XHTML flash editor</title>
 
+	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300|Roboto+Condensed:300" rel="stylesheet" type="text/css">
+	<link href="/assets/styles/site.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<hr />
+			<div>
+				<p><strong><a href="/">Extreme|FX</a></strong> <span>Marcelo Volmaro on Programming, User Experience and anything else.</span></p>
 
-        <a href="/tags/Flash,-Javascript,-Code">Flash, Javascript, Code</a> 
+						<nav>
+								<a href="/posts" data-icon>Archive</a>
+								<a href="/tags" data-icon>Tags</a>
+								<a href="/about" data-icon>About Me</a>
+								<a href="/contact" data-icon>Contact</a>
+						</nav>
+			</div>
+		</header>
+		<main>
+			
+<article>
+	<div class="article-header">
+		<p class="publishing-date"><span>Posted on</span> <time datetime='2006-02-04'><span>4</span> <span>feb. 06</span></time></p>
+		<h2>Flash TextArea - Standards compliant XHTML flash editor</h2>
+	</div>
 
-<a href="/posts">Back To posts</a>
-
-<h2 id="introduction">Introduction</h2>
+	<h2 id="introduction">Introduction</h2>
 <p>FlashTA is a WYSIWYG replacement text area for html forms. While there are various implementations done in javascript, most of them don't work in this/that browser/OS combo, and every time a browser vendor makes a change, they need to update the editor so it doesn't break on every possible combination of browsers.</p>
 <p>FlashTA tries to overcome that problem by using flash. It also tries to adhere stricty to the xhtml specification. No presentation code is generated (so say bye bye to your idea of selecting text color, font face, etc).</p>
 <p>FlashTA features an easy integration and multiple browser support (Mozilla, MSIE, FireFox, Opera &amp; Safari).</p>
@@ -52,15 +65,15 @@ fTAR.FlashTextArea.setup('FlashTA.swf', 'FlashFB.swf');
 <h4 id="explanation">Explanation:</h4>
 <p><strong>fTAR.setup(editor, filebrowser);</strong></p>
 <ul>
-<li><strong>editor:</strong> path/name of the editor flash file. If you stored the editor on a folder called “flashEditor”, and the page that will use it is on the same level as the folder, the first parameter should be changed like: “flashEditor/FlashTA.swf”</li>
-<li><strong>filebrowser:</strong> path/name of the filebrowser flash file. If you stored the browser on a folder called “flashEditor”, and the page that will use it is on the same level as the folder, the first parameter should be changed like: “flashEditor/FlashFB.swf”.</li>
+<li><strong>editor:</strong> path/name of the editor flash file. If you stored the editor on a folder called <code>flashEditor</code>, and the page that will use it is on the same level as the folder, the first parameter should be changed like: <code>flashEditor/FlashTA.swf</code>.</li>
+<li><strong>filebrowser:</strong> path/name of the filebrowser flash file. If you stored the browser on a folder called <code>flashEditor</code>, and the page that will use it is on the same level as the folder, the first parameter should be changed like: <code>flashEditor/FlashFB.swf</code>.</li>
 </ul>
 <p>It lets you configure an input field to browse the server for a file. It's like the normal browse button, but for server side files.</p>
-<p>You should add the class “efx_browser” to the input field to enable it to browse all files, or with the class “efx_browser_images” to enable the field to browse for images only. Of course, for this you need a working fileManager.php already configured.</p>
-<p><strong>fTAR.FlashTextArea.setFilemanager(path to the fileManager.php file);</strong><br />This file is used by the file browser and the image browser. Please note that this file is used for file browsing and file uploading.</p>
-<p><strong>fTAR.FlashTextArea.setServerURL(serverURL);</strong><br />Url of the server used to retrieve the images. Directories are allowed here.</p>
-<p><strong>fTAR.FlashTextArea.setBasePath(relativePath);</strong><br />Used to prefix links &amp; images. The final URL of an image/link will be “relativePath/User selected Path/User selected file”.</p>
-<p>“serverURL/relativePath/imagename” should point to a valid image. The editor will use that information to retrieve the image from the server.</p>
+<p>You should add the class <code>efx_browser</code> to the input field to enable it to browse all files, or with the class <code>efx_browser_images</code> to enable the field to browse for images only. Of course, for this you need a working <code>fileManager.php</code> already configured.</p>
+<p><strong>fTAR.FlashTextArea.setFilemanager(path to the fileManager.php file);</strong>: This file is used by the file browser and the image browser. Please note that this file is used for file browsing and file uploading.</p>
+<p><strong>fTAR.FlashTextArea.setServerURL(serverURL);</strong>: Url of the server used to retrieve the images. Directories are allowed here.</p>
+<p><strong>fTAR.FlashTextArea.setBasePath(relativePath);</strong>: Used to prefix links &amp; images. The final URL of an image/link will be “relativePath/User selected Path/User selected file”.</p>
+<p><em>serverURL/relativePath/imagename</em> should point to a valid image. The editor will use that information to retrieve the image from the server.</p>
 <p>You will also need to setup the fileManager.php script as following:</p>
 <ul>
 <li><strong>diskPath:</strong> Folder on the server that holds the images/files accessible by the editor.</li>
@@ -70,7 +83,7 @@ fTAR.FlashTextArea.setup('FlashTA.swf', 'FlashFB.swf');
 <p><strong>fTAR.FlashTextArea.useFileBrowser(true | false);</strong>
 If you don't want the filebrowser to be accesible from withing the editor, simply pass false to this function.</p>
 <p><strong>fTAR.FlashTextArea.setLngFile(path to language file);</strong>
-Both the fileBrowser and the editor are localizables through an XML file. If you want to use the editor/browser in your language, take a look at the files in the “lang” folder.</p>
+Both the fileBrowser and the editor are localizables through an XML file. If you want to use the editor/browser in your language, take a look at the files in the <code>lang</code> folder.</p>
 <p>The buttons in the editor can be configured as following:</p>
 <ul>
 <li>fTAR.FlashTextAreaButtons.bold(true | false);</li>
@@ -95,12 +108,12 @@ Both the fileBrowser and the editor are localizables through an XML file. If you
 </ul>
 <p>Also, there are some methods that can be usefull:</p>
 <p><strong>fTAR.FlashTextArea.updateContent();</strong>
-Forces an update of all text areas. Usually, the content of the “browser” textareas is not updated until the user press the submit button.</p>
+Forces an update of all text areas. Usually, the content of the <em>browser</em> textareas is not updated until the user press the submit button.</p>
 <p>If you placed the FlashTextArea inside a tabbed UI, you must call this method prior to change the text area visibility. Browsers remove the flash object from the DOM when changing visibility and you will lost all the changes made.</p>
 <p><strong>fTAR.FlashTextArea.getChangedAreas();</strong>
-Returns “false” if no textareas were changed, or an array of the changed textareas.</p>
+Returns <code>false</code> if no textareas were changed, or an array of the changed textareas.</p>
 <p><strong>fTAR.FlashTextArea.hasChanged(areaName);</strong>
-Returns true if the area named “areaName” was changed, false if not.</p>
+Returns <code>true</code> if the area named <em>areaName</em> was changed, <code>false</code> if not.</p>
 <p>There are also a bunch of CSS styles that you can play with. Take a look at the source code.</p>
 <h2 id="known-bugs-and-limitations">Known bugs and limitations:</h2>
 <ul>
@@ -108,119 +121,68 @@ Returns true if the area named “areaName” was changed, false if not.</p>
 </ul>
 <h3 id="history-fixedchanged-added-removed">History (* fixed/changed, + added, – removed)</h3>
 <ul>
-<li>
-<ul>
-<li>The editor is now localizable.</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Redo / Undo.</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Copy as HTML. (Right click over the text).</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Added a way to determine what textareas were changed.</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Flash automatic update if flash version &lt; 8.</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Finally!, discovered a way to fix Flash's ExternalInterface on IE under forms. This simplified a lot the code.</li>
-</ul>
-</li>
+<li>+ The editor is now localizable.</li>
+<li>+ Redo / Undo.</li>
+<li>+ Copy as HTML. (Right click over the text).</li>
+<li>+ Added a way to determine what textareas were changed.</li>
+<li>- Flash automatic update if flash version &lt; 8.</li>
+<li>* Finally!, discovered a way to fix Flash's ExternalInterface on IE under forms. This simplified a lot the code.</li>
 </ul>
 <hr />
 <ul>
-<li>
-<ul>
-<li>Changed how the editor gets the text. Now it can be placed on “tabs” systems without loosing the content. You need to call fTAR.FlashTextArea.updateContent() before doing anything with the editor visibility.</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Fixed a lot of image duplication bugs caused by the Flash Player.</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Added the ability to delete files on the file browser.</li>
-</ul>
-</li>
+<li>*  Changed how the editor gets the text. Now it can be placed on “tabs” systems without loosing the content. You need to call fTAR.FlashTextArea.updateContent() before doing anything with the editor visibility.</li>
+<li>*  Fixed a lot of image duplication bugs caused by the Flash Player.</li>
+<li>+ Added the ability to delete files on the file browser.</li>
 </ul>
 <hr />
 <ul>
-<li>
-<ul>
-<li>Ported to use Macromedia Components</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Added backgroundColor</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Fixed image dissapearing bug.</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Re-added the scrollbar.</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>A lot of bugfixes that i don't remember now.</li>
-</ul>
-</li>
+<li>*  Ported to use Macromedia Components</li>
+<li>+ Added backgroundColor</li>
+<li>*  Fixed image dissapearing bug.</li>
+<li>+ Re-added the scrollbar.</li>
+<li>*  A lot of bugfixes that i don't remember now.</li>
 </ul>
 <hr />
 <ul>
-<li>
-<ul>
-<li>Added a “delete” button in the insert image window.</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Buttons config now works as expected.</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Fixed some problems with unicode chars under Opera 8.5+</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Removed the scrollbar – Now the editor resizes itself as needed.</li>
-</ul>
-</li>
+<li>+ Added a “delete” button in the insert image window.</li>
+<li>* Buttons config now works as expected.</li>
+<li>*  Fixed some problems with unicode chars under Opera 8.5+</li>
+<li>- Removed the scrollbar – Now the editor resizes itself as needed.</li>
 </ul>
 <hr />
 <ul>
-<li>
-<ul>
-<li>First launch</li>
-</ul>
-</li>
+<li>+ First launch</li>
 </ul>
 <p>See the complete project at <a href="http://osflash.org/flashtextarea">OSFlash/FlashTextArea</a>.</p>
 
 
+	<p class="tags">Posted under
+					<a href="/tags/Flash,-Javascript,-Code" data-icon-before="label">Flash</a>
+					<a href="/tags/Flash,-Javascript,-Code" data-icon-before="label">Javascript</a>
+					<a href="/tags/Flash,-Javascript,-Code" data-icon-before="label">Code</a>
+	</p>
 
+	<p class="back-to-posts"><a href="/posts" data-icon-before="chevron_left">Back to posts</a></p>
+</article>
 
-    </body>
+		</main>
+		<aside>
+			<div class="about">
+				<h4>About the author</h4>
+				<p>
+					<strong>Marcelo Volmaro - User Experience Specialist</strong>
+					Marcelo is an award-winning user experience specialist, working on information architecture, interaction design, usability engineering,
+					visual design and prototype engineering.<br />
+					He works with teams of top web designers, developers and localization specialists located all over the world helping
+					clients design, develop, and deploy usable global applications/websites that fully function for the world's markets.
+				</p>
+			</div>
+		</aside>
+	</div>
+	<footer>
+		<hr />
+		<p>© 2005 - 2020 Extreme|FX. All rights reserved. Trademarks are property of their respective owners.</p>
+	</footer>
+</body>
 </html>
 

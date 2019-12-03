@@ -1,33 +1,46 @@
 ﻿<!DOCTYPE html>
-<html>
-    <head>
-        <title>Flash internationalization library</title>
-    </head>
-    <body>
-            <a href="/"><h1>Marcelo Volmaro on Programming, User Experience and anything else.</h1> </a>
-        
-                <li><a href="/posts">Archive</a></li>
-                <li><a href="/tags">Tags</a></li>
-                <li><a href="/about">About Me</a></li>
-                <li><a href="/contact">Contact</a></li>
+<html dir="ltr" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
+	<meta http-equiv="imagetoolbar" content="no">
 
-        
-<h2>Flash internationalization library</h2>
-<h3>Published 21/4/2008</h3>
+	<title>Flash internationalization library</title>
 
+	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300|Roboto+Condensed:300" rel="stylesheet" type="text/css">
+	<link href="/assets/styles/site.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<hr />
+			<div>
+				<p><strong><a href="/">Extreme|FX</a></strong> <span>Marcelo Volmaro on Programming, User Experience and anything else.</span></p>
 
-        <a href="/tags/Flash,-Internationalization,-Translation,-Code">Flash, Internationalization, Translation, Code</a> 
+						<nav>
+								<a href="/posts" data-icon>Archive</a>
+								<a href="/tags" data-icon>Tags</a>
+								<a href="/about" data-icon>About Me</a>
+								<a href="/contact" data-icon>Contact</a>
+						</nav>
+			</div>
+		</header>
+		<main>
+			
+<article>
+	<div class="article-header">
+		<p class="publishing-date"><span>Posted on</span> <time datetime='2008-04-21'><span>21</span> <span>abr. 08</span></time></p>
+		<h2>Flash internationalization library</h2>
+	</div>
 
-<a href="/posts">Back To posts</a>
-
-<p>This library will help you to internationalize your flash application. It supports localization of numbers, date/time, percentages and strings. It can also parse back numbers and date/time formats on a specific locale into flash internal formats.</p>
+	<p>This library will help you to internationalize your flash application. It supports localization of numbers, date/time, percentages and strings. It can also parse back numbers and date/time formats on a specific locale into flash internal formats.</p>
 <h2 id="details">Details</h2>
 <p>Most of the code is well documented. I choose to follow the .net c# conventions for formatting as is the one I use the most.</p>
 <p>There is also a resource management class that will let you manage language-specific resources, like strings and bitmaps. The resource manager uses the standard XLIFF format and it supports trans-unit nodes as well as bin-unit nodes.</p>
 <p>Bin-unit nodes can have external or internal content. External content can be anything that flash supports natively like text files, xml, sound, video and images. External content will be loaded at runtime after the XLIFF file is parsed.</p>
 <p>Internal content can only be images.</p>
 <p>The library also supports text pluralization. For the library to know a string is a pluralized string, the string “[I18N]” must precede the list of pluralization's.</p>
-<p>ex: [I18N]|{0} file deleted.|{0} files deleted.</p>
+<p>ex: <code>[I18N]|{0} file deleted.|{0} files deleted.</code></p>
 <p>The number of plurals will depend on the language. Most languages uses two forms, singular used for one only, but other languages have more that one plural form (and others, like some of the Asian family, have no distinction between the singular and plural form).</p>
 <p>For example, Polish uses e.g. plik (file) this way:</p>
 <ul>
@@ -53,8 +66,34 @@
 <p>Source code and downloads at: <a href="http://code.google.com/p/efxflashsource">GoogleCode</a></p>
 
 
+	<p class="tags">Posted under
+					<a href="/tags/Flash,-Internationalization,-Translation,-Code" data-icon-before="label">Flash</a>
+					<a href="/tags/Flash,-Internationalization,-Translation,-Code" data-icon-before="label">Internationalization</a>
+					<a href="/tags/Flash,-Internationalization,-Translation,-Code" data-icon-before="label">Translation</a>
+					<a href="/tags/Flash,-Internationalization,-Translation,-Code" data-icon-before="label">Code</a>
+	</p>
 
+	<p class="back-to-posts"><a href="/posts" data-icon-before="chevron_left">Back to posts</a></p>
+</article>
 
-    </body>
+		</main>
+		<aside>
+			<div class="about">
+				<h4>About the author</h4>
+				<p>
+					<strong>Marcelo Volmaro - User Experience Specialist</strong>
+					Marcelo is an award-winning user experience specialist, working on information architecture, interaction design, usability engineering,
+					visual design and prototype engineering.<br />
+					He works with teams of top web designers, developers and localization specialists located all over the world helping
+					clients design, develop, and deploy usable global applications/websites that fully function for the world's markets.
+				</p>
+			</div>
+		</aside>
+	</div>
+	<footer>
+		<hr />
+		<p>© 2005 - 2020 Extreme|FX. All rights reserved. Trademarks are property of their respective owners.</p>
+	</footer>
+</body>
 </html>
 

@@ -9,7 +9,11 @@ Settings[Keys.Host] = "extremefx.com.ar";
 Settings[BlogKeys.Title] = "Extreme|FX - Marcelo Volmaro's blog";
 Settings[BlogKeys.Description] = "Extreme|FX";
 Settings[BlogKeys.Intro] = "Marcelo Volmaro on Programming, User Experience and anything else.";
+Settings[BlogKeys.IndexPageSize] = 5;
+Settings[BlogKeys.IndexPaging] = true;
 Settings[BlogKeys.ArchivePageSize] = 20;
+Settings[BlogKeys.CaseInsensitiveTags] = true;
+
 Settings[BlogKeys.IgnoreFolders] = "theme";
 
 // Add any pipeline customizations here

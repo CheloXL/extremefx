@@ -1,26 +1,39 @@
 ﻿<!DOCTYPE html>
-<html>
-    <head>
-        <title>Preconditionals and postconditionals checks</title>
-    </head>
-    <body>
-            <a href="/"><h1>Marcelo Volmaro on Programming, User Experience and anything else.</h1> </a>
-        
-                <li><a href="/posts">Archive</a></li>
-                <li><a href="/tags">Tags</a></li>
-                <li><a href="/about">About Me</a></li>
-                <li><a href="/contact">Contact</a></li>
+<html dir="ltr" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
+	<meta http-equiv="imagetoolbar" content="no">
 
-        
-<h2>Preconditionals and postconditionals checks</h2>
-<h3>Published 31/3/2009</h3>
+	<title>Preconditionals and postconditionals checks</title>
 
+	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300|Roboto+Condensed:300" rel="stylesheet" type="text/css">
+	<link href="/assets/styles/site.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<hr />
+			<div>
+				<p><strong><a href="/">Extreme|FX</a></strong> <span>Marcelo Volmaro on Programming, User Experience and anything else.</span></p>
 
-        <a href="/tags/Flash,-Code,-Example">Flash, Code, Example</a> 
+						<nav>
+								<a href="/posts" data-icon>Archive</a>
+								<a href="/tags" data-icon>Tags</a>
+								<a href="/about" data-icon>About Me</a>
+								<a href="/contact" data-icon>Contact</a>
+						</nav>
+			</div>
+		</header>
+		<main>
+			
+<article>
+	<div class="article-header">
+		<p class="publishing-date"><span>Posted on</span> <time datetime='2009-03-31'><span>31</span> <span>mar. 09</span></time></p>
+		<h2>Preconditionals and postconditionals checks</h2>
+	</div>
 
-<a href="/posts">Back To posts</a>
-
-<p>How many times you found yourself writing preconditions before executing some code (like argument validation) and post-conditions (validating some result before returning the value/using on another function)?</p>
+	<p>How many times you found yourself writing preconditions before executing some code (like argument validation) and post-conditions (validating some result before returning the value/using on another function)?</p>
 <p>So, for example:</p>
 <pre><code class="language-actionscript">if (arg == null) throw new ArgumentError(&quot;arg can not be null&quot;);
 if (!(arg is IInterface)) throw new ArgumentError(&quot;arg must be of type IInterface&quot;);
@@ -51,8 +64,33 @@ ensuresNumber(days).isLessOrEqualThan(10675199, &quot;Invalid number of days: &q
 You have to download the library from the SVN repository. I will post a new ZIP file when the bug gets fixed.</p>
 
 
+	<p class="tags">Posted under
+					<a href="/tags/Flash,-Code,-Example" data-icon-before="label">Flash</a>
+					<a href="/tags/Flash,-Code,-Example" data-icon-before="label">Code</a>
+					<a href="/tags/Flash,-Code,-Example" data-icon-before="label">Example</a>
+	</p>
 
+	<p class="back-to-posts"><a href="/posts" data-icon-before="chevron_left">Back to posts</a></p>
+</article>
 
-    </body>
+		</main>
+		<aside>
+			<div class="about">
+				<h4>About the author</h4>
+				<p>
+					<strong>Marcelo Volmaro - User Experience Specialist</strong>
+					Marcelo is an award-winning user experience specialist, working on information architecture, interaction design, usability engineering,
+					visual design and prototype engineering.<br />
+					He works with teams of top web designers, developers and localization specialists located all over the world helping
+					clients design, develop, and deploy usable global applications/websites that fully function for the world's markets.
+				</p>
+			</div>
+		</aside>
+	</div>
+	<footer>
+		<hr />
+		<p>© 2005 - 2020 Extreme|FX. All rights reserved. Trademarks are property of their respective owners.</p>
+	</footer>
+</body>
 </html>
 

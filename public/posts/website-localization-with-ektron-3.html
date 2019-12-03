@@ -1,26 +1,39 @@
 ﻿<!DOCTYPE html>
-<html>
-    <head>
-        <title>Website Localization with Ektron &#x2013; Part 3</title>
-    </head>
-    <body>
-            <a href="/"><h1>Marcelo Volmaro on Programming, User Experience and anything else.</h1> </a>
-        
-                <li><a href="/posts">Archive</a></li>
-                <li><a href="/tags">Tags</a></li>
-                <li><a href="/about">About Me</a></li>
-                <li><a href="/contact">Contact</a></li>
+<html dir="ltr" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
+	<meta http-equiv="imagetoolbar" content="no">
 
-        
-<h2>Website Localization with Ektron &#x2013; Part 3</h2>
-<h3>Published 12/9/2010</h3>
+	<title>Website Localization with Ektron &#x2013; Part 3</title>
 
+	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300|Roboto+Condensed:300" rel="stylesheet" type="text/css">
+	<link href="/assets/styles/site.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<hr />
+			<div>
+				<p><strong><a href="/">Extreme|FX</a></strong> <span>Marcelo Volmaro on Programming, User Experience and anything else.</span></p>
 
-        <a href="/tags/Localization,-Translation,-Cms">Localization, Translation, Cms</a> 
+						<nav>
+								<a href="/posts" data-icon>Archive</a>
+								<a href="/tags" data-icon>Tags</a>
+								<a href="/about" data-icon>About Me</a>
+								<a href="/contact" data-icon>Contact</a>
+						</nav>
+			</div>
+		</header>
+		<main>
+			
+<article>
+	<div class="article-header">
+		<p class="publishing-date"><span>Posted on</span> <time datetime='2010-09-12'><span>12</span> <span>sep. 10</span></time></p>
+		<h2>Website Localization with Ektron &#x2013; Part 3</h2>
+	</div>
 
-<a href="/posts">Back To posts</a>
-
-<p>Setting up correct Locales, adding Lang attributes and localizing hard-coded images are among the technical steps detailed in this final blog in our 3-part series on <em>Website Localization with Ektron CMS</em>. We covered an overview of CMS strategy issues in part 1, and gave more technical detail and steps in Part 2. In this final blog of the series we will show you how to solve some of the issues touched on in Part 2.</p>
+	<p>Setting up correct Locales, adding Lang attributes and localizing hard-coded images are among the technical steps detailed in this final blog in our 3-part series on <em>Website Localization with Ektron CMS</em>. We covered an overview of CMS strategy issues in part 1, and gave more technical detail and steps in Part 2. In this final blog of the series we will show you how to solve some of the issues touched on in Part 2.</p>
 <h3 id="setting-up-the-correct-locale">Setting up the correct Locale</h3>
 <p>The first thing we should do is to make sure that the system responds to the user in the correct (user selected) locale. To do this, we should not only rely on the content returned by Ektron (that will be in the correct locale) but also we should tell the system to use that same locale to present any information requested outside Ektron in the same locale.</p>
 <p>Since we are dealing with a website, and based on <a href="http://www.microsoft.com/">Microsoft</a> best practices, the locale initialization must be done with the <a href="https://docs.microsoft.com/en-us/previous-versions/bz9tc508(v=vs.140)">InitializeCulture</a> method, by overriding it and setting the <code>CurrentCulture</code> and <code>CurrentUICulture</code> for the current thread. The Culture value determines the results of culture-dependent functions, such as the date, number, and currency formatting, and so on. The UICulture value determines which resources are loaded for the web page.</p>
@@ -84,7 +97,7 @@
 <p>Now that we have our system and code properly set, we need to tell the browser/spiders in which language we are serving the page. For this you can:</p>
 <ul>
 <li>Add a Literal control inside the html tag and from the code behind, write the appropriate code for the literal to display the current locale, or</li>
-<li>Use the code below to simply replace the html tag by a .net control that will render the html tag and also take care of setting the correct attribute. As you can see, this piece of code uses the CurrentCulture property of our helper class to ensure that we always use the correct user selected locale.</li>
+<li>Use the code below to simply replace the html tag by a .net control that will render the html tag and also take care of setting the correct attribute. As you can see, this piece of code uses the <code>CurrentCulture</code> property of our helper class to ensure that we always use the correct user selected locale.</li>
 </ul>
 <pre><code class="language-csharp">using System.Web.UI;
 
@@ -105,7 +118,7 @@ namespace EktronLibrary.Controls {
 }
 </code></pre>
 <h3 id="taking-care-of-content-directionality">Taking care of content directionality</h3>
-<p>Again, we created another control that you can simply drop in your templates (inside the body tag); making sure it wraps all the content of your website. This control will render a <code>DIV</code> tag with the <code>DIR</code> attribute correctly set (rtl for Right-to-Left or ltr for Left-to-Right) based on the page target language. The <code>DIR</code> attribute is being applied to a <code>DIV</code> and not to the <code>BODY</code> tag because some speakers of languages that use right-to-left scripts prefer the directionality of the user interface to be associated with the desktop environment and not with the content of a particular document.</p>
+<p>Again, we created another control that you can simply drop in your templates (inside the <code>body</code> tag); making sure it wraps all the content of your website. This control will render a <code>DIV</code> tag with the <code>DIR</code> attribute correctly set (<code>rtl</code> for Right-to-Left or <code>ltr</code> for Left-to-Right) based on the page target language. The <code>DIR</code> attribute is being applied to a <code>DIV</code> and not to the <code>BODY</code> tag because some speakers of languages that use right-to-left scripts prefer the directionality of the user interface to be associated with the desktop environment and not with the content of a particular document.</p>
 <pre><code class="language-csharp">using System.Web.UI;
 
 [assembly: TagPrefix(&#64;&quot;EktronLibrary.Controls&quot;, &#64;&quot;Ekt&quot;)]
@@ -143,7 +156,7 @@ namespace EktronLibrary.Controls {
 </code></pre>
 <h3 id="localizing-hard-coded-images">Localizing hard-coded images</h3>
 <p>If an image is linked on a page from the content in Ektron, it is easy to go to that page, edit the localized version and replace the image. But when dealing with images hard-coded into the templates (Logos, graphics with overprinted text, etc.) you cannot resort to the features Ektron provides. In these cases, you have to pick the correct image for the user selected locale.</p>
-<p>The code below shows you an example of a user-control that takes care of everything for you. The control has the same set of attributes as the <code>IMG</code> tag. The only difference is on how the control renders the <code>IMG</code> tag. If the website is being displayed in the Ektron CMS default language (set on the web.config), the control will look for the image on the path/filename combination you specified on the <code>Source</code> attribute. But when the user changes the language of the site, the control will try to load the image from the same path as the original version, but the control will append to the name an underscore (_) and then the full name for the selected locale (<em>es-ES</em> for Spanish/Spain, <em>ja-JA</em> for Japanese/Japan, <em>zh-CN</em> for Simplified Chinese/China, etc). So, for example, if the original image is located under this path “/images/subfolder/header.jpg”, the Spanish version will be located/named as “/images/subfolder/header_es-ES.jpg” and the Japanese version will be “/images/subfolder/header_ja-JP.jpg”</p>
+<p>The code below shows you an example of a user-control that takes care of everything for you. The control has the same set of attributes as the <code>IMG</code> tag. The only difference is on how the control renders the <code>IMG</code> tag. If the website is being displayed in the Ektron CMS default language (set on the web.config), the control will look for the image on the path/filename combination you specified on the <code>Source</code> attribute. But when the user changes the language of the site, the control will try to load the image from the same path as the original version, but the control will append to the name an underscore (_) and then the full name for the selected locale (<em>es-ES</em> for Spanish/Spain, <em>ja-JA</em> for Japanese/Japan, <em>zh-CN</em> for Simplified Chinese/China, etc). So, for example, if the original image is located under this path <code>/images/subfolder/header.jpg</code>, the Spanish version will be located/named as <code>/images/subfolder/header_es-ES.jpg</code> and the Japanese version will be <code>/images/subfolder/header_ja-JP.jpg</code>.</p>
 <pre><code class="language-csharp">using System.Web.UI;
 
 [assembly: TagPrefix(&#64;&quot;EktronLibrary.Controls&quot;, &#64;&quot;Ekt&quot;)]
@@ -230,7 +243,7 @@ namespace EktronLibrary.Controls {
 <p><img src="/assets/images/EktronSmartForm.png" class="img-fluid" alt="Ektron Setup" /></p>
 <p>You have two options here:</p>
 <ol>
-<li><p>Remove all the hard-coded text from the templates, placing them in resource files (.resx) and then use the Literal asp.net control to place it back on the templates. The resource file will have to be sent to the translation company as part of the localization process, along with the content exported from Ektron. If you are using the LocalizablePage class as the base class for all your templates, the system will automatically pick-up the correct resource file once the translated resources are back in place.</p>
+<li><p>Remove all the hard-coded text from the templates, placing them in resource files (<code>.resx</code>) and then use the Literal asp.net control to place it back on the templates. The resource file will have to be sent to the translation company as part of the localization process, along with the content exported from Ektron. If you are using the LocalizablePage class as the base class for all your templates, the system will automatically pick-up the correct resource file once the translated resources are back in place.</p>
 </li>
 <li><p>Remove all the hard-coded text from the templates, placing them in smart-forms within Ektron, and then use the standard ContentBlock control from Ektron to place the text back into the templates. You will have to also provide the control with an XSLT file that the control will use to render the content, and the content ID for the text you want to display. This method has the advantages of letting the Website administrator edit/import/export the text from within Ektron’s Workarea.</p>
 </li>
@@ -242,12 +255,37 @@ namespace EktronLibrary.Controls {
 	&lt;/xsl:template&gt;
 &lt;/xsl:stylesheet&gt;
 </code></pre>
-<p>And there you have it… If you correctly implement the techniques mentioned above, you will have a “bullet-proof” base of templates that will be localization-friendly and that may require minimal adjustments to be done over the QA phase.</p>
-<p>I hope the “Website Localization with Ektron CMS” 3-part series of articles has provided you with useful information on how to correctly author multilingual websites under the Ektron CMS.</p>
+<p>And there you have it… If you correctly implement the techniques mentioned above, you will have a <em>bullet-proof</em> base of templates that will be localization-friendly and that may require minimal adjustments to be done over the QA phase.</p>
+<p>I hope the <em>Website Localization with Ektron CMS</em> 3-part series of articles has provided you with useful information on how to correctly author multilingual websites under the Ektron CMS.</p>
 
 
+	<p class="tags">Posted under
+					<a href="/tags/Localization,-Translation,-Cms" data-icon-before="label">Localization</a>
+					<a href="/tags/Localization,-Translation,-Cms" data-icon-before="label">Translation</a>
+					<a href="/tags/Localization,-Translation,-Cms" data-icon-before="label">Cms</a>
+	</p>
 
+	<p class="back-to-posts"><a href="/posts" data-icon-before="chevron_left">Back to posts</a></p>
+</article>
 
-    </body>
+		</main>
+		<aside>
+			<div class="about">
+				<h4>About the author</h4>
+				<p>
+					<strong>Marcelo Volmaro - User Experience Specialist</strong>
+					Marcelo is an award-winning user experience specialist, working on information architecture, interaction design, usability engineering,
+					visual design and prototype engineering.<br />
+					He works with teams of top web designers, developers and localization specialists located all over the world helping
+					clients design, develop, and deploy usable global applications/websites that fully function for the world's markets.
+				</p>
+			</div>
+		</aside>
+	</div>
+	<footer>
+		<hr />
+		<p>© 2005 - 2020 Extreme|FX. All rights reserved. Trademarks are property of their respective owners.</p>
+	</footer>
+</body>
 </html>
 

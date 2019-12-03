@@ -1,1 +1,112 @@
-﻿
+﻿header {
+	padding: 1.5rem 2rem 2rem;
+	background: #fff;
+	line-height: 1;
+
+	p {
+		font-family: "Roboto", "Segoe UI", "Segoe WP", sans-serif;
+		background: url("/assets/styles/logo.svg") no-repeat;
+
+		a, strong, span {
+			display: block;
+		}
+
+		strong {
+			font-family: 'Roboto Condensed', "Segoe UI", "Segoe WP", sans-serif;
+			font-weight: 300; /*Light, 400 normal */
+			margin: 0.5rem 0 .5rem -3px;
+
+			a {
+				color: #656565;
+			}
+		}
+
+		span {
+			color: #ff9500;
+		}
+	}
+
+	nav {
+		display: flex;
+
+		a {
+			text-align: center;
+			line-height: 1.5;
+			text-transform: lowercase;
+			position: relative;
+			color: #656565;
+
+			&:before {
+				color: #656565;
+				width: 1em;
+				font-size: 24px;
+				display: block;
+				padding: 4px;
+				margin: 0 auto;
+				border: solid 2px #9e9e9e;
+				border-radius: 50%;
+				box-sizing: content-box;
+				speak: none;
+				vertical-align: middle;
+				text-decoration: none;
+				font-display: block;
+				text-align: center;
+				font-family: 'Material Icons';
+				font-weight: normal;
+				font-style: normal;
+				line-height: 1;
+				text-transform: none;
+				letter-spacing: normal;
+				word-wrap: normal;
+				white-space: nowrap;
+				direction: ltr;
+				-webkit-font-smoothing: antialiased;
+				-webkit-font-feature-settings: 'liga';
+				text-rendering: optimizeLegibility;
+				-moz-osx-font-smoothing: grayscale;
+				font-feature-settings: 'liga';
+			}
+
+			&:hover {
+				color: #1ba0e1;
+
+				&:before {
+					color: #1ba0e1;
+					border-color: #1ba0e1;
+				}
+			}
+			//archive
+			&:nth-child(1) {
+				&:before {
+					content: "archive";
+				}
+			}
+			//tags
+			&:nth-child(2) {
+				&:before {
+					content: "label";
+				}
+			}
+			//about
+			&:nth-child(3) {
+				&:before {
+					content: "person";
+				}
+			}
+
+			&:nth-child(4) {
+				//contact
+				&:before {
+					content: "mail_outline";
+				}
+			}
+		}
+	}
+
+	hr {
+		background-image: linear-gradient(90deg, #ff9500, #ce00a0);
+		height: 9px;
+		border: 0;
+		margin: 0;
+	}
+}

@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover" />
+	<meta http-equiv="imagetoolbar" content="no">
+
+	<title>Website Localization with Ektron &#x2013; Part 3</title>
+
+	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300|Roboto+Condensed:300" rel="stylesheet" type="text/css">
+	<link href="/assets/styles/site.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<hr />
+			<div>
+				<p><strong><a href="/">Extreme|FX</a></strong> <span>Marcelo Volmaro on Programming, User Experience and anything else.</span></p>
+
+						<nav>
+								<a href="/posts" data-icon>Archive</a>
+								<a href="/tags" data-icon>Tags</a>
+								<a href="/about" data-icon>About Me</a>
+								<a href="/contact" data-icon>Contact</a>
+						</nav>
+			</div>
+		</header>
+
+		
+<article>
+	<div class="article-header">
+		<p class="publishing-date">Posted on <time datetime='2010-09-12 00:00:00Z'><span>12</span> <span>sep. 10</span></time></p>
+		<h2>Website Localization with Ektron &#x2013; Part 3</h2>
+	</div>
+
+	<p>Setting up correct Locales, adding Lang attributes and localizing hard-coded images are among the technical steps detailed in this final blog in our 3-part series on <em>Website Localization with Ektron CMS</em>. We covered an overview of CMS strategy issues in part 1, and gave more technical detail and steps in Part 2. In this final blog of the series we will show you how to solve some of the issues touched on in Part 2.</p>
+<h3 id="setting-up-the-correct-locale">Setting up the correct Locale</h3>
+<p>The first thing we should do is to make sure that the system responds to the user in the correct (user selected) locale. To do this, we should not only rely on the content returned by Ektron (that will be in the correct locale) but also we should tell the system to use that same locale to present any information requested outside Ektron in the same locale.</p>
+<p>Since we are dealing with a website, and based on <a href="http://www.microsoft.com/">Microsoft</a> best practices, the locale initialization must be done with the <a href="https://docs.microsoft.com/en-us/previous-versions/bz9tc508(v=vs.140)">InitializeCulture</a> method, by overriding it and setting the <code>CurrentCulture</code> and <code>CurrentUICulture</code> for the current thread. The Culture value determines the results of culture-dependent functions, such as the date, number, and currency formatting, and so on. The UICulture value determines which resources are loaded for the web page.</p>
+<p>Since we would have to use the above on every template on our website and that’s not only too time consuming, but also error prone (if you add a new web page and forget to add the code, some items on that web page may not work as expected), I usually create a LocalizablePage class that inherits from the <code>System.Web.UI.Page</code> and I override the <code>InitializeCulture</code> method with the initialization code. Then the only thing that I have to remember is to change the inheritance of every template from <code>System.Web.UI.Page</code> to <code>LocalizablePage</code>.</p>
+<pre><code class="language-csharp">namespace EktronLibrary {
+	using System.Globalization;
+	using System.Web.UI;
+
+	public class LocalizablePage : Page {
+		protected override void InitializeCulture() {
+			//this is here just to make sure the culture is correctly initialized
+			CultureInfo c = Utilities.CurrentCulture;
+			base.InitializeCulture();
+		}
+	}
+}
+</code></pre>
+<p>As you can see on the code above, I did not directly place all the initialization code on the <code>LocalizablePage</code> class, but I created a helper class that does all this for me. Also that class returns what is the actual user-selected locale and what’s the default locale selected in Ektron CMS. These two values will come in handy for some of the next tasks.</p>
+<pre><code class="language-csharp">namespace EktronLibrary {
+	using System.Globalization;
+	using System.Threading;
+	using System.Web;
+	using Ektron.Cms.Controls;
+
+	public static class Utilities {
+		private static int _lastCulture;
+		private static CultureInfo _lastCultureInfo;
+		private static readonly object _cultureLock = new object();
+
+		static Utilities() {
+			using (LanguageAPI languageApi = new LanguageAPI()) {
+				DefaultCulture = new CultureInfo(languageApi.DefaultLanguageID);
+			}
+		}
+
+		public static CultureInfo DefaultCulture {
+			get;
+			private set;
+		}
+
+		public static CultureInfo CurrentCulture {
+			get {
+				using(LanguageAPI languageApi = new LanguageAPI()) {
+					if (_lastCulture != languageApi.CurrentLanguageID) {
+						HttpContext.Current.Application.Lock();
+						lock (_cultureLock) {
+							_lastCulture = languageApi.CurrentLanguageID;
+							_lastCultureInfo = new CultureInfo(_lastCulture);
+							Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture = _lastCultureInfo;
+						}
+						HttpContext.Current.Application.UnLock();
+					}
+				}
+				return _lastCultureInfo;
+			}
+		}
+	}
+}
+</code></pre>
+<h3 id="adding-lang-attribute-to-the-html-tag">Adding <code>LANG</code> attribute to the html tag</h3>
+<p>Now that we have our system and code properly set, we need to tell the browser/spiders in which language we are serving the page. For this you can:</p>
+<ul>
+<li>Add a Literal control inside the html tag and from the code behind, write the appropriate code for the literal to display the current locale, or</li>
+<li>Use the code below to simply replace the html tag by a .net control that will render the html tag and also take care of setting the correct attribute. As you can see, this piece of code uses the <code>CurrentCulture</code> property of our helper class to ensure that we always use the correct user selected locale.</li>
+</ul>
+<pre><code class="language-csharp">using System.Web.UI;
+
+[assembly: TagPrefix(&#64;&quot;EktronLibrary.Controls&quot;, &#64;&quot;Ekt&quot;)]
+namespace EktronLibrary.Controls {
+	using System.Text;
+	using System.Web.UI;
+
+	[ToolboxData(&#64;&quot;&lt;{0}:EktronHtmlTag runat=server /&gt;&quot;)]
+	public class EktronHtmlTag : Control {
+		protected override void Render(HtmlTextWriter pOutput) {
+			StringBuilder strb = new StringBuilder(&#64;&quot;&quot;, Utilities.CurrentCulture.Name);
+			pOutput.Write(strb.ToString());
+			RenderChildren(pOutput);
+			pOutput.Write(&quot;&quot;);
+		}
+	}
+}
+</code></pre>
+<h3 id="taking-care-of-content-directionality">Taking care of content directionality</h3>
+<p>Again, we created another control that you can simply drop in your templates (inside the <code>body</code> tag); making sure it wraps all the content of your website. This control will render a <code>DIV</code> tag with the <code>DIR</code> attribute correctly set (<code>rtl</code> for Right-to-Left or <code>ltr</code> for Left-to-Right) based on the page target language. The <code>DIR</code> attribute is being applied to a <code>DIV</code> and not to the <code>BODY</code> tag because some speakers of languages that use right-to-left scripts prefer the directionality of the user interface to be associated with the desktop environment and not with the content of a particular document.</p>
+<pre><code class="language-csharp">using System.Web.UI;
+
+[assembly: TagPrefix(&#64;&quot;EktronLibrary.Controls&quot;, &#64;&quot;Ekt&quot;)]
+namespace EktronLibrary.Controls {
+	using System;
+	using System.ComponentModel;
+	using System.Text;
+	using System.Web.UI;
+
+	[ToolboxData(&#64;&quot;&lt;{0}:EktronContentDirectionality runat=server /&gt;&quot;)]
+	public class EktronContentDirectionality : Control {
+
+		[Category(&quot;Ektron Component&quot;)]
+		public string ClassName { get; set; }
+
+		protected override void Render(HtmlTextWriter pOutput) {
+			StringBuilder strb = new StringBuilder(&quot;&lt;div &quot;);
+			string langName = Utilities.CurrentCulture.TwoLetterISOLanguageName;
+			string dir = (langName.Equals(&#64;&quot;ar&quot;, StringComparison.OrdinalIgnoreCase) ||
+			langName.Equals(&#64;&quot;ur&quot;, StringComparison.OrdinalIgnoreCase) ||
+			langName.Equals(&#64;&quot;fa&quot;, StringComparison.OrdinalIgnoreCase) ||
+			langName.Equals(&#64;&quot;he&quot;, StringComparison.OrdinalIgnoreCase)) ? &#64;&quot;rtl&quot; : &#64;&quot;ltr&quot;;
+
+			if (!string.IsNullOrEmpty(ClassName)) {
+				strb.AppendFormat(&quot;class=&quot;{0}&quot; &quot;, ClassName);
+			}
+
+			strb.AppendFormat(&#64;&quot;dir=&quot;&quot;{0}&quot;&quot;&gt;&quot;, dir);
+			pOutput.Write(strb.ToString());
+			RenderChildren(pOutput);
+			pOutput.Write(&quot;&quot;);
+		}
+	}
+}
+</code></pre>
+<h3 id="localizing-hard-coded-images">Localizing hard-coded images</h3>
+<p>If an image is linked on a page from the content in Ektron, it is easy to go to that page, edit the localized version and replace the image. But when dealing with images hard-coded into the templates (Logos, graphics with overprinted text, etc.) you cannot resort to the features Ektron provides. In these cases, you have to pick the correct image for the user selected locale.</p>
+<p>The code below shows you an example of a user-control that takes care of everything for you. The control has the same set of attributes as the <code>IMG</code> tag. The only difference is on how the control renders the <code>IMG</code> tag. If the website is being displayed in the Ektron CMS default language (set on the web.config), the control will look for the image on the path/filename combination you specified on the <code>Source</code> attribute. But when the user changes the language of the site, the control will try to load the image from the same path as the original version, but the control will append to the name an underscore (_) and then the full name for the selected locale (<em>es-ES</em> for Spanish/Spain, <em>ja-JA</em> for Japanese/Japan, <em>zh-CN</em> for Simplified Chinese/China, etc). So, for example, if the original image is located under this path <code>/images/subfolder/header.jpg</code>, the Spanish version will be located/named as <code>/images/subfolder/header_es-ES.jpg</code> and the Japanese version will be <code>/images/subfolder/header_ja-JP.jpg</code>.</p>
+<pre><code class="language-csharp">using System.Web.UI;
+
+[assembly: TagPrefix(&#64;&quot;EktronLibrary.Controls&quot;, &#64;&quot;Ekt&quot;)]
+namespace EktronLibrary.Controls {
+	using System.Drawing.Design;
+	using System.Web.UI;
+	using System.ComponentModel;
+	using System.Text;
+	using System.Web;
+	using System.Web.UI.Design;
+
+	[ToolboxData(&#64;&quot;&lt;{0}:EktronLocalizableImage runat=server /&gt;&quot;)]
+	public class EktronLocalizableImage : Control {
+
+		[Category(&quot;Ektron Component&quot;), DefaultValue(&quot;&quot;), Localizable(true)]
+		public string Alt { get; set; }
+
+		[Category(&quot;Ektron Component&quot;), DefaultValue(&quot;&quot;), Localizable(true)]
+		public string Title { get; set; }
+
+		[Category(&quot;Ektron Component&quot;), DefaultValue(&quot;&quot;)]
+		public string UseMap { get; set; }
+
+		[Category(&quot;EktronComponent&quot;), DefaultValue(&quot;&quot;)]
+		public string ClassName { get; set; }
+
+		[Category(&quot;EktronComponent&quot;), DefaultValue(&quot;&quot;)]
+		public string Style { get; set; }
+
+		[Category(&quot;EktronComponent&quot;), Editor(typeof (UrlEditor), typeof (UITypeEditor))]
+		public string Source { get; set; }
+
+		[Category(&quot;EktronComponent&quot;)]
+		public int Width { get; set; }
+
+		[Category(&quot;EktronComponent&quot;)]
+		public int Height { get; set; }
+
+		protected override void Render(HtmlTextWriter pOutput) {
+			StringBuilder strb = new StringBuilder(&#64;&quot;&lt;img&quot;);
+			if (Utilities.CurrentCulture.LCID == Utilities.DefaultCulture.LCID) {
+				strb.AppendFormat(&#64;&quot; src=&quot;&quot;{0}&quot;&quot;&quot;, Source);
+			}
+			else {
+				int dot = Source.LastIndexOf('.');
+				strb.AppendFormat(&#64;&quot; src=&quot;&quot;{0}_{2}.{1}&quot;&quot;&quot;, Source.Substring(0, dot), Source.Substring(dot + 1), Utilities.CurrentCulture.Name);
+			}
+
+			if (!string.IsNullOrEmpty(Alt)) {
+				strb.AppendFormat(&quot; alt=&quot;{0}&quot;&quot;, HttpUtility.HtmlAttributeEncode(Alt));
+			}
+
+			if (!string.IsNullOrEmpty(Title)) {
+				strb.AppendFormat(&quot; title=&quot;{0}&quot;&quot;, HttpUtility.HtmlAttributeEncode(Title));
+			}
+
+			if (!string.IsNullOrEmpty(UseMap)) {
+				strb.AppendFormat(&#64;&quot; usemap=&quot;&quot;{0}&quot;&quot;&quot;, HttpUtility.HtmlAttributeEncode(UseMap));
+			}
+
+			if (!string.IsNullOrEmpty(ClassName)) {
+				strb.AppendFormat(&quot; class=&quot;{0}&quot;&quot;, HttpUtility.HtmlAttributeEncode(ClassName));
+			}
+
+			if (!string.IsNullOrEmpty(Style)) {
+				strb.AppendFormat(&quot; style=&quot;{0}&quot;&quot;, HttpUtility.HtmlAttributeEncode(Style));
+			}
+
+			if (Width &gt; 0) {
+				strb.AppendFormat(&quot; width=&quot;{0}&quot;&quot;, Width);
+			}
+
+			if (Height &gt; 0) {
+				strb.AppendFormat(&quot; height=&quot;{0}&quot;&quot;, Height);
+			}
+
+			strb.Append(&quot;/&gt;&quot;);
+			pOutput.Write(strb.ToString());
+		}
+	}
+}
+</code></pre>
+<h3 id="localizing-hard-coded-text">Localizing hard-coded text</h3>
+<p><img src="/assets/images/EktronSmartForm.png" class="img-fluid" alt="Ektron Setup" /></p>
+<p>You have two options here:</p>
+<ol>
+<li><p>Remove all the hard-coded text from the templates, placing them in resource files (<code>.resx</code>) and then use the Literal asp.net control to place it back on the templates. The resource file will have to be sent to the translation company as part of the localization process, along with the content exported from Ektron. If you are using the LocalizablePage class as the base class for all your templates, the system will automatically pick-up the correct resource file once the translated resources are back in place.</p>
+</li>
+<li><p>Remove all the hard-coded text from the templates, placing them in smart-forms within Ektron, and then use the standard ContentBlock control from Ektron to place the text back into the templates. You will have to also provide the control with an XSLT file that the control will use to render the content, and the content ID for the text you want to display. This method has the advantages of letting the Website administrator edit/import/export the text from within Ektron’s Workarea.</p>
+</li>
+</ol>
+<pre><code class="language-csharp">&lt;xsl:stylesheet version=&quot;1.0&quot; xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
+	&lt;xsl:output omit-xml-declaration=&quot;yes&quot; /&gt;
+	&lt;xsl:template match=&quot;/root&quot;&gt;
+		&lt;xsl:value-of select=&quot;DictionaryEntry&quot;/&gt;
+	&lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;
+</code></pre>
+<p>And there you have it… If you correctly implement the techniques mentioned above, you will have a <em>bullet-proof</em> base of templates that will be localization-friendly and that may require minimal adjustments to be done over the QA phase.</p>
+<p>I hope the <em>Website Localization with Ektron CMS</em> 3-part series of articles has provided you with useful information on how to correctly author multilingual websites under the Ektron CMS.</p>
+
+
+	<p class="tags">Posted under
+				<a href="/tags/Localization,-Translation,-Cms">Localization, Translation, Cms</a>
+	</p>
+
+	<a href="/posts">Back to posts</a>
+</article>
+
+
+	</div>
+	<footer>
+		<hr />
+		<p>© 2005 - 2020 Extreme|FX. All rights reserved. Trademarks are property of their respective owners.</p>
+	</footer>
+</body>
+</html>
+

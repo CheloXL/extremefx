@@ -1,0 +1,81 @@
+﻿@import "_mediaBreakpoints.less";
+
+.wrapper{
+	margin: 0 auto;
+}
+
+/* Media breakpoints */
+
+.for-mobile-only({
+	header {
+		padding: 1rem 2rem;
+
+		p {
+			margin: 0.5rem 0 0 0;
+			background-size: 41px 43px !important;
+			min-height: 43px;
+			padding-left: 48px;
+
+			strong {
+				font-size: 200%;
+				line-height: 39px;
+				margin: .5rem 0 0rem -1px;
+			}
+		}
+
+		nav {
+			justify-content: space-between;
+			margin: 1rem 0 0;
+
+			a {
+				flex: 1;
+			}
+		}
+	}
+});
+
+.for-tablet-above({
+	header {
+		padding: 1.5rem 2rem 2rem;
+
+		div {
+			display: flex;
+		}		
+
+		p {
+			margin: 1rem 0 0 0;
+			padding-left: 90px;
+			flex: 1;
+			min-height: 86px;
+
+			strong {
+				font-size: 300%;
+			}
+		}
+
+		nav {
+			flex: 1;
+			align-items: flex-end;
+			justify-content: flex-end;
+
+			a {
+				padding: 0 24px 3px;
+			}
+		}
+
+		hr {
+			width: 50%;
+		}
+	}
+});
+
+.for-desktop-only({
+	.wrapper {
+		padding: 0 7px;
+		max-width: 1280px;
+		width: 93.75%;
+		background-image: url("/assets/styles/page_left.png"), url("/assets/styles/page_right.png");
+		background-repeat: no-repeat;
+		background-position: left top, right top;
+	}
+});

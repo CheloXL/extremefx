@@ -1,19 +1,28 @@
 @{
     Layout="_Layout";
-    var Published = Model.Get<DateTime>(BlogKeys.Published);
-    var Tags = Model.Get<string[]>(BlogKeys.Tags) ?? new string[] {};
+    var published = Model.Get<DateTime>(BlogKeys.Published);
+    var tags = Model.Get<string[]>(BlogKeys.Tags) ?? new string[] {};
 }
 
-<h2>@Model.WithoutSettings.String(BlogKeys.Title)</h2>
-<h3>Published @Published.ToShortDateString()</h3>
+<article>
+	<div class="article-header">
+		<p class="publishing-date"><span>Posted on</span> <time datetime='@(published.ToString("yyyy-MM-dd"))'><span>@(published.ToString("%d"))</span> <span>@(published.ToString("MMM yy"))</span></time></p>
+		<h2>@Model.WithoutSettings.String(BlogKeys.Title)</h2>
+	</div>
 
-@foreach (string tag in Tags.OrderBy(x => x)){
-    IDocument tagDocument = Documents[Blog.Tags].FirstOrDefault(x => x.String(BlogKeys.Tag)== tag && x.Get<int>(Keys.CurrentPage) == 1);
-    if(tagDocument != null) {
-        <a href="@Context.GetLink(tagDocument)">@tag</a>
-    }
-}
+	@RenderBody()
 
-<a href="@Context.GetLink(Context.String(BlogKeys.PostsPath))">Back To posts</a>
+	<p class="tags">Posted under
+		@foreach (string tag in tags.OrderBy(x => x)){
+			IDocument tagDocument = Documents[Blog.Tags].FirstOrDefault(x => x.String(BlogKeys.Tag)== tag && x.Get<int>(Keys.CurrentPage) == 1);
+			if(tagDocument != null) {
+				var ctags = tag.Split(',');
+				foreach (var ctag in ctags){
+					<a href="@Context.GetLink(tagDocument)" data-icon-before="label">@(ctag.Trim())</a>
+				}
+			}
+		}
+	</p>
 
-@RenderBody()
+	<p class="back-to-posts"><a href="@Context.GetLink(Context.String(BlogKeys.PostsPath))" data-icon-before="chevron_left">Back to posts</a></p>
+</article>

@@ -11,43 +11,64 @@
 	<link href="/assets/styles/site.css" rel="stylesheet" />
 </head>
 <body>
-	<header>
-		<hr />
-		<p><strong><a href="@Context.GetLink("/")">@Context.String(BlogKeys.Description)</a></strong> <span>@Context.String(BlogKeys.Intro)</span></p>
+	<div class="wrapper">
+		<header>
+			<hr />
+			<div>
+				<p><strong><a href="@Context.GetLink("/")">@Context.String(BlogKeys.Description)</a></strong> <span>@Context.String(BlogKeys.Intro)</span></p>
 
-		@{
-			List<Tuple<string, string>> pages = Context
-				.Documents[Blog.Pages]
-				.Where(x => x.Bool(BlogKeys.ShowInNavbar, true))
-				.Where(x => x.FilePath(Keys.RelativeFilePath)?.FullPath?.StartsWith("index") == (bool?)false)
-				.Select(x => Tuple.Create(x.WithoutSettings.String(Keys.Title), Context.GetLink(x)))
-				.Where(x => !string.IsNullOrEmpty(x.Item1))
-				.OrderBy(x => x.Item1)
-				.ToList();
+				@{
+					List<Tuple<string, string>> pages = Context
+						.Documents[Blog.Pages]
+						.Where(x => x.Bool(BlogKeys.ShowInNavbar, true))
+						.Where(x => x.FilePath(Keys.RelativeFilePath)?.FullPath?.StartsWith("index") == (bool?)false)
+						.Select(x => Tuple.Create(x.WithoutSettings.String(Keys.Title), Context.GetLink(x)))
+						.Where(x => !string.IsNullOrEmpty(x.Item1))
+						.OrderBy(x => x.Item1)
+						.ToList();
 
-			if (Documents[Blog.Tags].Any())
-			{
-				pages.Insert(0, Tuple.Create("Tags", Context.GetLink("tags/index.html")));
-			}
-
-			if (Documents[Blog.BlogPosts].Any() && Context.Bool(BlogKeys.GenerateArchive))
-			{
-				pages.Insert(0, Tuple.Create("Archive", Context.GetLink(Context.String(BlogKeys.PostsPath) + "/index.html")));
-			}
-
-			if (pages.Any())
-			{
-				<nav>
-					@foreach (Tuple<string, string> page in pages)
+					if (Documents[Blog.Tags].Any())
 					{
-						<a href="@(page.Item2)">@(page.Item1)</a>
+						pages.Insert(0, Tuple.Create("Tags", Context.GetLink("tags/index.html")));
 					}
-				</nav>
-			}
-		}
-	</header>
 
-	@RenderBody()
+					if (Documents[Blog.BlogPosts].Any() && Context.Bool(BlogKeys.GenerateArchive))
+					{
+						pages.Insert(0, Tuple.Create("Archive", Context.GetLink(Context.String(BlogKeys.PostsPath) + "/index.html")));
+					}
+
+					if (pages.Any())
+					{
+						<nav>
+							@foreach (Tuple<string, string> page in pages)
+							{
+								<a href="@(page.Item2)" data-icon>@(page.Item1)</a>
+							}
+						</nav>
+					}
+				}
+			</div>
+		</header>
+		<main>
+			@RenderBody()
+		</main>
+		<aside>
+			<div class="about">
+				<h4>About the author</h4>
+				<p>
+					<strong>Marcelo Volmaro - User Experience Specialist</strong>
+					Marcelo is an award-winning user experience specialist, working on information architecture, interaction design, usability engineering,
+					visual design and prototype engineering.<br />
+					He works with teams of top web designers, developers and localization specialists located all over the world helping
+					clients design, develop, and deploy usable global applications/websites that fully function for the world's markets.
+				</p>
+			</div>
+		</aside>
+	</div>
+	<footer>
+		<hr />
+		<p>© 2005 - 2020 Extreme|FX. All rights reserved. Trademarks are property of their respective owners.</p>
+	</footer>
 </body>
 </html>
 

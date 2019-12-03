@@ -1,15 +1,17 @@
-﻿*:link, *:visited, *:hover, *:active, *:focus {
-	transition: color .15s linear;
+﻿*:link, *:visited, *:hover, *:active, *:focus,
+*:link:before, *:visited:before, *:hover:before, *:active:before, *:focus:before,
+*:link:after, *:visited:after, *:hover:after, *:active:after, *:focus:after {
+	transition: color .1s linear, background-color .1s linear, border-color .1s linear;
 }
 
 body {
 	background: #ececec url("/assets/styles/background.png") repeat-x;
 	line-height: 1.5;
+	font-size: 16px;
 }
 
 body, textarea, table, td {
 	font-family: "Segoe UI", "Segoe WP", "Helvetica Neue", Candara, sans-serif;
-	font-size: 14px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -19,7 +21,7 @@ h1, h2, h3, h4, h5, h6 {
 	line-height: 1.2;
 }
 
-h1+p, h2+p, h3+p, h1+ul, h2+ul, h3+ul {
+h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h1 + ul, h2 + ul, h3 + ul, h4 + ul, h5 + ul {
 	margin-top: 0.25rem;
 }
 
@@ -56,40 +58,32 @@ hr {
 	background: #4daf7c;
 }
 
-
 main {
 	background: #fff;
 	padding: 0 2rem 1rem;
-	clear: both;
 }
 
-article {
+table {
+	width: 100%;
+	font-variant-numeric: lining-nums tabular-nums;
+	margin: 1rem 0;
+	border-collapse: collapse;
 
-	.read_more {
-		color: #656565;
+	th, td {
+		text-align: left;
+		vertical-align: middle;
 	}
-}
 
-footer {
-	clear: both;
-	padding: 0 0 3rem 0;
-	background: #fff;
-
-	p {
-		text-align: center;
-		margin-top: 0.5rem;
+	th {
+		padding: 8px;
+		background-color: rgba(0, 0, 0, 0.17);
+		white-space: nowrap;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+		font-size: 0.8rem;
 	}
-}
 
-[data-icon]:before {
-	border-radius: 50%;
-	border: 2px solid;
-	content: attr(data-icon);
-	font-family: 'iconFont';
-	font-weight: normal;
-	font-style: normal;
-	text-decoration: inherit;
-	-webkit-font-smoothing: subpixel-antialiased;
-	overflow: hidden;
-	text-align: center;
+	td {
+		padding: 12px 8px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	}
 }
