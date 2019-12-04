@@ -1,6 +1,6 @@
 Title: Flash TextArea - Update 3
 Published: 2007-02-22
-Tags: Flash, Javascript, Code
+Tags: [Flash, Javascript, Code]
 Lead: "WARNING: This version should be considered BETA. It is stable enough for me, but it will surely break existing applications that depends on it."
 ---
 ## WARNING

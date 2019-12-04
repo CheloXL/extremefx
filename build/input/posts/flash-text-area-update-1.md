@@ -1,6 +1,6 @@
 Title: Flash TextArea - Update 1
 Published: 2006-08-18
-Tags: Flash, Javascript, Code
+Tags: [Flash, Javascript, Code]
 Lead: First round of bugfixes to Flash TextArea
 ---
 Thank to all who reported bugs in FlashTA. I updated the SVN and also the online zip.

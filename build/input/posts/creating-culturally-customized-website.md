@@ -1,6 +1,6 @@
 Title: Creating a Culturally Customized Website
 Published: 2011-10-06
-Tags: Internationalization, Globalization
+Tags: [Internationalization, Globalization]
 Lead: Cultural customization is a fundamental step for reaching a global audience with your website, and should be completed as part of website translation and website localization. While many website owners treat this step as optional, it should be treated as integral.
 ---
 “Human-Computer Interaction (HCI) research shows that successful interaction depends on more than just using the correct language. Interaction is also dependent upon the culturally embedded meaning of objects such as icons, and metaphors such as the desktop, or the shopping cart (Bourges-Waldegg &amp; Scrivener, 1998; French &amp; Smith, 2000)”.

@@ -1,6 +1,6 @@
 Title: 12 Steps to Website Globalization
 Published: 2010-04-30
-Tags: Translation, Web
+Tags: [Translation, Web]
 Lead: Whether you are trying to launch a multilingual website to expand your products and services into new global markets or whether you are trying to increase your company's global operational efficiencies by developing multilingual extranets and …
 ---
 Whether you are trying to launch a multilingual website to expand your products and services into new global markets or increase your company's global operational efficiencies by developing multilingual extranets and intranets, website globalization is a requirement to make either a reality. You must translate (globalize) your website to empower your web presence to effectively communicate, conduct and complete international ecommerce.

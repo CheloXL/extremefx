@@ -16,13 +16,10 @@
 		@foreach (string tag in tags.OrderBy(x => x)){
 			IDocument tagDocument = Documents[Blog.Tags].FirstOrDefault(x => x.String(BlogKeys.Tag)== tag && x.Get<int>(Keys.CurrentPage) == 1);
 			if(tagDocument != null) {
-				var ctags = tag.Split(',');
-				foreach (var ctag in ctags){
-					<a href="@Context.GetLink(tagDocument)" data-icon-before="label">@(ctag.Trim())</a>
-				}
+				<a href="@Context.GetLink(tagDocument)">@tag</a>
 			}
 		}
 	</p>
 
-	<p class="back-to-posts"><a href="@Context.GetLink(Context.String(BlogKeys.PostsPath))" data-icon-before="chevron_left">Back to posts</a></p>
+	<nav class="back-to-posts"><a href="@Context.GetLink(Context.String(BlogKeys.PostsPath))" data-icon-before="chevron_left">Back to posts</a></nav>
 </article>

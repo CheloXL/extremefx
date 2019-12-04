@@ -1,6 +1,6 @@
 Title: Preconditionals and postconditionals checks
 Published: 2009-03-31
-Tags: Flash, Code, Example
+Tags: [Flash, Code, Example]
 Lead: How many times you found yourself writing preconditions before executing some code (like argument validation) and post-conditions (validating some result before returning the value/using on another function)?
 ---
 How many times you found yourself writing preconditions before executing some code (like argument validation) and post-conditions (validating some result before returning the value/using on another function)?

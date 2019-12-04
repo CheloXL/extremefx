@@ -1,6 +1,6 @@
 Title: Black Jack
 Published: 2006-10-26
-Tags: Flash, Games
+Tags: [Flash, Games]
 Lead: The objective is to get as close to 21 as possible without going over. The dealer has to take a card if he has 17 or more...
 ---
 ## How to play:

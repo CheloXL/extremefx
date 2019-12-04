@@ -1,6 +1,6 @@
 Title: Method overloading in flash
 Published: 2009-03-27
-Tags: Flash, Code, Example
+Tags: [Flash, Code, Example]
 Lead: As you may already know, it is not possible to have the same method with different signatures in flash (also known as method overloading). For example, on c# you may have the same function that does different things depending on the argument count …
 ---
 As you may already know, it is not possible to have the same method with different signatures in flash (also known as method overloading).

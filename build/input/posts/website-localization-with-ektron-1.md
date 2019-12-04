@@ -1,6 +1,6 @@
 Title: Website Localization with Ektron – Part 1
 Published: 2010-08-06
-Tags: Localization, Translation, Cms
+Tags: [Localization, Translation, Cms]
 Lead: This is the Part 1 (of 2) on “Website Localization with Ektron Web CMS”. In this part I will discuss how to correctly setup a multilingual website within Ektron and also provide some additional information about website localization in general.
 ---
 Today many websites are powered by Web content management systems (CMS) and many enterprises author, store, and publish web content from a central CMS. We have found that [Ektron CMS 400.net ](http://www.ektron.com/) is a good choice for companies that plan on launching multilingual websites.

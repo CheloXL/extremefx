@@ -1,6 +1,6 @@
 Title: Flash internationalization library
 Published: 2008-04-21
-Tags: Flash, Internationalization, Translation, Code
+Tags: [Flash, Internationalization, Translation, Code]
 Lead: This library will help you to internationalize your flash application. It supports localization of numbers, date/time, percentages and strings. It can also parse back numbers and date/time formats on a specific locale into flash internal …
 ---
 This library will help you to internationalize your flash application. It supports localization of numbers, date/time, percentages and strings. It can also parse back numbers and date/time formats on a specific locale into flash internal formats.

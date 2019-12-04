@@ -1,20 +1,27 @@
-<ul>
-    @foreach(var post in Model.DocumentList(Keys.PageDocuments)){
+@foreach(var post in Model.DocumentList(Keys.PageDocuments)){
+	var published = post.Get<DateTime>(BlogKeys.Published);
+	<article>
+		<div class="article-header">
+			<p class="publishing-date"><span>Posted on</span> <time datetime='@(published.ToString("yyyy-MM-dd"))'><span>@(published.ToString("%d"))</span> <span>@(published.ToString("MMM yy"))</span></time></p>
+			<h2>@post.WithoutSettings.String(BlogKeys.Title)</h2>
+		</div>
+		@Html.Raw(post.String(BlogKeys.Excerpt))
 
-    <li>
-        <a href="@Context.GetLink(post)">
-            <h2>@post.WithoutSettings.String(BlogKeys.Title)</h2>
-        </a>
-        @Html.Raw(post.String(BlogKeys.Excerpt))
-    </li>
+		<div class="read-more"><a href="@Context.GetLink(post)">read more…</a></div>
+	</article>
+}
 
-    }
-</ul>
+@if (Model.Bool(Keys.HasPreviousPage) || Model.Bool(Keys.HasNextPage))
+{
+	<nav class="pagination">
+		@if (Model.Bool(Keys.HasPreviousPage))
+		{
+			<a href="@(Context.GetLink(Model.Document(Keys.PreviousPage)))" data-icon-before="chevron_left">Newer</a>
+		}
 
-@if(Model.Bool(Keys.HasPreviousPage)) {
-    <a href="@(Context.GetLink(Model.Document(Keys.PreviousPage)))"><span aria-hidden="true">&larr;</span> Newer</a> 
-} 
-
-@if(Model.Bool(Keys.HasNextPage)) {
-    <a href="@(Context.GetLink(Model.Document(Keys.NextPage)))">Older <span aria-hidden="true">&rarr;</span></a> 
+		@if (Model.Bool(Keys.HasNextPage))
+		{
+			<a href="@(Context.GetLink(Model.Document(Keys.NextPage)))" data-icon-after="chevron_right">Older</a>
+		}
+	</nav>
 }

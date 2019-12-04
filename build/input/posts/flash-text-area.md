@@ -1,6 +1,6 @@
 Title: Flash TextArea - Standards compliant XHTML flash editor
 Published: 2006-02-04
-Tags: Flash, Javascript, Code
+Tags: [Flash, Javascript, Code]
 Lead: FlashTA is a WYSIWYG replacement text area for html forms. While there are various implementations done in javascript, most of them don´t work in this/that browser/os combo, and every time a browser vendor makes a change, they need to update the editor so it doesn´t break on every possible combination of browsers.
 ---
 ## Introduction

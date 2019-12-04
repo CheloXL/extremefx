@@ -2,6 +2,8 @@
 
 .wrapper{
 	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 /* Media breakpoints */
@@ -30,6 +32,22 @@
 			a {
 				flex: 1;
 			}
+		}
+	}
+
+	aside {
+		padding: 0 32px;
+	}
+});
+
+.for-tablet-only ({
+	 aside {
+		display: flex;
+		padding: 0 16px;
+
+		> * {
+			flex: 1 0 33.3333%;
+			padding: 0 16px;
 		}
 	}
 });
@@ -78,4 +96,13 @@
 		background-repeat: no-repeat;
 		background-position: left top, right top;
 	}
-});
+
+	main {
+		flex: 1;
+	}
+
+	aside {
+		width: 256px;
+		padding: 0 32px 0 0;
+	}
+ });

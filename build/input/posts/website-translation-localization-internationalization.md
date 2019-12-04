@@ -1,6 +1,6 @@
 Title: Website Translation, Website Localization and Website Internationalization
 Published: 2010-06-22
-Tags: Internationalization, Localization, Translation, Web
+Tags: [Internationalization, Localization, Translation, Web]
 Lead: Many customers new to translation are confused by the terms “translation”, “localization” and “internationalization”. Although each term describes a distinct process for website projects, translation and localization are often used almost interchangeably. This blog clears up the mystery around these basic concepts.
 ---
 Many people new to translation are confused by the terms *website translation*, *website internationalization* and *website localization*. Although each term describes a distinct process for multilingual website projects, *translation* and *localization* are often used almost interchangeably. This blog clears up the mystery around these basic concepts.

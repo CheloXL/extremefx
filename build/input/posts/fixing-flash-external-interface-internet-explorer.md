@@ -1,6 +1,6 @@
 Title: Fixing Flash External Interface inside Forms on Internet Explorer
 Published: 2007-02-23
-Tags: Flash, Javascript
+Tags: [Flash, Javascript]
 Lead: "Tried to use External Interface on a flash object inside an HTML form in Internet Explorer without any luck?. You know you actually can... right? No?. Follow this steps to fix that nasty EI under IE :)"
 ---
 As you all may know (or may not), if you want to use External Interface on a flash object that lives inside an "HTML" form, it will not work.

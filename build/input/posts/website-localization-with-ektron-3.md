@@ -1,6 +1,6 @@
 Title: Website Localization with Ektron – Part 3
 Published: 2010-09-12
-Tags: Localization, Translation, Cms
+Tags: [Localization, Translation, Cms]
 Lead: Setting up correct Locales, adding Lang attributes and localizing hard-coded images are among the technical steps detailed in this final blog in our 3-part series on Website Localization with Ektron CMS.
 ---
 Setting up correct Locales, adding Lang attributes and localizing hard-coded images are among the technical steps detailed in this final blog in our 3-part series on *Website Localization with Ektron CMS*. We covered an overview of CMS strategy issues in part 1, and gave more technical detail and steps in Part 2. In this final blog of the series we will show you how to solve some of the issues touched on in Part 2.

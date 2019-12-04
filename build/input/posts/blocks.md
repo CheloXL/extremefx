@@ -1,6 +1,6 @@
 Title: Blocks
 Published: 2007-07-02
-Tags: Flash, Games
+Tags: [Flash, Games]
 Lead: Clear the screen by clicking two or more adjacent blocks of the same color.
 ---
 ## How to play:

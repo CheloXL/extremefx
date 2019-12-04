@@ -1,6 +1,6 @@
 Title: Website Internationalization and Accessibility
 Published: 2011-07-21
-Tags: Internationalization, Globalization, Accessibility, Web
+Tags: [Internationalization, Globalization, Accessibility, Web]
 Lead: "The World Wide Web is capable of living up to its name: by being accessible to everyone in the world. This is more or less true, as there are still many web users whose needs aren’t adequately met. The Word Wide Web Consortium (W3C) has several recommendations on how to make a webpage accessible by users, not only with disabilities, but also by users that do not speak English."
 ---
 The World Wide Web is capable of living up to its name: by being accessible to everyone in the world. This is more or less true, as there are still many web users whose needs aren&#8217;t adequately met. The Word Wide Web Consortium ([W3C](http://www.w3.org/)) has several recommendations on how to make a webpage accessible by users, not only with disabilities, but also by users that do not speak English.

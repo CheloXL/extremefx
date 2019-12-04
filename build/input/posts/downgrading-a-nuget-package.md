@@ -1,6 +1,6 @@
 Title: Downgrading a Nuget package
 Published: 2013-10-17
-Tags: CSharp, Code
+Tags: [CSharp, Code]
 Lead: "For my own reference: How to downgrade a nuget package after a previous upgrade broke my VS solution. Instructions inside :)"
 ---
 Today I had a problem where I had blindly upgraded EF to version 6 across an entire solution, only to find out that the version was incompatible with the current MySql provider.

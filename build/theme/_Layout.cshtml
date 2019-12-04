@@ -9,6 +9,20 @@
 
 	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300|Roboto+Condensed:300" rel="stylesheet" type="text/css">
 	<link href="/assets/styles/site.css" rel="stylesheet" />
+
+	@if (Context.String(BlogKeys.RssPath) != null)
+	{
+		<link type="application/rss+xml" rel="alternate" title="@Context.String(BlogKeys.Title)" href="@Context.GetLink(Context.String(BlogKeys.RssPath))" />
+	}
+	@if (Context.String(BlogKeys.AtomPath) != null)
+	{
+		<link type="application/atom+xml" rel="alternate" title="@Context.String(BlogKeys.Title)" href="@Context.GetLink(Context.String(BlogKeys.AtomPath))" />
+	}
+
+	<meta property="og:title" content="@Context.String(BlogKeys.Title)" />
+	@* <meta property="og:image" content="@Blog.Image" /> *@
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="@Context.GetLink(Model, true)" />
 </head>
 <body>
 	<div class="wrapper">
@@ -27,14 +41,18 @@
 						.OrderBy(x => x.Item1)
 						.ToList();
 
-					if (Documents[Blog.Tags].Any())
-					{
-						pages.Insert(0, Tuple.Create("Tags", Context.GetLink("tags/index.html")));
-					}
-
 					if (Documents[Blog.BlogPosts].Any() && Context.Bool(BlogKeys.GenerateArchive))
 					{
 						pages.Insert(0, Tuple.Create("Archive", Context.GetLink(Context.String(BlogKeys.PostsPath) + "/index.html")));
+					}
+
+					//if (Documents[Blog.Tags].Any())
+					//{
+					//	pages.Insert(0, Tuple.Create("Tags", Context.GetLink("tags/index.html")));
+					//}
+
+					@if (Context.String(BlogKeys.RssPath) != null) {
+						pages.Add(Tuple.Create("Suscribe", Context.GetLink(Context.String(BlogKeys.RssPath))));
 					}
 
 					if (pages.Any())
@@ -42,7 +60,7 @@
 						<nav>
 							@foreach (Tuple<string, string> page in pages)
 							{
-								<a href="@(page.Item2)" data-icon>@(page.Item1)</a>
+								<a href="@(page.Item2)">@(page.Item1)</a>
 							}
 						</nav>
 					}
@@ -62,6 +80,22 @@
 					He works with teams of top web designers, developers and localization specialists located all over the world helping
 					clients design, develop, and deploy usable global applications/websites that fully function for the world's markets.
 				</p>
+			</div>
+			<div class="tags">
+			@if (Documents[Blog.Tags].Any())
+			{
+				<h4>Tags</h4>
+				<div>
+					@foreach (IDocument tagDocument in Documents[Blog.Tags]
+						.GroupBy(x => x.String(BlogKeys.Tag)).Select(x => x.Where(p => p.Get<int>(Keys.CurrentPage) == 1).First())
+						.OrderByDescending(x => x.Get<int>(Keys.TotalItems)).Take(10))
+					{
+						string tag = tagDocument.String(BlogKeys.Tag);
+						string postCount = tagDocument.String(Keys.TotalItems);
+						<a href="@Context.GetLink(tagDocument)"><b>@tag</b> <i>@postCount</i></a>
+					}
+				</div>
+			}
 			</div>
 		</aside>
 	</div>
