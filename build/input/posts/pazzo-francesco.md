@@ -3,7 +3,7 @@ Published: 2007-07-03
 Tags: [Flash, Games]
 Lead: You have to exit from every room by hiding all the platforms. Only when you have hidden all the platforms you can advance to the next level. To make things more difficult, you must complete a level before a timer ends.
 ---
-## How to play:
+### How to play:
 
 You have to exit from every room by hiding all the platforms. Only when you have hidden all the platforms you can advance to the next level. To make things more difficult, you must complete a level before a timer ends.
 

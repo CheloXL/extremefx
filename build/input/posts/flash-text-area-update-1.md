@@ -5,7 +5,7 @@ Lead: First round of bugfixes to Flash TextArea
 ---
 Thank to all who reported bugs in FlashTA. I updated the SVN and also the online zip.
 
-## Bugfixes:
+### Bugfixes:
 
 * If you placed an image at the very beggining of the text, sometimes the editor freezes.
 * Problems with screen resize and text not showing, reverted back to use a scrollbar in the textarea.

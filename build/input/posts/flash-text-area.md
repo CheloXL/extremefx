@@ -3,7 +3,7 @@ Published: 2006-02-04
 Tags: [Flash, Javascript, Code]
 Lead: FlashTA is a WYSIWYG replacement text area for html forms. While there are various implementations done in javascript, most of them don´t work in this/that browser/os combo, and every time a browser vendor makes a change, they need to update the editor so it doesn´t break on every possible combination of browsers.
 ---
-## Introduction
+### Introduction
 
 FlashTA is a WYSIWYG replacement text area for html forms. While there are various implementations done in javascript, most of them don't work in this/that browser/OS combo, and every time a browser vendor makes a change, they need to update the editor so it doesn't break on every possible combination of browsers.
 
@@ -11,11 +11,11 @@ FlashTA tries to overcome that problem by using flash. It also tries to adhere s
 
 FlashTA features an easy integration and multiple browser support (Mozilla, MSIE, FireFox, Opera & Safari).
 
-## Download
+### Download
 
 Download the latest version [FlashTA.zip (176.70 kb)](/assets/files/FlashTA.zip).
 
-## How to use
+### How to use
 
 FlashTA comes with 4 files:
 
@@ -36,7 +36,7 @@ To tell the script what textareas you want to be replaced, add to them the class
 <textarea name="nameOfThisField" class="efx_flashtextarea"></textarea>
 ```
 
-### Configuration
+#### Configuration
 
 The editor configuration is handled on the javascript file. For this, you should modify the lines that read:
 
@@ -49,7 +49,7 @@ fTAR.FlashTextArea.setLngFile('lang/en.xml');
 fTAR.FlashTextArea.setup('FlashTA.swf', 'FlashFB.swf');
 ```
 
-#### Explanation:
+##### Explanation:
 
 **fTAR.setup(editor, filebrowser);**
 
@@ -117,11 +117,11 @@ Returns `true` if the area named *areaName* was changed, `false` if not.
 
 There are also a bunch of CSS styles that you can play with. Take a look at the source code.
 
-## Known bugs and limitations:
+### Known bugs and limitations:
 
 * Sometimes in the editor, after you insert an image, the cursor changes to a small caret, and all text inserted at that place will look like a bunch of dots. This is a known issue of the player (at least it's known by my&hellip; bug already reported to Macromedia). The text is in there and if you submit the data, the text will be in their place.
 
-### History (* fixed/changed, + added, &ndash; removed)
+#### History (* fixed/changed, + added, &ndash; removed)
 
 * \+ The editor is now localizable.
 * \+ Redo / Undo.

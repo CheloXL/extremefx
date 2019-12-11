@@ -17,7 +17,7 @@ return ret;
 
 That's good practice, but when you have to validate several conditions the code starts to look messy. For that reason, I created a couple of helper classes that takes cares of the job, providing a nice fluent typing.
 
-## Pre-conditional checking examples:
+### Pre-conditional checking examples:
 
 ```actionscript
 requiresNumber(pIndex, "pIndex").isLessThan(_size);
@@ -27,7 +27,7 @@ requires(pValue, "value").isNotNull();
 requires(pNode._parent, "node").isNotSameAs(this, "You cannot attach a node to itself").isTypeOf(TreeNode);
 ```
 
-## Post-conditional checking examples:
+### Post-conditional checking examples:
 
 ```actionscript
 ensuresBool(ExternalInterface.available, "ExternalInterface is not available.").isTrue();
@@ -35,7 +35,7 @@ ensures(_entries[pOldKey]).isNotNull("Key ["+pOldKey+"] does not exists.");
 ensuresNumber(days).isLessOrEqualThan(10675199, "Invalid number of days: "+days);
 ```
 
-### Usage
+#### Usage
 You have 6 specific conditional checks (Array, Boolean, Date, Number, String) and one general. You access the conditionals by using either the requires[Type] functions or ensures[Type] functions.
 
 The *requires* functions requires at least one parameter: the value you want to check. You can also pass a second parameter that represents the *name* of that value (you usually use *requires* to validate method arguments).

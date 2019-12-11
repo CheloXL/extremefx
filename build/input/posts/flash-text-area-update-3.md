@@ -3,13 +3,13 @@ Published: 2007-02-22
 Tags: [Flash, Javascript, Code]
 Lead: "WARNING: This version should be considered BETA. It is stable enough for me, but it will surely break existing applications that depends on it."
 ---
-## WARNING
+### WARNING
 
 This version should be considered **BETA**. It is stable enough for me, but it will surely break existing applications that depends on it.
 
 Don't install this version on a production server and read the documentation!. I warned you...</p>
 
-### Changes:
+#### Changes:
 
 * Completely rewritten the javascript interface. The way the editor is placed was changed from the custom attribute to a class name.
 * The editor is now localizable.

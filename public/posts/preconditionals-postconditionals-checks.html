@@ -51,19 +51,19 @@ if (ret == null) throw new Error(&quot;Something went wrong!&quot;);
 return ret;
 </code></pre>
 <p>That's good practice, but when you have to validate several conditions the code starts to look messy. For that reason, I created a couple of helper classes that takes cares of the job, providing a nice fluent typing.</p>
-<h2 id="pre-conditional-checking-examples">Pre-conditional checking examples:</h2>
+<h3 id="pre-conditional-checking-examples">Pre-conditional checking examples:</h3>
 <pre><code class="language-actionscript">requiresNumber(pIndex, &quot;pIndex&quot;).isLessThan(_size);
 requires(pCollection, &quot;pCollection&quot;).isNotNull();
 requiresString(pKey, &quot;key&quot;).isNotNullOrEmpty();
 requires(pValue, &quot;value&quot;).isNotNull();
 requires(pNode._parent, &quot;node&quot;).isNotSameAs(this, &quot;You cannot attach a node to itself&quot;).isTypeOf(TreeNode);
 </code></pre>
-<h2 id="post-conditional-checking-examples">Post-conditional checking examples:</h2>
+<h3 id="post-conditional-checking-examples">Post-conditional checking examples:</h3>
 <pre><code class="language-actionscript">ensuresBool(ExternalInterface.available, &quot;ExternalInterface is not available.&quot;).isTrue();
 ensures(_entries[pOldKey]).isNotNull(&quot;Key [&quot;+pOldKey+&quot;] does not exists.&quot;);
 ensuresNumber(days).isLessOrEqualThan(10675199, &quot;Invalid number of days: &quot;+days);
 </code></pre>
-<h3 id="usage">Usage</h3>
+<h4 id="usage">Usage</h4>
 <p>You have 6 specific conditional checks (Array, Boolean, Date, Number, String) and one general. You access the conditionals by using either the requires[Type] functions or ensures[Type] functions.</p>
 <p>The <em>requires</em> functions requires at least one parameter: the value you want to check. You can also pass a second parameter that represents the <em>name</em> of that value (you usually use <em>requires</em> to validate method arguments).</p>
 <p>The conditions may have different number of parameters (depending on what are you checking). The last one is an additional string you may want to attach to the error description.</p>
@@ -101,11 +101,11 @@ You have to download the library from the SVN repository. I will post a new ZIP 
 						<a href="/tags/Code"><b>Code</b> <i>8</i></a>
 						<a href="/tags/Translation"><b>Translation</b> <i>6</i></a>
 						<a href="/tags/Javascript"><b>Javascript</b> <i>5</i></a>
+						<a href="/tags/Games"><b>Games</b> <i>4</i></a>
 						<a href="/tags/Localization"><b>Localization</b> <i>4</i></a>
 						<a href="/tags/Internationalization"><b>Internationalization</b> <i>4</i></a>
-						<a href="/tags/Games"><b>Games</b> <i>4</i></a>
-						<a href="/tags/Web"><b>Web</b> <i>3</i></a>
 						<a href="/tags/Cms"><b>Cms</b> <i>3</i></a>
+						<a href="/tags/Web"><b>Web</b> <i>3</i></a>
 						<a href="/tags/Globalization"><b>Globalization</b> <i>2</i></a>
 				</div>
 			</div>

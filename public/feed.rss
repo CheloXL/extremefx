@@ -5,8 +5,8 @@
 		<link>https://extremefx.com.ar/</link>
 		<description>Extreme|FX</description>
 		<copyright>2019</copyright>
-		<pubDate>Tue, 10 Dec 2019 01:01:35 GMT</pubDate>
-		<lastBuildDate>Tue, 10 Dec 2019 01:01:35 GMT</lastBuildDate>
+		<pubDate>Wed, 11 Dec 2019 01:08:14 GMT</pubDate>
+		<lastBuildDate>Wed, 11 Dec 2019 01:08:14 GMT</lastBuildDate>
 		<item>
 			<title>Downgrading a Nuget package</title>
 			<link>https://extremefx.com.ar/posts/downgrading-a-nuget-package</link>
@@ -669,19 +669,19 @@ if (ret == null) throw new Error(&amp;quot;Something went wrong!&amp;quot;);
 return ret;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;That's good practice, but when you have to validate several conditions the code starts to look messy. For that reason, I created a couple of helper classes that takes cares of the job, providing a nice fluent typing.&lt;/p&gt;
-&lt;h2 id="pre-conditional-checking-examples"&gt;Pre-conditional checking examples:&lt;/h2&gt;
+&lt;h3 id="pre-conditional-checking-examples"&gt;Pre-conditional checking examples:&lt;/h3&gt;
 &lt;pre&gt;&lt;code class="language-actionscript"&gt;requiresNumber(pIndex, &amp;quot;pIndex&amp;quot;).isLessThan(_size);
 requires(pCollection, &amp;quot;pCollection&amp;quot;).isNotNull();
 requiresString(pKey, &amp;quot;key&amp;quot;).isNotNullOrEmpty();
 requires(pValue, &amp;quot;value&amp;quot;).isNotNull();
 requires(pNode._parent, &amp;quot;node&amp;quot;).isNotSameAs(this, &amp;quot;You cannot attach a node to itself&amp;quot;).isTypeOf(TreeNode);
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="post-conditional-checking-examples"&gt;Post-conditional checking examples:&lt;/h2&gt;
+&lt;h3 id="post-conditional-checking-examples"&gt;Post-conditional checking examples:&lt;/h3&gt;
 &lt;pre&gt;&lt;code class="language-actionscript"&gt;ensuresBool(ExternalInterface.available, &amp;quot;ExternalInterface is not available.&amp;quot;).isTrue();
 ensures(_entries[pOldKey]).isNotNull(&amp;quot;Key [&amp;quot;+pOldKey+&amp;quot;] does not exists.&amp;quot;);
 ensuresNumber(days).isLessOrEqualThan(10675199, &amp;quot;Invalid number of days: &amp;quot;+days);
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id="usage"&gt;Usage&lt;/h3&gt;
+&lt;h4 id="usage"&gt;Usage&lt;/h4&gt;
 &lt;p&gt;You have 6 specific conditional checks (Array, Boolean, Date, Number, String) and one general. You access the conditionals by using either the requires[Type] functions or ensures[Type] functions.&lt;/p&gt;
 &lt;p&gt;The &lt;em&gt;requires&lt;/em&gt; functions requires at least one parameter: the value you want to check. You can also pass a second parameter that represents the &lt;em&gt;name&lt;/em&gt; of that value (you usually use &lt;em&gt;requires&lt;/em&gt; to validate method arguments).&lt;/p&gt;
 &lt;p&gt;The conditions may have different number of parameters (depending on what are you checking). The last one is an additional string you may want to attach to the error description.&lt;/p&gt;
@@ -771,7 +771,7 @@ final class Fnc {
 	}
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="how-to-use"&gt;How to use?&lt;/h2&gt;
+&lt;h3 id="how-to-use"&gt;How to use?&lt;/h3&gt;
 &lt;p&gt;Simple. You need to instantiate a new Overloader class, passing as arguments the target object and the name of the function you want to overload. The overloaded function must be defined as a variable of type &lt;em&gt;Function&lt;/em&gt;. The Overloader class will assign then the method that will check for arguments and calls the appropiate function.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-actionscript"&gt;public function main():void {
 	var o:Overloader = new Overloader(this, &amp;quot;testFnc&amp;quot;);
@@ -823,7 +823,7 @@ a type convert on the arguments (int, uint and numbers are convertibles, for exa
 			<guid>https://extremefx.com.ar/posts/flash-internationalization-library</guid>
 			<pubDate>Mon, 21 Apr 2008 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;This library will help you to internationalize your flash application. It supports localization of numbers, date/time, percentages and strings. It can also parse back numbers and date/time formats on a specific locale into flash internal formats.&lt;/p&gt;
-&lt;h2 id="details"&gt;Details&lt;/h2&gt;
+&lt;h3 id="details"&gt;Details&lt;/h3&gt;
 &lt;p&gt;Most of the code is well documented. I choose to follow the .net c# conventions for formatting as is the one I use the most.&lt;/p&gt;
 &lt;p&gt;There is also a resource management class that will let you manage language-specific resources, like strings and bitmaps. The resource manager uses the standard XLIFF format and it supports trans-unit nodes as well as bin-unit nodes.&lt;/p&gt;
 &lt;p&gt;Bin-unit nodes can have external or internal content. External content can be anything that flash supports natively like text files, xml, sound, video and images. External content will be loaded at runtime after the XLIFF file is parsed.&lt;/p&gt;
@@ -843,7 +843,7 @@ a type convert on the arguments (int, uint and numbers are convertibles, for exa
 &lt;/ul&gt;
 &lt;p&gt;And so on. Plural forms must be sorted like in real life. So, the singular first (if exists) and then the plurals.&lt;/p&gt;
 &lt;p&gt;The source code has a demo application that uses all the features the framework has. Please check that demo and the documentation for more information.&lt;/p&gt;
-&lt;h3 id="todo-missing"&gt;TODO / Missing&lt;/h3&gt;
+&lt;h4 id="todo-missing"&gt;TODO / Missing&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;Calendars:&lt;/em&gt; Gregorian calendar and all its derivated works (Japanese, Julian, Korean, Taiwan, ThaiBuddhist). All the Lunar Calendars are not implemented. Also, the UmAlQuraCalendar it's not implemented at all.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;HijriCalendar:&lt;/em&gt; Again, I implemented the algorithm, but I'm not sure if it works correctly. Need to check how the addHijriDate parameter works, if this parameter is the same as hijriAdjustment in .net, and if the calendar works at all.&lt;/li&gt;
@@ -861,7 +861,7 @@ a type convert on the arguments (int, uint and numbers are convertibles, for exa
 			<description>&lt;p&gt;Flashxed is a puzzle game in which your goal is to move similar blocks together, which causes them to disappear. Once all the blocks are gone, you've solved the level and you're presented with a new level to solve. You move blocks by pressing the mouse on them and dragging to either the right or left. If an empty space is encountered, &lt;em&gt;gravity&lt;/em&gt; takes over and the blocks fall towards the bottom.&lt;/p&gt;</description>
 			<guid>https://extremefx.com.ar/posts/flashxed</guid>
 			<pubDate>Mon, 10 Sep 2007 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;h2 id="how-to-play"&gt;How to play:&lt;/h2&gt;
+			<content:encoded>&lt;h3 id="how-to-play"&gt;How to play:&lt;/h3&gt;
 &lt;p&gt;Flashxed is a puzzle game in which your goal is to move similar blocks together, which causes them to disappear. Once all the blocks are gone, you've solved the level and you're presented with a new level to solve. You move blocks by pressing the mouse on them and dragging to either the right or left. If an empty space is encountered, &lt;em&gt;gravity&lt;/em&gt; takes over and the blocks fall towards the bottom.&lt;/p&gt;
 &lt;object type="application/x-shockwave-flash" data="/assets/flash/flashxed.swf" width="320" height="320"&gt;
 	&lt;param name="movie" value="/assets/flash/flashxed.swf" /&gt;
@@ -877,7 +877,7 @@ a type convert on the arguments (int, uint and numbers are convertibles, for exa
 			<description>&lt;p&gt;You have to exit from every room by hiding all the platforms. Only when you have hidden all the platforms you can advance to the next level. To make things more difficult, you must complete a level before a timer ends.&lt;/p&gt;</description>
 			<guid>https://extremefx.com.ar/posts/pazzo-francesco</guid>
 			<pubDate>Tue, 03 Jul 2007 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;h2 id="how-to-play"&gt;How to play:&lt;/h2&gt;
+			<content:encoded>&lt;h3 id="how-to-play"&gt;How to play:&lt;/h3&gt;
 &lt;p&gt;You have to exit from every room by hiding all the platforms. Only when you have hidden all the platforms you can advance to the next level. To make things more difficult, you must complete a level before a timer ends.&lt;/p&gt;
 &lt;p&gt;Pazzo can jump in eight directions (up, down, left, right and up-left, up-right, down-left &amp;amp; down-right) and his jump can be short or long. Use them wisely to advance from level to level.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Cursor keys:&lt;/strong&gt; standard jump.
@@ -896,14 +896,16 @@ a type convert on the arguments (int, uint and numbers are convertibles, for exa
 			<description>&lt;p&gt;Clear the screen by clicking two or more adjacent blocks of the same color.&lt;/p&gt;</description>
 			<guid>https://extremefx.com.ar/posts/blocks</guid>
 			<pubDate>Mon, 02 Jul 2007 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;h2 id="how-to-play"&gt;How to play:&lt;/h2&gt;
+			<content:encoded>&lt;h3 id="how-to-play"&gt;How to play:&lt;/h3&gt;
 &lt;p&gt;Clear the screen by clicking two or more adjacent blocks of the same color.&lt;/p&gt;
-&lt;div class="videoWrapper" style="padding-bottom: 73.94%;"&gt;&lt;object type="application/x-shockwave-flash" data="/images.axd?src=blocks.swf"&gt;
-	&lt;param name="movie" value="/images.axd?src=blocks.swf" /&gt;
-	&lt;param name="quality" value="high" /&gt;
-	&lt;param name="bgcolor" value="#000000" /&gt;
-	&lt;param name="menu" value="false" /&gt;
-&lt;/object&gt;&lt;/div&gt;
+&lt;div class="fluid-object" style="padding-bottom: 73.94%;"&gt;
+	&lt;object type="application/x-shockwave-flash" data="/assets/flash/blocks.swf"&gt;
+		&lt;param name="movie" value="/assets/flash/blocks.swf" /&gt;
+		&lt;param name="quality" value="high" /&gt;
+		&lt;param name="bgcolor" value="#000000" /&gt;
+		&lt;param name="menu" value="false" /&gt;
+	&lt;/object&gt;
+&lt;/div&gt;
 </content:encoded>
 		</item>
 		<item>
@@ -944,10 +946,10 @@ a type convert on the arguments (int, uint and numbers are convertibles, for exa
 			<description>&lt;p&gt;This version should be considered &lt;strong&gt;BETA&lt;/strong&gt;. It is stable enough for me, but it will surely break existing applications that depends on it.&lt;/p&gt;</description>
 			<guid>https://extremefx.com.ar/posts/flash-text-area-update-3</guid>
 			<pubDate>Thu, 22 Feb 2007 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;h2 id="warning"&gt;WARNING&lt;/h2&gt;
+			<content:encoded>&lt;h3 id="warning"&gt;WARNING&lt;/h3&gt;
 &lt;p&gt;This version should be considered &lt;strong&gt;BETA&lt;/strong&gt;. It is stable enough for me, but it will surely break existing applications that depends on it.&lt;/p&gt;
 &lt;p&gt;Don't install this version on a production server and read the documentation!. I warned you...&lt;/p&gt;&lt;/p&gt;
-&lt;h3 id="changes"&gt;Changes:&lt;/h3&gt;
+&lt;h4 id="changes"&gt;Changes:&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Completely rewritten the javascript interface. The way the editor is placed was changed from the custom attribute to a class name.&lt;/li&gt;
 &lt;li&gt;The editor is now localizable.&lt;/li&gt;
@@ -977,17 +979,19 @@ a type convert on the arguments (int, uint and numbers are convertibles, for exa
 			<description>&lt;p&gt;The objective is to get as close to 21 as possible without going over. The dealer has to take a card if he has 17 or more.&lt;/p&gt;</description>
 			<guid>https://extremefx.com.ar/posts/black-jack</guid>
 			<pubDate>Thu, 26 Oct 2006 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;h2 id="how-to-play"&gt;How to play:&lt;/h2&gt;
+			<content:encoded>&lt;h3 id="how-to-play"&gt;How to play:&lt;/h3&gt;
 &lt;p&gt;The objective is to get as close to 21 as possible without going over. The dealer has to take a card if he has 17 or more.&lt;/p&gt;
 &lt;p&gt;An ace counts as 1 or 11. face cards are worth 10. You can double down on your hand if you have the cash.&lt;/p&gt;
 &lt;p&gt;You will be dealt one card and if you win you will double your payout… of course your bet is doubled too.&lt;/p&gt;
 &lt;p&gt;You can take insurance if the dealer is showing an ace and you have enought cash. the insurance bet is 1/2 your original bet.&lt;/p&gt;
-&lt;div class="videoWrapper" style="padding-bottom: 74.34%;"&gt;&lt;object type="application/x-shockwave-flash" data="/assets/flash/blackjack.swf"&gt;
-	&lt;param name="movie" value="/assets/flash/blackjack.swf" /&gt;
-	&lt;param name="quality" value="high" /&gt;
-	&lt;param name="bgcolor" value="#000000" /&gt;
-	&lt;param name="menu" value="false" /&gt;
-&lt;/object&gt;&lt;/div&gt;
+&lt;div class="fluid-object" style="padding-bottom: 74.34%;"&gt;
+	&lt;object type="application/x-shockwave-flash" data="/assets/flash/blackjack.swf"&gt;
+		&lt;param name="movie" value="/assets/flash/blackjack.swf" /&gt;
+		&lt;param name="quality" value="high" /&gt;
+		&lt;param name="bgcolor" value="#000000" /&gt;
+		&lt;param name="menu" value="false" /&gt;
+	&lt;/object&gt;
+&lt;/div&gt;
 </content:encoded>
 		</item>
 		<item>

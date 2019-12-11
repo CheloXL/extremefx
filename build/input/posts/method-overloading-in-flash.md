@@ -87,7 +87,7 @@ final class Fnc {
 }
 ```
 
-## How to use?
+### How to use?
 
 Simple. You need to instantiate a new Overloader class, passing as arguments the target object and the name of the function you want to overload. The overloaded function must be defined as a variable of type *Function*. The Overloader class will assign then the method that will check for arguments and calls the appropiate function.
 

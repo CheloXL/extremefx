@@ -42,13 +42,13 @@
 		<h2>Flash TextArea - Standards compliant XHTML flash editor</h2>
 	</div>
 
-	<h2 id="introduction">Introduction</h2>
+	<h3 id="introduction">Introduction</h3>
 <p>FlashTA is a WYSIWYG replacement text area for html forms. While there are various implementations done in javascript, most of them don't work in this/that browser/OS combo, and every time a browser vendor makes a change, they need to update the editor so it doesn't break on every possible combination of browsers.</p>
 <p>FlashTA tries to overcome that problem by using flash. It also tries to adhere stricty to the xhtml specification. No presentation code is generated (so say bye bye to your idea of selecting text color, font face, etc).</p>
 <p>FlashTA features an easy integration and multiple browser support (Mozilla, MSIE, FireFox, Opera &amp; Safari).</p>
-<h2 id="download">Download</h2>
+<h3 id="download">Download</h3>
 <p>Download the latest version <a href="/assets/files/FlashTA.zip">FlashTA.zip (176.70 kb)</a>.</p>
-<h2 id="how-to-use">How to use</h2>
+<h3 id="how-to-use">How to use</h3>
 <p>FlashTA comes with 4 files:</p>
 <ul>
 <li>FlashTA.swf (the editor itself)</li>
@@ -62,7 +62,7 @@
 <p>To tell the script what textareas you want to be replaced, add to them the class “efx_flashtextarea”:</p>
 <pre><code class="language-html">&lt;textarea name=&quot;nameOfThisField&quot; class=&quot;efx_flashtextarea&quot;&gt;&lt;/textarea&gt;
 </code></pre>
-<h3 id="configuration">Configuration</h3>
+<h4 id="configuration">Configuration</h4>
 <p>The editor configuration is handled on the javascript file. For this, you should modify the lines that read:</p>
 <pre><code class="language-javascript">fTAR.FlashTextArea.setFilemanager('fileManager.php');
 fTAR.FlashTextArea.setServerURL('http://localhost');
@@ -71,7 +71,7 @@ fTAR.FlashTextArea.setBasePath('');
 fTAR.FlashTextArea.setLngFile('lang/en.xml');
 fTAR.FlashTextArea.setup('FlashTA.swf', 'FlashFB.swf');
 </code></pre>
-<h4 id="explanation">Explanation:</h4>
+<h5 id="explanation">Explanation:</h5>
 <p><strong>fTAR.setup(editor, filebrowser);</strong></p>
 <ul>
 <li><strong>editor:</strong> path/name of the editor flash file. If you stored the editor on a folder called <code>flashEditor</code>, and the page that will use it is on the same level as the folder, the first parameter should be changed like: <code>flashEditor/FlashTA.swf</code>.</li>
@@ -124,11 +124,11 @@ Returns <code>false</code> if no textareas were changed, or an array of the chan
 <p><strong>fTAR.FlashTextArea.hasChanged(areaName);</strong>
 Returns <code>true</code> if the area named <em>areaName</em> was changed, <code>false</code> if not.</p>
 <p>There are also a bunch of CSS styles that you can play with. Take a look at the source code.</p>
-<h2 id="known-bugs-and-limitations">Known bugs and limitations:</h2>
+<h3 id="known-bugs-and-limitations">Known bugs and limitations:</h3>
 <ul>
 <li>Sometimes in the editor, after you insert an image, the cursor changes to a small caret, and all text inserted at that place will look like a bunch of dots. This is a known issue of the player (at least it's known by my… bug already reported to Macromedia). The text is in there and if you submit the data, the text will be in their place.</li>
 </ul>
-<h3 id="history-fixedchanged-added-removed">History (* fixed/changed, + added, – removed)</h3>
+<h4 id="history-fixedchanged-added-removed">History (* fixed/changed, + added, – removed)</h4>
 <ul>
 <li>+ The editor is now localizable.</li>
 <li>+ Redo / Undo.</li>
@@ -193,11 +193,11 @@ Returns <code>true</code> if the area named <em>areaName</em> was changed, <code
 						<a href="/tags/Code"><b>Code</b> <i>8</i></a>
 						<a href="/tags/Translation"><b>Translation</b> <i>6</i></a>
 						<a href="/tags/Javascript"><b>Javascript</b> <i>5</i></a>
+						<a href="/tags/Games"><b>Games</b> <i>4</i></a>
 						<a href="/tags/Localization"><b>Localization</b> <i>4</i></a>
 						<a href="/tags/Internationalization"><b>Internationalization</b> <i>4</i></a>
-						<a href="/tags/Games"><b>Games</b> <i>4</i></a>
-						<a href="/tags/Web"><b>Web</b> <i>3</i></a>
 						<a href="/tags/Cms"><b>Cms</b> <i>3</i></a>
+						<a href="/tags/Web"><b>Web</b> <i>3</i></a>
 						<a href="/tags/Globalization"><b>Globalization</b> <i>2</i></a>
 				</div>
 			</div>

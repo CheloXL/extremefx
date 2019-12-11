@@ -3,7 +3,7 @@ Published: 2007-09-10
 Tags: [Flash, Games]
 Lead: Flashxed is a puzzle game in which your goal is to move similar blocks together, which causes them to disappear. Once all the blocks are gone, you've solved the level and you're presented with a new level to solve.
 ---
-## How to play:
+### How to play:
 
 Flashxed is a puzzle game in which your goal is to move similar blocks together, which causes them to disappear. Once all the blocks are gone, you've solved the level and you're presented with a new level to solve. You move blocks by pressing the mouse on them and dragging to either the right or left. If an empty space is encountered, *gravity* takes over and the blocks fall towards the bottom.
 

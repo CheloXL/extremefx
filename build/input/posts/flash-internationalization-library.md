@@ -5,7 +5,7 @@ Lead: This library will help you to internationalize your flash application. It 
 ---
 This library will help you to internationalize your flash application. It supports localization of numbers, date/time, percentages and strings. It can also parse back numbers and date/time formats on a specific locale into flash internal formats.
 
-## Details
+### Details
 
 Most of the code is well documented. I choose to follow the .net c# conventions for formatting as is the one I use the most.
 
@@ -35,7 +35,7 @@ And so on. Plural forms must be sorted like in real life. So, the singular first
 
 The source code has a demo application that uses all the features the framework has. Please check that demo and the documentation for more information.
 
-### TODO / Missing
+#### TODO / Missing
 
 * *Calendars:* Gregorian calendar and all its derivated works (Japanese, Julian, Korean, Taiwan, ThaiBuddhist). All the Lunar Calendars are not implemented. Also, the UmAlQuraCalendar it's not implemented at all.
 * *HijriCalendar:* Again, I implemented the algorithm, but I'm not sure if it works correctly. Need to check how the addHijriDate parameter works, if this parameter is the same as hijriAdjustment in .net, and if the calendar works at all.
